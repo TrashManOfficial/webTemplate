@@ -585,6 +585,7 @@ body {font-family: "微软雅黑", "sans-serif", "Arial";}
     .main{padding-top: 3.625rem;}
     .main .conter{margin: 0;}
 
+    .index{overflow: auto;}
     .index .main{background: none;}
 
     .index .zp{flex-direction: column;padding: 0;}
@@ -614,11 +615,14 @@ body {font-family: "微软雅黑", "sans-serif", "Arial";}
     .index .zp .right_cont .tpxw .tit{display: none;}
     .index .zp .right_cont .tpxw .bg{display: none;}
     .index .zp .right_cont .list{width: 100%;}
+    .index .zp .right_cont .list .lis{max-height: initial;}
     .index .zp .right_cont .list a .tit .tag{width: 1.25rem;height: 1.25rem;}
     .index .main{height: auto;}
     .index .main .cp{display: flex;flex-direction: column;padding: 0;}
     .index .main .cp .left_cont{width: 100%;}
+    .index .main .cp .left_cont .lis{max-height: initial;}
     .index .main .cp .right_cont{width: 100%;}
+    .index .main .cp .right_cont .lis{max-height: initial;}
     .index .main .mp{display: block;padding: 0;}
     .index .main .mp .ztbd{margin: 0.375rem 0 0;overflow: hidden;}
     .index .main .mp .ztbd .tit{justify-content: center;margin-bottom: 0.75rem;}
