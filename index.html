@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="images/global20240904.css"/>
+    <link rel="stylesheet" type="text/css" href="images/swiper.min.css"/>
+    <script src="images/jquery.js"></script>
+    <script>
+        $(function () {
+            setChange($(".dw_select"));
+            setChange1($(".main_search .selected li"));
+            $(".close_btn").on("click",function () {
+                $(".mask").removeClass("show").removeClass("top");
+                $(this).parents(".tc").removeClass("show");
+            });
+            $(".head .search_btn").on('click',function () {
+                $(".mask").addClass("show");
+                $(".search_tc").css("height",$(".head").height()).addClass("show");
+            })
+            $(".app_head .menu_btn").on('click',function () {
+                if($(this).hasClass("show")){
+                    $(this).removeClass("show");
+                    $(".app_menu").removeClass("show");
+                    $(".mask").removeClass("show");
+                }else{
+                    $(this).addClass("show");
+                    $(".app_menu").addClass("show");
+                    $(".mask").addClass("show");
+                }
+            });
+            var thread = 0;
+            var scrollHover = false;
+            setInterval(function () {thread = 0;},1500);
+            $(".index").on('wheel',function (event) {
+                thread += event.originalEvent.deltaY;
+                if(event.originalEvent.deltaY > 0 && !scrollHover && thread > 300){
+                    thread = 0;
+                    $(".qh_btn .cont").eq($(".qh_btn .hover").index() + 1).click();
+                }else if(event.originalEvent.deltaY < 0 && $(".qh_btn .hover").index() !== 0 && !scrollHover && thread < -300){
+                    thread = 0;
+                    $(".qh_btn .cont").eq($(".qh_btn .hover").index() - 1).click();
+                }
+            });
+            $(".lis,.zp .left_cont,.head .dw_select ul").hover(function () {
+                if($(this)[0].clientWidth < $(this)[0].offsetWidth){
+                    scrollHover = true;
+                }
+            },function () {
+                scrollHover = false;
+            })
+            $(".mask").on('click',function () {
+                $(this).removeClass("show").removeClass("top");
+                $("*").removeClass("show");
+            });
+            $(".app_head .logo .search_btn").on('click',function () {
+                $(".app_search_box").addClass("show");
+            });
+            $(".app_menu .menu_cont ul ul").parent().addClass("hasSub");
+            $(".app_menu .menu_cont a").on('click',function (event) {
+                event.preventDefault();
+                if($(this).parent().hasClass("expand")){
+                    $(this).parent().removeClass("expand");
+                }else{
+                    $(this).parent().addClass("expand");
+                }
+                $(this).parent().children("ul").slideToggle(800);
+            });
+            var changing = false;
+            $(".qh_btn .cont").on('click',function () {
+                if(changing === false && window.innerWidth > 810){
+                    var a = $(this).index();
+                    if(a !== 0){
+                        $(".index .ttxw").hide();
+                        $(".index .main").addClass("tp");
+                    }else{
+                        $(".index .ttxw").show();
+                        $(".index .main").removeClass("tp");
+                    }
+                    $(this).addClass("hover").siblings().removeClass("hover");
+                    changing = true;
+                    var top = $(".main section").eq(a)[0].offsetTop;
+                    $(".index .main").animate({scrollTop: top},500);
+                    setTimeout(function () {
+                        changing = false;
+                    },500);
+                }
+            });
+            $(".cp .tis span").on('click',function () {
+                setChange2($(this));
+            });
+            $(".zp .tis span").hover(function () {
+                setChange2($(this));
+            }).on('click',function (event) {
+                if(window.innerWidth < 810){
+                    event.preventDefault();
+                }
+            });
+            $(".bj_btn").on('click',function () {
+                $(".mask").addClass("show");
+                $(".tc.ejdw").addClass("show");
+            })
+        })
+        //点击时展示，再次点击或移开鼠标隐藏
+        function setChange(option) {
+            option.on('click',function () {
+                if($(this).hasClass("show")){
+                    $(this).removeClass("show");
+                    $(this).children("ul").hide();
+                }else{
+                    $(this).addClass("show");
+                    $(this).children("ul").show();
+                }
+            }).on('mouseleave',function () {
+                $(this).removeClass("show");
+                $(this).children("ul").hide();
+            })
+        }
+        function setChange1(option) {
+            option.on('click',function () {
+                $(this).addClass("hover").siblings().removeClass("hover");
+            })
+        }
+        function setChange2(option) {
+            var a = option.index();
+            option.addClass("hover").siblings().removeClass("hover");
+            option.parents(".tis").children(".more").children("a").eq(a).show().siblings().hide();
+            option.parents(".tis").siblings(".lis").eq(a).show().siblings(".lis").hide();
+        }
+    </script>
+</head>
+<body class="index">
+<div class="mask"></div>
+<div class="tc search_tc">
+    <div class="conter">
+        <div class="main_search">
+            <label>
+                <input type="text" autocomplete="off" placeholder="">
+                <button type="button"><img src="images/search20240904_9.png" alt=""><span>搜索</span></button>
+            </label>
+            <div class="selected">
+                <ul>
+                    <li class="hover"><a href="javascript:void(0);">全部</a></li>
+                    <li><a href="javascript:void(0);">关键词</a></li>
+                    <li><a href="javascript:void(0);">标题</a></li>
+                    <li><a href="javascript:void(0);">正文</a></li>
+                    <li><a href="javascript:void(0);">创建人</a></li>
+                    <li><a href="javascript:void(0);">发布时间</a></li>
+                    <li><a href="javascript:void(0);">分类搜索</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="close_btn"><img src="images/search20240904_7.png" alt=""></div>
+    </div>
+</div>
+<div class="app_search_box app tc">
+    <label>
+        <input type="text" autocomplete="off" placeholder="请输入关键词">
+        <button>搜索</button>
+    </label>
+    <div class="close_btn"><img src="images/search20240904_7.png" alt=""></div>
+</div>
+<div class="app_menu app">
+    <div class="yhdl">
+        <div class="yhxx"><img src="images/search20240904_12.png" alt=""><em>XXX</em> 您好！</div>
+        <div class="dl">
+            <div class="login"><a href="javascript:void(0);">切换用户</a></div>
+            <div class="logout"><a href="javascript:void(0);">注销</a></div>
+        </div>
+    </div>
+    <div class="dw_select">
+        <span>招商局海通贸易有限公司</span>
+        <ul style="display: none;">
+            <li><a href="">测试</a></li>
+            <li><a href="">测试</a></li>
+            <li><a href="">测试</a></li>
+            <li><a href="">测试</a></li>
+            <li><a href="">测试</a></li>
+        </ul>
+    </div>
+    <div class="menu_cont">
+        <ul>
+            <li><a href="">首  页</a></li>
+            <li>
+                <a href="">集团总部新闻</a>
+                <ul style="display: none;">
+                    <li><a href="">集团要闻</a></li>
+                    <li><a href="">集团简讯</a></li>
+                    <li><a href="">公司动态</a></li>
+                    <li><a href="">上市公司股价</a></li>
+                    <li><a href="">媒体报道</a></li>
+                    <li><a href="">研究报告</a></li>
+                    <li><a href="">行业信息</a></li>
+                    <li><a href="">国资要闻</a></li>
+                </ul>
+            </li>
+            <li><a href="">公司新闻</a></li>
+            <li><a href="">通知与公告</a></li>
+        </ul>
+    </div>
+    <div class="link">
+        <div class="language">
+            <span>简体中文</span>
+            <ul style="display: none;">
+                <li><a href="javascript:void(0);">简体中文</a></li>
+                <li><a href="javascript:void(0);">繁體中文</a></li>
+            </ul>
+        </div>
+        <div class="wb">
+            <a href="">外部网</a>
+        </div>
+    </div>
+</div>
+<div class="tc gg">
+    <div class="close_btn" onclick="$(this).parent().hide();"><img src="images/index20240909_12.png" alt=""></div>
+    <div class="tit">缪建民出席招商银行2023年度业绩发布会</div>
+    <div class="text">3月27日，招商银行在香港举办2023年度业绩发布会。招商局集团董事长、招商银行董事长缪建民出席会议，介绍招商银行2023年业绩概览，展望2024年经营策略，并回答了投资者、分析师和媒体记者关切的问题。招商银行执行董事、行长王良参加发布会。</div>
+    <div class="more"><a href="">详情>></a></div>
+</div>
+<div class="tc ejdw">
+    <div class="tit">请选择二级单位</div>
+    <div class="dw">
+        <form>
+            <div class="select">
+                <label><input type="checkbox" name="dw" value="">招商银行</label>
+                <label><input type="checkbox" name="dw" value="">招商金控</label>
+                <label><input type="checkbox" name="dw" value="">招商蛇口</label>
+                <label><input type="checkbox" name="dw" value="">招商漳州</label>
+                <label><input type="checkbox" name="dw" value="">招商港口</label>
+                <label><input type="checkbox" name="dw" value="">辽港集团</label>
+                <label><input type="checkbox" name="dw" value="">招商轮船</label>
+                <label><input type="checkbox" name="dw" value="">招商工业</label>
+                <label><input type="checkbox" name="dw" value="">招商海通</label>
+                <label><input type="checkbox" name="dw" value="">招商证券</label>
+                <label><input type="checkbox" name="dw" value="">博时基金</label>
+                <label><input type="checkbox" name="dw" value="">招商局创投</label>
+                <label><input type="checkbox" name="dw" value="">招商公路</label>
+                <label><input type="checkbox" name="dw" value="">招商交科</label>
+                <label><input type="checkbox" name="dw" value="">中国外运</label>
+                <label><input type="checkbox" name="dw" value="">长航集团</label>
+                <label><input type="checkbox" name="dw" value="">招商租赁</label>
+                <label><input type="checkbox" name="dw" value="">招商财务</label>
+                <label><input type="checkbox" name="dw" value="">仁和人寿</label>
+                <label><input type="checkbox" name="dw" value="">平安资产</label>
+                <label><input type="checkbox" name="dw" value="">招商太平湾</label>
+            </div>
+            <div class="button">
+                <button type="reset">取消</button>
+                <button type="submit">确认</button>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="head pc">
+    <div class="conter">
+        <div class="top">
+            <div class="left_cont">
+                <div class="logo"><img src="images/search20240904_8.png" alt=""></div>
+                <div class="menu">
+                    <ul>
+                        <li class="hover"><a href="">首  页</a></li>
+                        <li><a href="">工作台</a></li>
+                        <li><a href="">集团导航</a></li>
+                        <li><a href="">自助服务</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="right_cont">
+                <div class="yhdl">
+                    <div class="yhxx"><img src="images/search20240904_12.png" alt=""><em>XXX</em> 您好！</div>
+                    <div class="login"><a href="javascript:void(0);">切换用户</a></div>
+                    <div class="logout"><a href="javascript:void(0);">注销</a></div>
+                </div>
+                <div class="cont">
+                    <div class="search_btn">
+                        <img src="images/search20240904_6.png" alt="">
+                    </div>
+                    <div class="dw_select">
+                        <span>招商局海通贸易有限公司</span>
+                        <ul style="display: none;">
+                            <li><a href="">测试</a></li>
+                            <li><a href="">测试</a></li>
+                            <li><a href="">测试</a></li>
+                            <li><a href="">测试</a></li>
+                            <li><a href="">测试</a></li>
+                        </ul>
+                    </div>
+                    <div class="language">
+                        <span><a href="javascript:void(0);">简体中文</a></span>
+                    </div>
+                    <div class="wb">
+                        <a href="">外部网</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="title"><p></p><span></span></div>
+        <div class="ttxw"><p>缪建民出席招商银行2023年度业绩发布会</p><span>3月27日，招商银行在香港举办2023年度业绩发布会。招商局集团董事长、招商银行董事长缪建民出席会议，介绍招商银行2023年业绩概览，展望2024年经营策略，并回答了投资者、分析师和媒体记者关切的问题。招商银行执行董事、行长王良参加发布会。</span><div class="more"><a href="">详情>></a></div></div>
+    </div>
+</div>
+<div class="app_head app">
+    <div class="logo"><img src="images/search20240904_2.png" alt=""><div class="search_btn"><img src="images/search20240904_4.png" alt=""></div></div>
+    <div class="menu_btn"><img src="images/search20240904_5.png" alt=""><img src="images/search20240904_7.png" alt="" class="hover"></div>
+</div>
+<div class="main">
+    <div class="conter">
+        <section class="zp hover">
+            <div class="left_cont">
+                <div class="ztzl swiper-container">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide"><a href=""><img src="images/index20240909_5.jpg" alt=""></a></div>
+                        <div class="swiper-slide"><a href=""><img src="images/index20240909_6.png" alt=""></a></div>
+                        <div class="swiper-slide"><a href=""><img src="images/index20240909_3.png" alt=""></a></div>
+                        <div class="swiper-slide"><a href=""><img src="images/index20240909_4.png" alt=""></a></div>
+                    </div>
+                    <div class="swiper-pagination app"></div>
+                </div>
+            </div>
+            <div class="right_cont">
+                <div class="tpxw">
+                    <div class="tpxw_box">
+                        <div class="title app">热点新闻</div>
+                        <div class="tit">
+                            <div class="tit_box">
+                                <div class="swiper-container tpxw_tit">
+                                    <div class="swiper-wrapper">
+                                        <div class="swiper-slide"><a href="">3月27日，招商银行在香港举办2023年度业绩发布会。招商局集团董事长、招商银行董事长缪建民出席会议，介绍招商</a></div>
+                                        <div class="swiper-slide"><a href="">3月27日，招商银行在香港举办2023年度业绩发布会。招商局集团董事长、招商银行董事长缪建民出席会议，介绍招商</a></div>
+                                        <div class="swiper-slide"><a href="">3月27日，招商银行在香港举办2023年度业绩发布会。招商局集团董事长、招商银行董事长缪建民出席会议，介绍招商</a></div>
+                                    </div>
+                                </div>
+                                <div class="swiper-prev swiper-button"></div>
+                                <div class="swiper-next swiper-button"></div>
+                            </div>
+                        </div>
+                        <div class="tpxw_tp">
+                            <div class="swiper-container tpxw_banner">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide">
+                                        <a href=""><img src="images/index20240909_2.png" alt=""><div class="text app"><p>3月27日，招商银行在香港举办2023年度业绩发布会。招商局集团董事长、招商银行董事长缪建民出席会议，介绍招商银行2023年业绩概览……</p><div class="more"><span>2024-03-28</span><img src="images/index20240909_26.png" alt=""></div></div></a>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <a href=""><img src="images/index20240909_2.png" alt=""><div class="text app"><p>3月27日，招商银行在香港举办2023年度业绩发布会。招商局集团董事长、招商银行董事长缪建民出席会议，介绍招商银行2023年业绩概览……</p><div class="more"><span>2024-03-28</span><img src="images/index20240909_26.png" alt=""></div></div></a>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <a href=""><img src="images/index20240909_2.png" alt=""><div class="text app"><p>3月27日，招商银行在香港举办2023年度业绩发布会。招商局集团董事长、招商银行董事长缪建民出席会议，介绍招商银行2023年业绩概览……</p><div class="more"><span>2024-03-28</span><img src="images/index20240909_26.png" alt=""></div></div></a>
+                                    </div>
+                                </div>
+                                <div class="swiper-pagination app"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg bg1 sh"><img src="images/index20240909_13.png" alt=""></div>
+                    <div class="bg bg2 sh"><img src="images/index20240909_13.png" alt=""></div>
+                    <div class="bg bg3"></div>
+                    <div class="bg bg4"></div>
+                </div>
+                <div class="list sp">
+                    <div class="tis">
+                        <span class="hover"><a href="">集团要闻</a></span>
+                        <span><a href="">集团简讯</a></span>
+                        <span><a href="">公司动态</a></span>
+                        <span><a href="">通知公告</a></span>
+                    </div>
+                    <div class="lis">
+                        <ul>
+                            <li class="tw app">
+                                <div class="pic"><img src="images/index20240909_31.png" alt=""></div>
+                                <div class="text">
+                                    <a href=""><span>3月20日下午，集团董事长缪建民在香港招商局大厦会见中国联通董事长陈忠岳，双方就进一步深化合作进行交流。中国联通董事王俊治、副总经理梁宝俊，集团董事钟国东、副总经理邓仁杰，集团总经理助理、董事会秘书，集团办公室主任张军立参加会见。</span></a>
+                                    <div class="time">2024年03月21日</div>
+                                </div>
+                            </li>
+                            <li><div class="time"><em>21</em>2024.03</div><a href=""><div class="tit"><p>招商局先进技术研究院启动</p><span class="tag new"></span></div><span>2月27日，招商局先进技术研究院（下称“先进技术院”）在香港科学园举行启动仪式。</span></a></li>
+                            <li><div class="time"><em>21</em>2024.03</div><a href=""><div class="tit"><p>缪建民会见无锡市委书记杜小刚</p><span class="tag hot"></span></div><span>3月20日，集团董事长缪建民在香港招商局大厦分别会见陕西省政协主席徐</span></a></li>
+                            <li><div class="time"><em>21</em>2024.03</div><a href=""><div class="tit"><p>缪建民会见上海电气董事长吴磊</p><span class="tag tj"></span></div><span>3月26日下午，共青团招商局集团有限公司第一次代表大会在深圳胜利召开</span></a></li>
+                            <li><div class="time"><em>21</em>2024.03</div><a href=""><div class="tit"><p>缪建民会见中国联通董事长陈忠岳</p></div><span>3月20日下午，集团董事长缪建民在香港招商局大厦会见中国联通董事</span></a></li>
+                            <li><div class="time"><em>21</em>2024.03</div><a href=""><div class="tit"><p>石岱调研漳州开发区和招商蛇口厦门海上世界项目</p></div><span>3月21日，集团总经理石岱调研漳州开发区，全面了解漳州开发区经济社会发展情况和招商漳州生产经营情况，</span></a></li>
+                        </ul>
+                    </div>
+                    <div class="lis" style="display: none;">
+                        <ul>
+                            <li class="tw app">
+                                <div class="pic"><img src="images/index20240909_1.jpg" alt=""></div>
+                                <div class="text">
+                                    <a href=""><span>3月20日下午，集团董事长缪建民在香港招商局大厦会见中国联通董事长陈忠岳，双方就进一步深化合作进行交流。中国联通董事王俊治、副总经理梁宝俊，集团董事钟国东、副总经理邓仁杰，集团总经理助理、董事会秘书，集团办公室主任张军立参加会见。</span></a>
+                                    <div class="time">2024年03月21日</div>
+                                </div>
+                            </li>
+                            <li><div class="time"><em>21</em>2024.03</div><a href=""><p>招商局先进技术研究院启动</p><span>2月27日，招商局先进技术研究院（下称“先进技术院”）在香港科学园举行启动仪式。</span></a></li>
+                            <li><div class="time"><em>21</em>2024.03</div><a href=""><p>缪建民会见无锡市委书记杜小刚</p><span>3月20日，集团董事长缪建民在香港招商局大厦分别会见陕西省政协主席徐</span></a></li>
+                            <li><div class="time"><em>21</em>2024.03</div><a href=""><p>缪建民会见上海电气董事长吴磊</p><span>3月26日下午，共青团招商局集团有限公司第一次代表大会在深圳胜利召开</span></a></li>
+                            <li><div class="time"><em>21</em>2024.03</div><a href=""><p>缪建民会见中国联通董事长陈忠岳</p><span>3月20日下午，集团董事长缪建民在香港招商局大厦会见中国联通董事</span></a></li>
+                            <li><div class="time"><em>21</em>2024.03</div><a href=""><p>石岱调研漳州开发区和招商蛇口厦门海上世界项目</p><span>3月21日，集团总经理石岱调研漳州开发区，全面了解漳州开发区经济社会发展情况和招商漳州生产经营情况，</span></a></li>
+                        </ul>
+                    </div>
+                    <div class="lis" style="display: none;">
+                        <ul>
+                            <li class="tw app">
+                                <div class="pic"><img src="images/index20240909_1.jpg" alt=""></div>
+                                <div class="text">
+                                    <a href=""><span>3月20日下午，集团董事长缪建民在香港招商局大厦会见中国联通董事长陈忠岳，双方就进一步深化合作进行交流。中国联通董事王俊治、副总经理梁宝俊，集团董事钟国东、副总经理邓仁杰，集团总经理助理、董事会秘书，集团办公室主任张军立参加会见。</span></a>
+                                    <div class="time">2024年03月21日</div>
+                                </div>
+                            </li>
+                            <li><div class="time"><em>21</em>2024.03</div><a href=""><p>招商局先进技术研究院启动</p><span>2月27日，招商局先进技术研究院（下称“先进技术院”）在香港科学园举行启动仪式。</span></a></li>
+                            <li><div class="time"><em>21</em>2024.03</div><a href=""><p>缪建民会见无锡市委书记杜小刚</p><span>3月20日，集团董事长缪建民在香港招商局大厦分别会见陕西省政协主席徐</span></a></li>
+                            <li><div class="time"><em>21</em>2024.03</div><a href=""><p>缪建民会见上海电气董事长吴磊</p><span>3月26日下午，共青团招商局集团有限公司第一次代表大会在深圳胜利召开</span></a></li>
+                            <li><div class="time"><em>21</em>2024.03</div><a href=""><p>缪建民会见中国联通董事长陈忠岳</p><span>3月20日下午，集团董事长缪建民在香港招商局大厦会见中国联通董事</span></a></li>
+                            <li><div class="time"><em>21</em>2024.03</div><a href=""><p>石岱调研漳州开发区和招商蛇口厦门海上世界项目</p><span>3月21日，集团总经理石岱调研漳州开发区，全面了解漳州开发区经济社会发展情况和招商漳州生产经营情况，</span></a></li>
+                        </ul>
+                    </div>
+                    <div class="lis" style="display: none;">
+                        <ul>
+                            <li class="tw app">
+                                <div class="pic"><img src="images/index20240909_1.jpg" alt=""></div>
+                                <div class="text">
+                                    <a href=""><span>3月20日下午，集团董事长缪建民在香港招商局大厦会见中国联通董事长陈忠岳，双方就进一步深化合作进行交流。中国联通董事王俊治、副总经理梁宝俊，集团董事钟国东、副总经理邓仁杰，集团总经理助理、董事会秘书，集团办公室主任张军立参加会见。</span></a>
+                                    <div class="time">2024年03月21日</div>
+                                </div>
+                            </li>
+                            <li><div class="time"><em>21</em>2024.03</div><a href=""><p>招商局先进技术研究院启动</p><span>2月27日，招商局先进技术研究院（下称“先进技术院”）在香港科学园举行启动仪式。</span></a></li>
+                            <li><div class="time"><em>21</em>2024.03</div><a href=""><p>缪建民会见无锡市委书记杜小刚</p><span>3月20日，集团董事长缪建民在香港招商局大厦分别会见陕西省政协主席徐</span></a></li>
+                            <li><div class="time"><em>21</em>2024.03</div><a href=""><p>缪建民会见上海电气董事长吴磊</p><span>3月26日下午，共青团招商局集团有限公司第一次代表大会在深圳胜利召开</span></a></li>
+                            <li><div class="time"><em>21</em>2024.03</div><a href=""><p>缪建民会见中国联通董事长陈忠岳</p><span>3月20日下午，集团董事长缪建民在香港招商局大厦会见中国联通董事</span></a></li>
+                            <li><div class="time"><em>21</em>2024.03</div><a href=""><p>石岱调研漳州开发区和招商蛇口厦门海上世界项目</p><span>3月21日，集团总经理石岱调研漳州开发区，全面了解漳州开发区经济社会发展情况和招商漳州生产经营情况，</span></a></li>
+                        </ul>
+                    </div>
+                    <div class="app_more app"><a href="">查看更多</a></div>
+                </div>
+            </div>
+        </section>
+        <section class="cp">
+            <div class="left_cont">
+                <div class="list hu">
+                    <div class="tis">
+                        <div>
+                            <span class="hover">媒体报道</span>
+                            <span>人力资源</span>
+                            <span>集团发展研究</span>
+                            <span>科技创新研究</span>
+                        </div>
+                        <div class="more">
+                            <a href="">更多>></a>
+                            <a href="" style="display: none;">更多>></a>
+                            <a href="" style="display: none;">更多>></a>
+                            <a href="" style="display: none;">更多>></a>
+                        </div>
+                    </div>
+                    <div class="lis">
+                        <ul>
+                            <li class="tw">
+                                <div class="pic"><img src="images/index20240909_1.jpg" alt=""></div>
+                                <div class="text">
+                                    <a href=""><span>3月20日下午，集团董事长缪建民在香港招商局大厦会见中国联通董事长陈忠岳，双方就进一步深化合作进行交流。中国联通董事王俊治、副总经理梁宝俊，集团董事钟国东、副总经理邓仁杰，集团总经理助理、董事会秘书，集团办公室主任张军立参加会见。</span></a>
+                                    <div class="time">2024年03月21日</div>
+                                </div>
+                            </li>
+                            <li><div class="time"><em>21</em>2024-03</div><a href=""><p>石岱调研漳州开发区和招商蛇口厦门海上世界项目</p></a></li>
+                            <li><div class="time"><em>21</em>2024-03</div><a href=""><p>缪建民会见陕西省和河北省领导</p></a></li>
+                            <li><div class="time"><em>21</em>2024-03</div><a href=""><p>缪建民会见中国联通董事长陈忠岳</p></a></li>
+                            <li><div class="time"><em>21</em>2024-03</div><a href=""><p>招商局与中国气象局签署新一轮战略合作协议</p></a></li>
+                        </ul>
+                    </div>
+                    <div class="lis" style="display: none;">
+                        <ul>
+                            <li class="tw">
+                                <div class="pic"><img src="images/index20240909_1.jpg" alt=""></div>
+                                <div class="text">
+                                    <a href=""><span>3月20日下午，集团董事长缪建民在香港招商局大厦会见中国联通董事长陈忠岳，双方就进一步深化合作进行交流。中国联通董事王俊治、副总经理梁宝俊，集团董事钟国东、副总经理邓仁杰，集团总经理助理、董事会秘书，集团办公室主任张军立参加会见。</span></a>
+                                    <div class="time">2024年03月21日</div>
+                                </div>
+                            </li>
+                            <li><div class="time"><em>21</em>2024-03</div><a href=""><p>石岱调研漳州开发区和招商蛇口厦门海上世界项目</p></a></li>
+                            <li><div class="time"><em>21</em>2024-03</div><a href=""><p>缪建民会见陕西省和河北省领导</p></a></li>
+                            <li><div class="time"><em>21</em>2024-03</div><a href=""><p>缪建民会见中国联通董事长陈忠岳</p></a></li>
+                            <li><div class="time"><em>21</em>2024-03</div><a href=""><p>招商局与中国气象局签署新一轮战略合作协议</p></a></li>
+                        </ul>
+                    </div>
+                    <div class="lis" style="display: none;">
+                        <ul>
+                            <li class="tw">
+                                <div class="pic"><img src="images/index20240909_1.jpg" alt=""></div>
+                                <div class="text">
+                                    <a href=""><span>3月20日下午，集团董事长缪建民在香港招商局大厦会见中国联通董事长陈忠岳，双方就进一步深化合作进行交流。中国联通董事王俊治、副总经理梁宝俊，集团董事钟国东、副总经理邓仁杰，集团总经理助理、董事会秘书，集团办公室主任张军立参加会见。</span></a>
+                                    <div class="time">2024年03月21日</div>
+                                </div>
+                            </li>
+                            <li><div class="time"><em>21</em>2024-03</div><a href=""><p>石岱调研漳州开发区和招商蛇口厦门海上世界项目</p></a></li>
+                            <li><div class="time"><em>21</em>2024-03</div><a href=""><p>缪建民会见陕西省和河北省领导</p></a></li>
+                            <li><div class="time"><em>21</em>2024-03</div><a href=""><p>缪建民会见中国联通董事长陈忠岳</p></a></li>
+                            <li><div class="time"><em>21</em>2024-03</div><a href=""><p>招商局与中国气象局签署新一轮战略合作协议</p></a></li>
+                        </ul>
+                    </div>
+                    <div class="lis" style="display: none;">
+                        <ul>
+                            <li class="tw">
+                                <div class="pic"><img src="images/index20240909_1.jpg" alt=""></div>
+                                <div class="text">
+                                    <a href=""><span>3月20日下午，集团董事长缪建民在香港招商局大厦会见中国联通董事长陈忠岳，双方就进一步深化合作进行交流。中国联通董事王俊治、副总经理梁宝俊，集团董事钟国东、副总经理邓仁杰，集团总经理助理、董事会秘书，集团办公室主任张军立参加会见。</span></a>
+                                    <div class="time">2024年03月21日</div>
+                                </div>
+                            </li>
+                            <li><div class="time"><em>21</em>2024-03</div><a href=""><p>石岱调研漳州开发区和招商蛇口厦门海上世界项目</p></a></li>
+                            <li><div class="time"><em>21</em>2024-03</div><a href=""><p>缪建民会见陕西省和河北省领导</p></a></li>
+                            <li><div class="time"><em>21</em>2024-03</div><a href=""><p>缪建民会见中国联通董事长陈忠岳</p></a></li>
+                            <li><div class="time"><em>21</em>2024-03</div><a href=""><p>招商局与中国气象局签署新一轮战略合作协议</p></a></li>
+                        </ul>
+                    </div>
+                    <div class="app_more app"><a href="">查看更多</a></div>
+                </div>
+            </div>
+            <div class="right_cont">
+                <div class="list zx">
+                    <div class="tis">
+                        <div>
+                            <span class="hover">国资要闻</span>
+                            <span>上市公司股价</span>
+                            <span>新鲜情报</span>
+                        </div>
+                        <div class="more">
+                            <a href="">更多>></a>
+                            <a href="" style="display: none;">更多>></a>
+                            <a href="" style="display: none;">更多>></a>
+                        </div>
+                    </div>
+                    <div class="lis">
+                        <ul>
+                            <li><div class="time"><em>21</em>2024-03</div><a href=""><span>国务院国资委党委深入学习习近平总书记在新时代推动中部地区崛起座谈会上的重要讲话精神 坚决贯彻落实党中央重大决策部署 在新……</span></a></li>
+                            <li><div class="time"><em>21</em>2024-03</div><a href=""><span>国务院国资委党委认真传达学习贯彻习近平总书记在全国两会期间的重要讲话精神和全国两会精神 锚定目标拼搏进取 奋力谱写国资央……</span></a></li>
+                            <li><div class="time"><em>21</em>2024-03</div><a href=""><span>国务院国资委党委召开学习贯彻习近平新时代中国特色社会主义思想主题教育总结会议 切实把主题教育成果转化为推动国资央企高质……</span></a></li>
+                            <li><div class="time"><em>21</em>2024-03</div><a href=""><span>国务院国资委党委召开党风廉政建设和反腐败工作会议 锐意进取担当作为 不断开创国资央企全面从严治党新局面</span></a></li>
+                            <li><div class="time"><em>21</em>2024-03</div><a href=""><span>国务院国资委党委认真传达学习贯彻习近平总书记在全国两会期间的重要讲话精神和全国两会精神 锚定目标拼搏进取 奋力谱写国资央……</span></a></li>
+                            <li><div class="time"><em>21</em>2024-03</div><a href=""><span>国务院国资委党委召开党风廉政建设和反腐败工作会议 锐意进取担当作为 不断开创国资央企全面从严治党新局面</span></a></li>
+                            <li><div class="time"><em>21</em>2024-03</div><a href=""><span>国务院国资委党委认真传达学习贯彻习近平总书记在全国两会期间的重要讲话精神和全国两会精神 锚定目标拼搏进取 奋力谱写国资……</span></a></li>
+                        </ul>
+                    </div>
+                    <div class="lis" style="display: none;">
+                        <ul>
+                            <li><div class="time"><em>21</em>2024-03</div><a href=""><span>国务院国资委党委深入学习习近平总书记在新时代推动中部地区崛起座谈会上的重要讲话精神 坚决贯彻落实党中央重大决策部署 在新……</span></a></li>
+                            <li><div class="time"><em>21</em>2024-03</div><a href=""><span>国务院国资委党委认真传达学习贯彻习近平总书记在全国两会期间的重要讲话精神和全国两会精神 锚定目标拼搏进取 奋力谱写国资央……</span></a></li>
+                            <li><div class="time"><em>21</em>2024-03</div><a href=""><span>国务院国资委党委召开学习贯彻习近平新时代中国特色社会主义思想主题教育总结会议 切实把主题教育成果转化为推动国资央企高质……</span></a></li>
+                            <li><div class="time"><em>21</em>2024-03</div><a href=""><span>国务院国资委党委召开党风廉政建设和反腐败工作会议 锐意进取担当作为 不断开创国资央企全面从严治党新局面</span></a></li>
+                            <li><div class="time"><em>21</em>2024-03</div><a href=""><span>国务院国资委党委认真传达学习贯彻习近平总书记在全国两会期间的重要讲话精神和全国两会精神 锚定目标拼搏进取 奋力谱写国资央……</span></a></li>
+                            <li><div class="time"><em>21</em>2024-03</div><a href=""><span>国务院国资委党委召开党风廉政建设和反腐败工作会议 锐意进取担当作为 不断开创国资央企全面从严治党新局面</span></a></li>
+                            <li><div class="time"><em>21</em>2024-03</div><a href=""><span>国务院国资委党委认真传达学习贯彻习近平总书记在全国两会期间的重要讲话精神和全国两会精神 锚定目标拼搏进取 奋力谱写国资……</span></a></li>
+                        </ul>
+                    </div>
+                    <div class="lis bj" style="display: none;">
+                        <div class="bj_btn"><span>编辑</span></div>
+                        <ul>
+                            <li><div class="time"><em>21</em>2024-03</div><a href=""><span><em>[招商金控]</em>国务院国资委党委深入学习习近平总书记在新时代推动中部地区崛起座谈会上的重要讲话精神 坚决贯彻落实党中央重大决策部署 在新……</span></a></li>
+                            <li><div class="time"><em>21</em>2024-03</div><a href=""><span><em>[招商银行]</em>国务院国资委党委认真传达学习贯彻习近平总书记在全国两会期间的重要讲话精神和全国两会精神 锚定目标拼搏进取 奋力谱写国资央……</span></a></li>
+                            <li><div class="time"><em>21</em>2024-03</div><a href=""><span><em>[招商蛇口]</em>国务院国资委党委召开学习贯彻习近平新时代中国特色社会主义思想主题教育总结会议 切实把主题教育成果转化为推动国资央企高质……</span></a></li>
+                            <li><div class="time"><em>21</em>2024-03</div><a href=""><span><em>[招商港口]</em>国务院国资委党委召开党风廉政建设和反腐败工作会议 锐意进取担当作为 不断开创国资央企全面从严治党新局面</span></a></li>
+                            <li><div class="time"><em>21</em>2024-03</div><a href=""><span><em>[招商金控]</em>国务院国资委党委认真传达学习贯彻习近平总书记在全国两会期间的重要讲话精神和全国两会精神 锚定目标拼搏进取 奋力谱写国资央……</span></a></li>
+                            <li><div class="time"><em>21</em>2024-03</div><a href=""><span><em>[招商蛇口]</em>国务院国资委党委召开党风廉政建设和反腐败工作会议 锐意进取担当作为 不断开创国资央企全面从严治党新局面</span></a></li>
+                        </ul>
+                    </div>
+                    <div class="app_more app"><a href="">查看更多</a></div>
+                </div>
+            </div>
+        </section>
+        <section class="cp">
+            <div class="left_cont">
+                <div class="list hu">
+                    <div class="tis">
+                        <div>
+                            <span class="hover">媒体报道</span>
+                            <span>人力资源</span>
+                            <span>集团发展研究</span>
+                            <span>科技创新研究</span>
+                        </div>
+                        <div class="more">
+                            <a href="">更多>></a>
+                            <a href="" style="display: none;">更多>></a>
+                            <a href="" style="display: none;">更多>></a>
+                            <a href="" style="display: none;">更多>></a>
+                        </div>
+                    </div>
+                    <div class="lis">
+                        <ul>
+                            <li class="tw">
+                                <div class="pic"><img src="images/index20240909_1.jpg" alt=""></div>
+                                <div class="text">
+                                    <a href=""><span>3月20日下午，集团董事长缪建民在香港招商局大厦会见中国联通董事长陈忠岳，双方就进一步深化合作进行交流。中国联通董事王俊治、副总经理梁宝俊，集团董事钟国东、副总经理邓仁杰，集团总经理助理、董事会秘书，集团办公室主任张军立参加会见。</span></a>
+                                    <div class="time">2024年03月21日</div>
+                                </div>
+                            </li>
+                            <li><div class="time"><em>21</em>2024-03</div><a href=""><p>石岱调研漳州开发区和招商蛇口厦门海上世界项目</p></a></li>
+                            <li><div class="time"><em>21</em>2024-03</div><a href=""><p>缪建民会见陕西省和河北省领导</p></a></li>
+                            <li><div class="time"><em>21</em>2024-03</div><a href=""><p>缪建民会见中国联通董事长陈忠岳</p></a></li>
+                            <li><div class="time"><em>21</em>2024-03</div><a href=""><p>招商局与中国气象局签署新一轮战略合作协议</p></a></li>
+                        </ul>
+                    </div>
+                    <div class="lis" style="display: none;">
+                        <ul>
+                            <li class="tw">
+                                <div class="pic"><img src="images/index20240909_1.jpg" alt=""></div>
+                                <div class="text">
+                                    <a href=""><span>3月20日下午，集团董事长缪建民在香港招商局大厦会见中国联通董事长陈忠岳，双方就进一步深化合作进行交流。中国联通董事王俊治、副总经理梁宝俊，集团董事钟国东、副总经理邓仁杰，集团总经理助理、董事会秘书，集团办公室主任张军立参加会见。</span></a>
+                                    <div class="time">2024年03月21日</div>
+                                </div>
+                            </li>
+                            <li><div class="time"><em>21</em>2024-03</div><a href=""><p>石岱调研漳州开发区和招商蛇口厦门海上世界项目</p></a></li>
+                            <li><div class="time"><em>21</em>2024-03</div><a href=""><p>缪建民会见陕西省和河北省领导</p></a></li>
+                            <li><div class="time"><em>21</em>2024-03</div><a href=""><p>缪建民会见中国联通董事长陈忠岳</p></a></li>
+                            <li><div class="time"><em>21</em>2024-03</div><a href=""><p>招商局与中国气象局签署新一轮战略合作协议</p></a></li>
+                        </ul>
+                    </div>
+                    <div class="lis" style="display: none;">
+                        <ul>
+                            <li class="tw">
+                                <div class="pic"><img src="images/index20240909_1.jpg" alt=""></div>
+                                <div class="text">
+                                    <a href=""><span>3月20日下午，集团董事长缪建民在香港招商局大厦会见中国联通董事长陈忠岳，双方就进一步深化合作进行交流。中国联通董事王俊治、副总经理梁宝俊，集团董事钟国东、副总经理邓仁杰，集团总经理助理、董事会秘书，集团办公室主任张军立参加会见。</span></a>
+                                    <div class="time">2024年03月21日</div>
+                                </div>
+                            </li>
+                            <li><div class="time"><em>21</em>2024-03</div><a href=""><p>石岱调研漳州开发区和招商蛇口厦门海上世界项目</p></a></li>
+                            <li><div class="time"><em>21</em>2024-03</div><a href=""><p>缪建民会见陕西省和河北省领导</p></a></li>
+                            <li><div class="time"><em>21</em>2024-03</div><a href=""><p>缪建民会见中国联通董事长陈忠岳</p></a></li>
+                            <li><div class="time"><em>21</em>2024-03</div><a href=""><p>招商局与中国气象局签署新一轮战略合作协议</p></a></li>
+                        </ul>
+                    </div>
+                    <div class="lis" style="display: none;">
+                        <ul>
+                            <li class="tw">
+                                <div class="pic"><img src="images/index20240909_1.jpg" alt=""></div>
+                                <div class="text">
+                                    <a href=""><span>3月20日下午，集团董事长缪建民在香港招商局大厦会见中国联通董事长陈忠岳，双方就进一步深化合作进行交流。中国联通董事王俊治、副总经理梁宝俊，集团董事钟国东、副总经理邓仁杰，集团总经理助理、董事会秘书，集团办公室主任张军立参加会见。</span></a>
+                                    <div class="time">2024年03月21日</div>
+                                </div>
+                            </li>
+                            <li><div class="time"><em>21</em>2024-03</div><a href=""><p>石岱调研漳州开发区和招商蛇口厦门海上世界项目</p></a></li>
+                            <li><div class="time"><em>21</em>2024-03</div><a href=""><p>缪建民会见陕西省和河北省领导</p></a></li>
+                            <li><div class="time"><em>21</em>2024-03</div><a href=""><p>缪建民会见中国联通董事长陈忠岳</p></a></li>
+                            <li><div class="time"><em>21</em>2024-03</div><a href=""><p>招商局与中国气象局签署新一轮战略合作协议</p></a></li>
+                        </ul>
+                    </div>
+                    <div class="app_more app"><a href="">查看更多</a></div>
+                </div>
+            </div>
+            <div class="right_cont">
+                <div class="list zx">
+                    <div class="tis">
+                        <div>
+                            <span class="hover">国资要闻</span>
+                            <span>上市公司股价</span>
+                            <span>新鲜情报</span>
+                        </div>
+                        <div class="more">
+                            <a href="">更多>></a>
+                            <a href="" style="display: none;">更多>></a>
+                            <a href="" style="display: none;">更多>></a>
+                        </div>
+                    </div>
+                    <div class="lis">
+                        <ul>
+                            <li><div class="time"><em>21</em>2024-03</div><a href=""><span>国务院国资委党委深入学习习近平总书记在新时代推动中部地区崛起座谈会上的重要讲话精神 坚决贯彻落实党中央重大决策部署 在新……</span></a></li>
+                            <li><div class="time"><em>21</em>2024-03</div><a href=""><span>国务院国资委党委认真传达学习贯彻习近平总书记在全国两会期间的重要讲话精神和全国两会精神 锚定目标拼搏进取 奋力谱写国资央……</span></a></li>
+                            <li><div class="time"><em>21</em>2024-03</div><a href=""><span>国务院国资委党委召开学习贯彻习近平新时代中国特色社会主义思想主题教育总结会议 切实把主题教育成果转化为推动国资央企高质……</span></a></li>
+                            <li><div class="time"><em>21</em>2024-03</div><a href=""><span>国务院国资委党委召开党风廉政建设和反腐败工作会议 锐意进取担当作为 不断开创国资央企全面从严治党新局面</span></a></li>
+                            <li><div class="time"><em>21</em>2024-03</div><a href=""><span>国务院国资委党委认真传达学习贯彻习近平总书记在全国两会期间的重要讲话精神和全国两会精神 锚定目标拼搏进取 奋力谱写国资央……</span></a></li>
+                            <li><div class="time"><em>21</em>2024-03</div><a href=""><span>国务院国资委党委召开党风廉政建设和反腐败工作会议 锐意进取担当作为 不断开创国资央企全面从严治党新局面</span></a></li>
+                            <li><div class="time"><em>21</em>2024-03</div><a href=""><span>国务院国资委党委认真传达学习贯彻习近平总书记在全国两会期间的重要讲话精神和全国两会精神 锚定目标拼搏进取 奋力谱写国资……</span></a></li>
+                        </ul>
+                    </div>
+                    <div class="lis" style="display: none;">
+                        <ul>
+                            <li><div class="time"><em>21</em>2024-03</div><a href=""><span>国务院国资委党委深入学习习近平总书记在新时代推动中部地区崛起座谈会上的重要讲话精神 坚决贯彻落实党中央重大决策部署 在新……</span></a></li>
+                            <li><div class="time"><em>21</em>2024-03</div><a href=""><span>国务院国资委党委认真传达学习贯彻习近平总书记在全国两会期间的重要讲话精神和全国两会精神 锚定目标拼搏进取 奋力谱写国资央……</span></a></li>
+                            <li><div class="time"><em>21</em>2024-03</div><a href=""><span>国务院国资委党委召开学习贯彻习近平新时代中国特色社会主义思想主题教育总结会议 切实把主题教育成果转化为推动国资央企高质……</span></a></li>
+                            <li><div class="time"><em>21</em>2024-03</div><a href=""><span>国务院国资委党委召开党风廉政建设和反腐败工作会议 锐意进取担当作为 不断开创国资央企全面从严治党新局面</span></a></li>
+                            <li><div class="time"><em>21</em>2024-03</div><a href=""><span>国务院国资委党委认真传达学习贯彻习近平总书记在全国两会期间的重要讲话精神和全国两会精神 锚定目标拼搏进取 奋力谱写国资央……</span></a></li>
+                            <li><div class="time"><em>21</em>2024-03</div><a href=""><span>国务院国资委党委召开党风廉政建设和反腐败工作会议 锐意进取担当作为 不断开创国资央企全面从严治党新局面</span></a></li>
+                            <li><div class="time"><em>21</em>2024-03</div><a href=""><span>国务院国资委党委认真传达学习贯彻习近平总书记在全国两会期间的重要讲话精神和全国两会精神 锚定目标拼搏进取 奋力谱写国资……</span></a></li>
+                        </ul>
+                    </div>
+                    <div class="lis" style="display: none;">
+                        <ul>
+                            <li><div class="time"><em>21</em>2024-03</div><a href=""><span><em>[招商金控]</em>国务院国资委党委深入学习习近平总书记在新时代推动中部地区崛起座谈会上的重要讲话精神 坚决贯彻落实党中央重大决策部署 在新……</span></a></li>
+                            <li><div class="time"><em>21</em>2024-03</div><a href=""><span><em>[招商金控]</em>国务院国资委党委深入学习习近平总书记在新时代推动中部地区崛起座谈会上的重要讲话精神 坚决贯彻落实党中央重大决策部署 在新……</span></a></li>
+                            <li><div class="time"><em>21</em>2024-03</div><a href=""><span><em>[招商银行]</em>国务院国资委党委认真传达学习贯彻习近平总书记在全国两会期间的重要讲话精神和全国两会精神 锚定目标拼搏进取 奋力谱写国资央……</span></a></li>
+                            <li><div class="time"><em>21</em>2024-03</div><a href=""><span><em>[招商蛇口]</em>国务院国资委党委召开学习贯彻习近平新时代中国特色社会主义思想主题教育总结会议 切实把主题教育成果转化为推动国资央企高质……</span></a></li>
+                            <li><div class="time"><em>21</em>2024-03</div><a href=""><span><em>[招商港口]</em>国务院国资委党委召开党风廉政建设和反腐败工作会议 锐意进取担当作为 不断开创国资央企全面从严治党新局面</span></a></li>
+                            <li><div class="time"><em>21</em>2024-03</div><a href=""><span><em>[招商金控]</em>国务院国资委党委认真传达学习贯彻习近平总书记在全国两会期间的重要讲话精神和全国两会精神 锚定目标拼搏进取 奋力谱写国资央……</span></a></li>
+                            <li><div class="time"><em>21</em>2024-03</div><a href=""><span><em>[招商蛇口]</em>国务院国资委党委召开党风廉政建设和反腐败工作会议 锐意进取担当作为 不断开创国资央企全面从严治党新局面</span></a></li>
+                        </ul>
+                    </div>
+                    <div class="app_more app"><a href="">查看更多</a></div>
+                </div>
+            </div>
+        </section>
+        <section class="mp">
+            <div class="ztbd">
+                <div class="tit"><span>专题报道</span><a href="">更多>></a></div>
+                <ul>
+                    <li><a href=""><div class="pic"><img src="images/index20240909_19.jpg" alt=""></div><div class="text"><p>学习贯彻习近平新时代中国特色社会主义思想主题教育</p></div></a></li>
+                    <li><a href=""><div class="pic"><img src="images/index20240909_20.png" alt=""></div><div class="text"><p>学习宣传贯彻党的二十大精神</p></div></a></li>
+                    <li><a href=""><div class="pic"><img src="images/index20240909_17.png" alt=""></div><div class="text"><p>招商局150周年<br>百年蝶变 逐梦前行 </p></div></a></li>
+                    <li><a href=""><div class="pic"><img src="images/index20240909_18.png" alt=""></div><div class="text"><p>新时代招商局信条</p></div></a></li>
+                </ul>
+                <div class="app_more app"><a href="">查看更多专题栏目>></a></div>
+            </div>
+            <div class="gjdh">
+                <div class="tit"><span>工具导航</span></div>
+                <ul>
+                    <li><a href=""><div class="pic"><img src="images/index20240909_10.png" alt=""></div><div class="text"><p>蛇口港客运船期表</p></div></a></li>
+                    <li><a href=""><div class="pic"><img src="images/index20240909_9.png" alt=""></div><div class="text"><p>天气预报</p></div></a></li>
+                    <li><a href=""><div class="pic"><img src="images/index20240909_7.png" alt=""></div><div class="text"><p>飞机航班</p></div></a></li>
+                    <li><a href=""><div class="pic"><img src="images/index20240909_8.png" alt=""></div><div class="text"><p>香港中旅社<br>（服务专线：1234-56789012）</p></div></a></li>
+                </ul>
+            </div>
+        </section>
+        <div class="qh_btn">
+            <!--切换模块，手动增加数量-->
+            <div class="cont hover"></div>
+            <div class="cont"></div>
+            <div class="cont"></div>
+            <div class="cont"></div>
+        </div>
+    </div>
+</div>
+<div class="footer">
+    <div class="conter">
+        <p>招商局集团有限公司</p>
+        <p>Cmhk © Copyright. All rights reserved</p>
+    </div>
+</div>
+<script src="images/swiper.min.js"></script>
+<script>
+    var fsize = parseInt($("html").css("font-size"));
+    var ztzl_banner = new Swiper(".ztzl.swiper-container",{
+        loop: true,
+        autoplay: {
+            delay: 5000,
+        },
+        pagination: {
+            clickable: true,
+            el: '.swiper-pagination',
+        },
+        breakpoints: {
+            810: {
+                direction: 'vertical',
+                slidesPerView: 4,
+                spaceBetween: 1.75 * fsize,
+                autoplay: false,
+                loop: false,
+                allowTouchMove: false,
+            }
+        }
+    });
+    var tpxw_tit = new Swiper('.tpxw_tit',{
+        slidesPerView: 'auto',
+        loop: true,
+        autoplay: {
+            delay: 5000,
+        },
+        direction: 'vertical',
+        navigation: {
+            nextEl: ".tpxw .tit .swiper-next",
+            prevEl: ".tpxw .tit .swiper-prev",
+        },
+    })
+    var tpxw_banner = new Swiper('.tpxw_banner',{
+        slidesPerView: 1,
+        loop: true,
+        autoplay: {
+            delay: 5000,
+        },
+        spaceBetween: 10,
+        pagination: {
+            clickable: true,
+            el: '.swiper-pagination',
+        },
+        breakpoints: {
+            810: {
+                // allowSlideNext: false,
+                // allowSlidePrev: false,
+                slidesPerView: 'auto',
+                direction: 'vertical',
+            }
+        }
+    })
+    tpxw_tit.controller.control = tpxw_banner;
+    tpxw_banner.controller.control = tpxw_tit;
+    setTimeout(function () {
+        $(".tc.gg").addClass("hover");
+    },5000);
+</script>
+</body>
+</html>

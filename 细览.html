@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="images/global20240904.css"/>
+    <link rel="stylesheet" type="text/css" href="images/swiper.min.css"/>
+    <script src="images/jquery.js"></script>
+    <script>
+        $(function () {
+            setChange($(".dw_select"));
+            setChange1($(".wz_tit .zt a"));
+            setChange1($(".main_search .selected li"));
+            $(".close_btn").on("click",function () {
+                $(".mask").removeClass("show").removeClass("top");
+                $(this).parents(".tc").removeClass("show");
+            });
+            $(".head .search_btn").on('click',function () {
+                $(".mask").addClass("show");
+                $(".search_tc").css("height",$(".head").height()).addClass("show");
+            })
+            $(".app_head .menu_btn").on('click',function () {
+                if($(this).hasClass("show")){
+                    $(this).removeClass("show");
+                    $(".app_menu").removeClass("show");
+                    $(".mask").removeClass("show");
+                }else{
+                    $(this).addClass("show");
+                    $(".app_menu").addClass("show");
+                    $(".mask").addClass("show");
+                }
+            });
+            $(".mask").on('click',function () {
+                $(this).removeClass("show").removeClass("top");
+                $("*").removeClass("show");
+            });
+            $(".app_head .logo .search_btn").on('click',function () {
+                $(".app_search_box").addClass("show");
+            });
+            $(".app_menu .menu_cont ul ul").parent().addClass("hasSub");
+            $(".app_menu .menu_cont a").on('click',function (event) {
+                event.preventDefault();
+                if($(this).parent().hasClass("expand")){
+                    $(this).parent().removeClass("expand");
+                }else{
+                    $(this).parent().addClass("expand");
+                }
+                $(this).parent().children("ul").slideToggle(800);
+            });
+            $(".xl .dz").on('click',function () {
+                if($(this).hasClass("hover")){
+                    $(this).removeClass("hover");
+                }else{
+                    $(this).addClass("hover");
+                }
+            });
+            $(".xl .sc").on('click',function () {
+                if($(this).hasClass("hover")){
+                    $(this).removeClass("hover");
+                    $(this).children("em").text("收藏");
+                }else{
+                    $(this).addClass("hover");
+                    $(this).children("em").text("已收藏");
+                }
+            });
+            var tj_banner;
+            $(".xl .tj .pic").on('click',function () {
+                if(window.innerWidth < 810){
+                    $(this).siblings(".xl_tj").addClass("top");
+                }
+                $(this).siblings(".xl_tj").addClass("show");
+                if(tj_banner){
+                    tj_banner.destroy(true,true);
+                }
+                tj_banner = new Swiper('#'+ $(this).siblings(".xl_tj").find(".swiper-container").attr("id"),{
+                    loop: true,
+                    spaceBetween: 10,
+                    slidesPerView: 1,
+                    pagination: {
+                        el: '.xl_tj .swiper-pagination',
+                        type: 'fraction',
+                    },
+                    navigation: {
+                        nextEl: ".xl_tj .swiper-next",
+                        prevEl: ".xl_tj .swiper-prev",
+                    },
+                })
+            });
+            $(".xl .xl_tj .bg").on('click',function () {
+                $(this).parent().removeClass("show");
+            })
+            $(".xl .wz_tit .bs span").on('click',function () {
+                $(".xl .content").css("background-color",$(this).css("background-color"));
+            })
+            if(window.innerWidth < 810){
+                //点击底部输入栏时展示输入框
+                $(".xpl label").on('click',function () {
+                    $(".srk textarea").val($(".xpl input").val()).attr("placeholder","输入评论");
+                    $(".srk").addClass("show").addClass("pl");
+                });
+                //点击评论区回复时展示输入框，如果是回复同一用户则保留先前输入的内容，如果不是则清空输入框并将提示文字改为与点击回复用户相关
+                var yhm = '';
+                $(".pl_cont .re").on('click',function () {
+                    //如果此前有编辑过评论，则清空输入框和底部输入栏
+                    var _yhm = $(this).parent().parent().siblings(".info").children(".yhm").text();
+                    if(yhm !== _yhm || $(".srk").hasClass("pl")){
+                        yhm = _yhm;
+                        $(".srk textarea").val('').attr("placeholder","回复 "+ _yhm);
+                        $(".xpl input").val("");
+                        $(".srk").removeClass("pl");
+                    }
+                    $(".srk").addClass("show");
+                });
+                //点击输入框背景时隐藏输入框并将内容传递到底部输入栏展示
+                $(".srk .bg").on('click',function () {
+                    if($(".srk").hasClass("pl")){
+                        $(".xpl input").val($(".srk textarea").val());
+                    }
+                    $(".srk").removeClass("show");
+                });
+                //点击输入框提交按钮后清空底部输入栏
+                $(".srk button").on('click',function () {
+                    if($(".srk").hasClass("pl")){
+                        $(".xpl input").val("");
+                        $(".srk").removeClass("pl");
+                    }
+                    $(".srk textarea").val("");
+                });
+                $(".pl_cont .de").on('click',function () {
+                    $(".mask").addClass("top");
+                    $(".tc.del").addClass("show");
+                })
+            }
+        })
+        //点击时展示，再次点击或移开鼠标隐藏
+        function setChange(option) {
+            option.on('click',function () {
+                if($(this).hasClass("show")){
+                    $(this).removeClass("show");
+                    $(this).children("ul").hide();
+                }else{
+                    $(this).addClass("show");
+                    $(this).children("ul").show();
+                }
+            }).on('mouseleave',function () {
+                $(this).removeClass("show");
+                $(this).children("ul").hide();
+            })
+        }
+        function setChange1(option) {
+            option.on('click',function () {
+                $(this).addClass("hover").siblings().removeClass("hover");
+            })
+        }
+        function setChange2(option) {
+            var a = option.index();
+            option.addClass("hover").siblings().removeClass("hover");
+            option.parents(".tis").children(".more").children("a").eq(a).show().siblings().hide();
+            option.parents(".tis").siblings(".lis").eq(a).show().siblings(".lis").hide();
+        }
+    </script>
+</head>
+<body class="xl">
+<div class="mask"></div>
+<div class="tc search_tc">
+    <div class="conter">
+        <div class="main_search">
+            <label>
+                <input type="text" autocomplete="off" placeholder="">
+                <button type="button"><img src="images/search20240904_9.png" alt=""><span>搜索</span></button>
+            </label>
+            <div class="selected">
+                <ul>
+                    <li class="hover"><a href="javascript:void(0);">全部</a></li>
+                    <li><a href="javascript:void(0);">关键词</a></li>
+                    <li><a href="javascript:void(0);">标题</a></li>
+                    <li><a href="javascript:void(0);">正文</a></li>
+                    <li><a href="javascript:void(0);">创建人</a></li>
+                    <li><a href="javascript:void(0);">发布时间</a></li>
+                    <li><a href="javascript:void(0);">分类搜索</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="close_btn"><img src="images/search20240904_7.png" alt=""></div>
+    </div>
+</div>
+<div class="app_search_box app tc">
+    <label>
+        <input type="text" autocomplete="off" placeholder="请输入关键词">
+        <button>搜索</button>
+    </label>
+    <div class="close_btn"><img src="images/search20240904_7.png" alt=""></div>
+</div>
+<div class="app_menu app">
+    <div class="yhdl">
+        <div class="yhxx"><img src="images/search20240904_12.png" alt=""><em>XXX</em> 您好！</div>
+        <div class="dl">
+            <div class="login"><a href="javascript:void(0);">切换用户</a></div>
+            <div class="logout"><a href="javascript:void(0);">注销</a></div>
+        </div>
+    </div>
+    <div class="dw_select">
+        <span>招商局海通贸易有限公司</span>
+        <ul style="display: none;">
+            <li><a href="">测试</a></li>
+            <li><a href="">测试</a></li>
+            <li><a href="">测试</a></li>
+            <li><a href="">测试</a></li>
+            <li><a href="">测试</a></li>
+        </ul>
+    </div>
+    <div class="menu_cont">
+        <ul>
+            <li><a href="">首  页</a></li>
+            <li>
+                <a href="">集团总部新闻</a>
+                <ul style="display: none;">
+                    <li><a href="">集团要闻</a></li>
+                    <li><a href="">集团简讯</a></li>
+                    <li><a href="">公司动态</a></li>
+                    <li><a href="">上市公司股价</a></li>
+                    <li><a href="">媒体报道</a></li>
+                    <li><a href="">研究报告</a></li>
+                    <li><a href="">行业信息</a></li>
+                    <li><a href="">国资要闻</a></li>
+                </ul>
+            </li>
+            <li><a href="">公司新闻</a></li>
+            <li><a href="">通知与公告</a></li>
+        </ul>
+    </div>
+    <div class="link">
+        <div class="language">
+            <span>简体中文</span>
+            <ul style="display: none;">
+                <li><a href="javascript:void(0);">简体中文</a></li>
+                <li><a href="javascript:void(0);">繁體中文</a></li>
+            </ul>
+        </div>
+        <div class="wb">
+            <a href="">外部网</a>
+        </div>
+    </div>
+</div>
+<!--输入框移动端-->
+<div class="tc srk app">
+    <div class="bg"></div>
+    <div class="srk_box">
+        <label>
+            <textarea></textarea>
+            <button type="submit">提交</button>
+        </label>
+    </div>
+</div>
+<!--删除确认移动端-->
+<div class="tc del app">
+    <div class="tit">删除评论</div>
+    <p>确认删除评论？</p>
+    <div class="button">
+        <button type="button" onclick="$('.mask').click();">取消</button>
+        <button type="button" class="de">删除</button>
+    </div>
+</div>
+<div class="head pc">
+    <div class="conter">
+        <div class="top">
+            <div class="left_cont">
+                <div class="logo"><img src="images/search20240904_8.png" alt=""></div>
+                <div class="menu">
+                    <ul>
+                        <li class="hover"><a href="">首  页</a></li>
+                        <li><a href="">工作台</a></li>
+                        <li><a href="">集团导航</a></li>
+                        <li><a href="">自助服务</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="right_cont">
+                <div class="yhdl">
+                    <div class="yhxx"><img src="images/search20240904_12.png" alt=""><em>XXX</em> 您好！</div>
+                    <div class="login"><a href="javascript:void(0);">切换用户</a></div>
+                    <div class="logout"><a href="javascript:void(0);">注销</a></div>
+                </div>
+                <div class="cont">
+                    <div class="search_btn">
+                        <img src="images/search20240904_6.png" alt="">
+                    </div>
+                    <div class="dw_select">
+                        <span>招商局海通贸易有限公司</span>
+                        <ul style="display: none;">
+                            <li><a href="">测试</a></li>
+                            <li><a href="">测试</a></li>
+                            <li><a href="">测试</a></li>
+                            <li><a href="">测试</a></li>
+                            <li><a href="">测试</a></li>
+                        </ul>
+                    </div>
+                    <div class="language">
+                        <span>简体中文</span>
+                        <ul style="display: none;">
+                            <li><a href="javascript:void(0);">简体中文</a></li>
+                            <li><a href="javascript:void(0);">English</a></li>
+                        </ul>
+                    </div>
+                    <div class="wb">
+                        <a href="">外部网</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="title"><p>集团要闻</p><span><a href="">首页</a> / <a href="">集团要闻</a></span></div>
+    </div>
+</div>
+<div class="app_head app">
+    <div class="logo"><img src="images/search20240904_2.png" alt=""><div class="search_btn"><img src="images/search20240904_4.png" alt=""></div></div>
+    <div class="menu_btn"><img src="images/search20240904_5.png" alt=""><img src="images/search20240904_7.png" alt="" class="hover"></div>
+</div>
+<div class="main">
+    <div class="conter">
+        <div class="wz_tit">
+            <h1 class="title">招商局集团召开2024年安全生产工作会议</h1>
+            <div class="info">
+                <span>信息来源：集团安全环保监督管理部</span>
+                <span>发布时间：2024-01-25</span>
+                <span class="zt">【字体：<a href="javascript:$('.xl .content p').css('font-size','1.4rem');">大</a>   <a href="javascript:$('.xl .content p').css('font-size','1rem');" class="hover">中</a>   <a href="javascript:$('.xl .content p').css('font-size','0.8rem');">小</a>】</span>
+                <span class="bs">视力保护色：
+                    <span class="bg1"></span>
+                    <span class="bg2"></span>
+                    <span class="bg3"></span>
+                    <span class="bg4"></span>
+                </span>
+                <div class="sc"><span></span><em>收藏</em></div>
+            </div>
+        </div>
+        <div class="content">
+            <p>1月24日，集团在深圳召开年度安全生产工作会议，深入学习贯彻习近平总书记关于安全生产重要指示批示精神，总结分析集团2023年安全生产工作，表彰安全生产先进单位和先进个人，开展安全生产警示教育，研判面临的形势，部署2024年安全生产重点工作。集团董事长缪建民出席会议并讲话，集团总经理石岱主持会议。集团副总经理邓仁杰、李百安、冯波鸣、王秀峰，集团总经理助理张军立、张锐出席会议。</p>
+            <div class="tj">
+                <div class="count">图集：<em>12</em></div>
+                <div class="pic"><img src="images/xl20240911_17.png" alt=""></div>
+                <div class="tc xl_tj">
+                    <div class="bg"></div>
+                    <div class="swiper_box">
+                        <div class="swiper-container" id="tj01">
+                            <ul class="swiper-wrapper">
+                                <li class="swiper-slide"><img src="images/xl20240911_17.png" alt=""></li>
+                                <li class="swiper-slide"><img src="images/xl20240911_17.png" alt=""></li>
+                                <li class="swiper-slide"><img src="images/xl20240911_17.png" alt=""></li>
+                                <li class="swiper-slide"><img src="images/xl20240911_17.png" alt=""></li>
+                                <li class="swiper-slide"><img src="images/xl20240911_17.png" alt=""></li>
+                                <li class="swiper-slide"><img src="images/xl20240911_17.png" alt=""></li>
+                            </ul>
+                        </div>
+                        <div class="swiper-button">
+                            <div class="swiper-prev"><img src="images/xl20240911_16.png" alt=""></div>
+                            <div class="swiper-next"><img src="images/xl20240911_15.png" alt=""></div>
+                        </div>
+                        <div class="swiper-pagination"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="video_box">
+                <video controls src="" poster="images/xl20240911_18.png"></video>
+            </div>
+            <p>会上，缪建民以《提升安全能力 筑牢安全根基 全力推动高质量发展和高水平安全良性互动》为题作了讲话。</p>
+            <p>缪建民指出，2024年是中华人民共和国成立75周年，也是实施“十四五”规划、全面加速推进招商局“第三次创业”的关键一年，做好安全生产工作至关重要。要切实把思想和行动统一到习近平总书记关于安全生产重要指示批示精神和党的二十大精神上来，坚持人民至上、生命至上，坚持安全第一、预防为主，牢固树立红线意识，强化底线思维、极限思维，聚焦关口前移，提升能力水平，善作善成，担当作为，全力防范化解重大安全风险，将安全稳定的积极态势继续保持下去，切实推动集团高质量发展和高水平安全良性互动。</p>
+            <p>缪建民要求，要以“时时放心不下”的责任担当，进一步提升安全生产工作领导力。要着力增强防范化解重大安全风险的本领，把确保人民生命安全放在第一位落到实处。严格落实“管行业必须管安全、管业务必须管安全、管生产经营必须管安全”，加强安全文化建设，调动全体员工的积极性和创造性，推动形成“关注安全、关爱生命”“人人讲安全、个个会应急”的良好氛围。要以“须臾不可放松”的忧患意识，进一步提升防范化解重大安全风险支撑力。夯实管理基础、推动创新引领、建强专业队伍，用好安全风险分级管控和隐患排查治理双重预防机制，不断提高安全管理体系的运行质量。加大科技兴安力度，加强统筹和共享，将数字化和智能化打造为集团安全管理转型升级的重要驱动力。要以“事事落实到位”的钉钉子精神，进一步提升排查整治重大事故隐患和应对突发事件险情执行力。将安全生产治本攻坚三年行动作为一项重要的政治任务推进落实，科学谋划各阶段的工作目标和重点任务，切实提高风险隐患排查整改质量，切实提升发现问题和解决问题的强烈意愿和能力水平。发扬斗争精神，持续向基层末梢聚焦发力，树立抓过程、抓执行、抓落实的鲜明导向。</p>
+            <p>缪建民强调，要认真贯彻落实习近平总书记对云南昭通市镇雄县山体滑坡作出的重要指示精神和李强总理批示要求，以更加坚决有力的措施做好防灾救灾和岁末年初安全生产工作。各级领导干部要带队开展检查，针对冬季恶劣天气、春运和春节等重点时段风险叠加的特点，紧盯重点行业领域，及时排查整治安全隐患。</p>
+            <div class="yp">
+                <audio controls src=""></audio>
+            </div>
+            <p>石岱就贯彻落实会议精神进行部署。她强调，各单位要深入学习贯彻习近平总书记关于安全生产重要指示批示精神，保持高度的政治敏锐性，以战略眼光、系统思维推动发展和安全深度融合，牢牢守住安全生产红线底线，切实推动集团安全生产工作迈上新台阶、再上新水平。要迅速传达贯彻本次会议精神，统筹谋划2024年的安全生产重点工作任务，聚焦重点领域重要环节，推进治本攻坚举措，排查整治短板弱项，筑牢基层基础，突出创新引领，推动本质安全水平不断提升。要清醒认识当前安全生产形势的严峻复杂性，紧盯高风险行业领域单位，深刻吸取典型事故教训，充分做好应对各种风险挑战的思想准备和工作准备，强化安全监督检查和应急值班值守，确保集团安全生产形势保持稳定。</p>
+            <p>会上，邓仁杰宣读了2023年集团安全生产先进单位和先进个人表彰决定。</p>
+            <p>王秀峰作集团2023年安全生产工作报告。2023年，集团各单位全面开展重大事故隐患专项排查整治行动和安全管理强化年行动，保持了安全稳定的积极态势。他分析了当前集团面临的安全生产形势和存在的不足，强调要增强系统观念，不断健全完善安全管理体系，扎实推进安全生产治本攻坚三年行动，全力推动安全生产治理模式向事前预防转型，实现集团安全生产工作的长治久安。</p>
+            <div class="pic"><img src="images/xl20240911_19.png" alt=""></div>
+            <p>集团总部各部门、各直属机构负责人和安全生产联系人，集团二级公司及其所属安全生产重点单位班子成员、安全生产总监和安全生产监督管理机构全体成员共1900余人在现场或通过视频方式参加了会议。（集团安全环保监督管理部/文 集团办公室/图）</p>
+            <div class="fjxz">
+                <div class="doc"><span>附件1：</span><span class="name">附件名称附件名称.doc</span><a href="" download="附件名称附件名称.doc">点击下载</a></div>
+                <div class="xls"><span>附件2：</span><span class="name">附件名称附件名称.xlsx</span><a href="" download="附件名称附件名称.xlsx">点击下载</a></div>
+                <div class="pdf"><span>附件3：</span><span class="name">附件名称附件名称.pdf</span><a href="" download="附件名称附件名称.pdf">点击下载</a></div>
+            </div>
+            <div class="dz">
+                <img src="images/xl20240911_3.png" alt=""><img src="images/xl20240911_4.png" alt="" class="hover">
+            </div>
+            <div class="hd">
+                <p><img src="images/xl20240911_5.png" alt=""/><span>阅读：</span><em>2268</em></p>
+                <p><img src="images/xl20240911_6.png" alt=""/><span>收藏：</span><em>32</em></p>
+                <p><img src="images/xl20240911_10.png" alt=""/><span>点赞：</span><em>128</em></p>
+            </div>
+        </div>
+        <div class="plq">
+            <div class="fbpl">
+                <div class="tit">发表评论</div>
+                <label>
+                    <textarea class="" id="" placeholder="请输入评论内容"></textarea>
+                    <button type="button">提交</button>
+                </label>
+            </div>
+            <div class="ckpl">
+                <div class="tit pc">全部评论</div>
+                <div class="tit app">评论（<em>125</em>）</div>
+                <div>
+                    <div class="pl_cont">
+                        <div class="yh"><a href="javascript:void(0);"><img src="images/xl20240911_25.png" alt=""></a></div>
+                        <div class="cont">
+                            <div class="info">
+                                <span class="yhm"><span>用户1</span></span>
+                                <span class="sj"><span>2024/01/29</span><span>13:56:45</span></span>
+                            </div>
+                            <div class="pl">
+                                <div class="text"><p>一起努力，共创辉煌！</p></div>
+                                <div class="cz"><a href="javascript:void(0);" class="de">删除</a><a href="javascript:void(0);" class="re">回复</a></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pl_cont">
+                        <div class="yh"><a href="javascript:void(0);"><img src="images/xl20240911_20.png" alt=""></a></div>
+                        <div class="cont">
+                            <div class="info">
+                                <span class="yhm"><span>用户2</span></span>
+                                <span class="sj"><span>2024/01/29</span><span>14:34:45</span></span>
+                            </div>
+                            <div class="pl">
+                                <div class="text"><p>加油加油！</p></div>
+                                <div class="cz"><a href="javascript:void(0);" class="re">回复</a></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pl_cont">
+                        <div class="yh"><a href="javascript:void(0);"><img src="images/xl20240911_24.png" alt=""></a></div>
+                        <div class="cont">
+                            <div class="info">
+                                <span class="yhm"><span>用户3</span></span>
+                                <span class="sj"><span>2024/01/29</span><span>14:34:45</span></span>
+                            </div>
+                            <div class="pl">
+                                <div class="text"><p>赞赞赞！加油！</p></div>
+                                <div class="cz"><a href="javascript:void(0);" class="re">回复</a></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pl_cont">
+                        <div class="yh"><a href="javascript:void(0);"><img src="images/xl20240911_22.png" alt=""></a></div>
+                        <div class="cont">
+                            <div class="info">
+                                <span class="yhm"><span>用户4</span></span>
+                                <span class="sj"><span>2024/01/29</span><span>14:34:45</span></span>
+                            </div>
+                            <div class="pl">
+                                <div class="text"><p>赞赞赞！加油！</p></div>
+                                <div class="cz"><a href="javascript:void(0);" class="re">回复</a></div>
+                            </div>
+                            <div class="hf">
+                                <div class="pl_cont">
+                                    <div class="yh"><a href="javascript:void(0);"><img src="images/xl20240911_23.png" alt=""></a></div>
+                                    <div class="cont">
+                                        <div class="info">
+                                            <span class="yhm"><span>用户5</span></span>
+                                            <span class="sj"><span>2024/01/29</span><span>14:34:45</span></span>
+                                        </div>
+                                        <div class="pl">
+                                            <div class="text"><p>祝集团更上一层楼！</p></div>
+                                            <div class="cz"><a href="javascript:void(0);" class="re">回复</a></div>
+                                        </div>
+                                        <div class="hf">
+                                            <div class="pl_cont">
+                                                <div class="yh"><a href="javascript:void(0);"><img src="images/xl20240911_23.png" alt=""></a></div>
+                                                <div class="cont">
+                                                    <div class="info">
+                                                        <span class="yhm"><span>用户6</span></span>
+                                                        <span class="sj"><span>2024/01/29</span><span>14:34:45</span></span>
+                                                    </div>
+                                                    <div class="pl">
+                                                        <div class="text"><p>祝集团更上一层楼！</p></div>
+                                                        <div class="cz"><a href="javascript:void(0);" class="re">回复</a></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pl_cont">
+                        <div class="yh"><a href="javascript:void(0);"><img src="images/xl20240911_24.png" alt=""></a></div>
+                        <div class="cont">
+                            <div class="info">
+                                <span class="yhm"><span>用户7</span></span>
+                                <span class="sj"><span>2024/01/29</span><span>14:34:45</span></span>
+                            </div>
+                            <div class="pl">
+                                <div class="text"><p>赞赞赞！加油！</p></div>
+                                <div class="cz"><a href="javascript:void(0);" class="re">回复</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="more_pl"><a href="javascript:void(0);">展开(<em>6</em>)</a></div>
+            </div>
+            <div class="xpl app">
+                <label>
+                    <input type="text" placeholder="写评论" autocomplete="off" disabled>
+                </label>
+                <div class="cz">
+                    <span class="sc"><a href="javascript:void(0);"><img src="images/xl20240911_11.png" alt=""><img src="images/xl20240911_12.png" alt="" class="hover"></a></span>
+                    <span class="dz"><a href="javascript:void(0);"><img src="images/xl20240911_13.png" alt=""><img src="images/xl20240911_14.png" alt="" class="hover"></a></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="footer">
+    <div class="conter">
+        <p>招商局集团有限公司</p>
+        <p>Cmhk © Copyright. All rights reserved</p>
+    </div>
+</div>
+<script src="images/swiper.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="images/global20240904.css"/>
+    <link rel="stylesheet" type="text/css" href="images/swiper.min.css"/>
+    <script src="images/jquery.js"></script>
+    <script>
+        $(function () {
+            setChange($(".dw_select"));
+            setChange1($(".main_search .selected li"));
+            $(".close_btn").on("click",function () {
+                $(".mask").removeClass("show").removeClass("top");
+                $(this).parents(".tc").removeClass("show");
+            });
+            $(".head .search_btn").on('click',function () {
+                $(".mask").addClass("show");
+                $(".search_tc").css("height",$(".head").height()).addClass("show");
+            })
+            $(".app_head .menu_btn").on('click',function () {
+                if($(this).hasClass("show")){
+                    $(this).removeClass("show");
+                    $(".app_menu").removeClass("show");
+                    $(".mask").removeClass("show");
+                }else{
+                    $(this).addClass("show");
+                    $(".app_menu").addClass("show");
+                    $(".mask").addClass("show");
+                }
+            });
+            $(".mask").on('click',function () {
+                $(this).removeClass("show").removeClass("top");
+                $("*").removeClass("show");
+            });
+            $(".app_head .logo .search_btn").on('click',function () {
+                $(".app_search_box").addClass("show");
+            });
+            $(".app_menu .menu_cont ul ul").parent().addClass("hasSub");
+            $(".app_menu .menu_cont a").on('click',function (event) {
+                event.preventDefault();
+                if($(this).parent().hasClass("expand")){
+                    $(this).parent().removeClass("expand");
+                }else{
+                    $(this).parent().addClass("expand");
+                }
+                $(this).parent().children("ul").slideToggle(800);
+            });
+            $(".bj_btn").on('click',function () {
+                if(window.innerWidth < 810){
+                    $(".mask").addClass("top");
+                }else{
+                    $(".mask").addClass("show");
+                }
+                $(".tc.ejdw").addClass("show");
+            })
+        })
+        //点击时展示，再次点击或移开鼠标隐藏
+        function setChange(option) {
+            option.on('click',function () {
+                if($(this).hasClass("show")){
+                    $(this).removeClass("show");
+                    $(this).children("ul").hide();
+                }else{
+                    $(this).addClass("show");
+                    $(this).children("ul").show();
+                }
+            }).on('mouseleave',function () {
+                $(this).removeClass("show");
+                $(this).children("ul").hide();
+            })
+        }
+        function setChange1(option) {
+            option.on('click',function () {
+                $(this).addClass("hover").siblings().removeClass("hover");
+            })
+        }
+        function setChange2(option) {
+            var a = option.index();
+            option.addClass("hover").siblings().removeClass("hover");
+            option.parents(".tis").children(".more").children("a").eq(a).show().siblings().hide();
+            option.parents(".tis").siblings(".lis").eq(a).show().siblings(".lis").hide();
+        }
+    </script>
+</head>
+<body class="gl">
+<div class="mask"></div>
+<div class="tc search_tc">
+    <div class="conter">
+        <div class="main_search">
+            <label>
+                <input type="text" autocomplete="off" placeholder="">
+                <button type="button"><img src="images/search20240904_9.png" alt=""><span>搜索</span></button>
+            </label>
+            <div class="selected">
+                <ul>
+                    <li class="hover"><a href="javascript:void(0);">全部</a></li>
+                    <li><a href="javascript:void(0);">关键词</a></li>
+                    <li><a href="javascript:void(0);">标题</a></li>
+                    <li><a href="javascript:void(0);">正文</a></li>
+                    <li><a href="javascript:void(0);">创建人</a></li>
+                    <li><a href="javascript:void(0);">发布时间</a></li>
+                    <li><a href="javascript:void(0);">分类搜索</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="close_btn"><img src="images/search20240904_7.png" alt=""></div>
+    </div>
+</div>
+<div class="app_search_box app tc">
+    <label>
+        <input type="text" autocomplete="off" placeholder="请输入关键词">
+        <button>搜索</button>
+    </label>
+    <div class="close_btn"><img src="images/search20240904_7.png" alt=""></div>
+</div>
+<div class="app_menu app">
+    <div class="yhdl">
+        <div class="yhxx"><img src="images/search20240904_12.png" alt=""><em>XXX</em> 您好！</div>
+        <div class="dl">
+            <div class="login"><a href="javascript:void(0);">切换用户</a></div>
+            <div class="logout"><a href="javascript:void(0);">注销</a></div>
+        </div>
+    </div>
+    <div class="dw_select">
+        <span>招商局海通贸易有限公司</span>
+        <ul style="display: none;">
+            <li><a href="">测试</a></li>
+            <li><a href="">测试</a></li>
+            <li><a href="">测试</a></li>
+            <li><a href="">测试</a></li>
+            <li><a href="">测试</a></li>
+        </ul>
+    </div>
+    <div class="menu_cont">
+        <ul>
+            <li><a href="">首  页</a></li>
+            <li>
+                <a href="">集团总部新闻</a>
+                <ul style="display: none;">
+                    <li><a href="">集团要闻</a></li>
+                    <li><a href="">集团简讯</a></li>
+                    <li><a href="">公司动态</a></li>
+                    <li><a href="">上市公司股价</a></li>
+                    <li><a href="">媒体报道</a></li>
+                    <li><a href="">研究报告</a></li>
+                    <li><a href="">行业信息</a></li>
+                    <li><a href="">国资要闻</a></li>
+                </ul>
+            </li>
+            <li><a href="">公司新闻</a></li>
+            <li><a href="">通知与公告</a></li>
+        </ul>
+    </div>
+    <div class="link">
+        <div class="language">
+            <span>简体中文</span>
+            <ul style="display: none;">
+                <li><a href="javascript:void(0);">简体中文</a></li>
+                <li><a href="javascript:void(0);">繁體中文</a></li>
+            </ul>
+        </div>
+        <div class="wb">
+            <a href="">外部网</a>
+        </div>
+    </div>
+</div>
+<div class="tc ejdw">
+    <div class="tit">请选择二级单位</div>
+    <div class="dw">
+        <form>
+            <div class="select">
+                <label><input type="checkbox" name="dw" value="">招商银行</label>
+                <label><input type="checkbox" name="dw" value="">招商金控</label>
+                <label><input type="checkbox" name="dw" value="">招商蛇口</label>
+                <label><input type="checkbox" name="dw" value="">招商漳州</label>
+                <label><input type="checkbox" name="dw" value="">招商港口</label>
+                <label><input type="checkbox" name="dw" value="">辽港集团</label>
+                <label><input type="checkbox" name="dw" value="">招商轮船</label>
+                <label><input type="checkbox" name="dw" value="">招商工业</label>
+                <label><input type="checkbox" name="dw" value="">招商海通</label>
+                <label><input type="checkbox" name="dw" value="">招商证券</label>
+                <label><input type="checkbox" name="dw" value="">博时基金</label>
+                <label><input type="checkbox" name="dw" value="">招商局创投</label>
+                <label><input type="checkbox" name="dw" value="">招商公路</label>
+                <label><input type="checkbox" name="dw" value="">招商交科</label>
+                <label><input type="checkbox" name="dw" value="">中国外运</label>
+                <label><input type="checkbox" name="dw" value="">长航集团</label>
+                <label><input type="checkbox" name="dw" value="">招商租赁</label>
+                <label><input type="checkbox" name="dw" value="">招商财务</label>
+                <label><input type="checkbox" name="dw" value="">仁和人寿</label>
+                <label><input type="checkbox" name="dw" value="">平安资产</label>
+                <label><input type="checkbox" name="dw" value="">招商太平湾</label>
+            </div>
+            <div class="button">
+                <button type="reset">取消</button>
+                <button type="submit" class="qr">确认</button>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="head pc">
+    <div class="conter">
+        <div class="top">
+            <div class="left_cont">
+                <div class="logo"><img src="images/search20240904_8.png" alt=""></div>
+                <div class="menu">
+                    <ul>
+                        <li class="hover"><a href="">首  页</a></li>
+                        <li><a href="">工作台</a></li>
+                        <li><a href="">集团导航</a></li>
+                        <li><a href="">自助服务</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="right_cont">
+                <div class="yhdl">
+                    <div class="yhxx"><img src="images/search20240904_12.png" alt=""><em>XXX</em> 您好！</div>
+                    <div class="login"><a href="javascript:void(0);">切换用户</a></div>
+                    <div class="logout"><a href="javascript:void(0);">注销</a></div>
+                </div>
+                <div class="cont">
+                    <div class="search_btn">
+                        <img src="images/search20240904_6.png" alt="">
+                    </div>
+                    <div class="dw_select">
+                        <span>招商局海通贸易有限公司</span>
+                        <ul style="display: none;">
+                            <li><a href="">测试</a></li>
+                            <li><a href="">测试</a></li>
+                            <li><a href="">测试</a></li>
+                            <li><a href="">测试</a></li>
+                            <li><a href="">测试</a></li>
+                        </ul>
+                    </div>
+                    <div class="language">
+                        <span>简体中文</span>
+                        <ul style="display: none;">
+                            <li><a href="javascript:void(0);">简体中文</a></li>
+                            <li><a href="javascript:void(0);">English</a></li>
+                        </ul>
+                    </div>
+                    <div class="wb">
+                        <a href="">外部网</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="title"><p>集团要闻</p><span><a href="">首页</a> / <a href="">集团要闻</a></span></div>
+    </div>
+</div>
+<div class="app_head app">
+    <div class="logo"><img src="images/search20240904_2.png" alt=""><div class="search_btn"><img src="images/search20240904_4.png" alt=""></div></div>
+    <div class="menu_btn"><img src="images/search20240904_5.png" alt=""><img src="images/search20240904_7.png" alt="" class="hover"></div>
+</div>
+<div class="main">
+    <div class="lm app"><p>集团要闻</p></div>
+    <div class="dh">
+        <div class="conter">
+            <ul>
+                <li class="cur"><a href="">公司动态</a></li>
+                <li><a href="">媒体报道</a></li>
+                <li><a href="">研究报告</a></li>
+                <li><a href="">行业信息</a></li>
+                <li><a href="">国资要闻</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="conter">
+        <div class="list">
+            <div class="bj_btn app"><span>编辑</span></div>
+            <ul>
+                <li><a href=""><div class="text"><div class="time"><em>21</em>2024.03</div><p>石岱调研漳州开发区和招商蛇口厦门海上世界项目</p><span class="app_time app">2024-01-25</span></div><div class="pic app"><img src="images/gl20240912_3.png" alt=""></div><span class="more"><img src="images/gl20240912_1.png" alt=""></span></a></li>
+                <li><a href=""><div class="text"><div class="time"><em>21</em>2024.03</div><p>石岱调研漳州开发区和招商蛇口厦门海上世界项目</p><span class="app_time app">2024-01-25</span></div><div class="pic app"><img src="images/gl20240912_3.png" alt=""></div><span class="more"><img src="images/gl20240912_1.png" alt=""></span></a></li>
+                <li><a href=""><div class="text"><div class="time"><em>21</em>2024.03</div><p>石岱调研漳州开发区和招商蛇口厦门海上世界项目</p><span class="app_time app">2024-01-25</span></div><div class="pic app"><img src="images/gl20240912_3.png" alt=""></div><span class="more"><img src="images/gl20240912_1.png" alt=""></span></a></li>
+                <li><a href=""><div class="text"><div class="time"><em>21</em>2024.03</div><p>石岱调研漳州开发区和招商蛇口厦门海上世界项目</p><span class="app_time app">2024-01-25</span></div><div class="pic app"><img src="images/gl20240912_3.png" alt=""></div><span class="more"><img src="images/gl20240912_1.png" alt=""></span></a></li>
+                <li><a href=""><div class="text"><div class="time"><em>21</em>2024.03</div><p>石岱调研漳州开发区和招商蛇口厦门海上世界项目</p><span class="app_time app">2024-01-25</span></div><div class="pic app"><img src="images/gl20240912_3.png" alt=""></div><span class="more"><img src="images/gl20240912_1.png" alt=""></span></a></li>
+                <li><a href=""><div class="text"><div class="time"><em>21</em>2024.03</div><p>石岱调研漳州开发区和招商蛇口厦门海上世界项目</p><span class="app_time app">2024-01-25</span></div><div class="pic app"><img src="images/gl20240912_3.png" alt=""></div><span class="more"><img src="images/gl20240912_1.png" alt=""></span></a></li>
+                <li><a href=""><div class="text"><div class="time"><em>21</em>2024.03</div><p>石岱调研漳州开发区和招商蛇口厦门海上世界项目</p><span class="app_time app">2024-01-25</span></div><div class="pic app"><img src="images/gl20240912_3.png" alt=""></div><span class="more"><img src="images/gl20240912_1.png" alt=""></span></a></li>
+                <li><a href=""><div class="text"><div class="time"><em>21</em>2024.03</div><p>石岱调研漳州开发区和招商蛇口厦门海上世界项目</p><span class="app_time app">2024-01-25</span></div><div class="pic app"><img src="images/gl20240912_3.png" alt=""></div><span class="more"><img src="images/gl20240912_1.png" alt=""></span></a></li>
+                <li><a href=""><div class="text"><div class="time"><em>21</em>2024.03</div><p>石岱调研漳州开发区和招商蛇口厦门海上世界项目</p><span class="app_time app">2024-01-25</span></div><div class="pic app"><img src="images/gl20240912_3.png" alt=""></div><span class="more"><img src="images/gl20240912_1.png" alt=""></span></a></li>
+                <li><a href=""><div class="text"><div class="time"><em>21</em>2024.03</div><p>石岱调研漳州开发区和招商蛇口厦门海上世界项目</p><span class="app_time app">2024-01-25</span></div><div class="pic app"><img src="images/gl20240912_3.png" alt=""></div><span class="more"><img src="images/gl20240912_1.png" alt=""></span></a></li>
+                <li><a href=""><div class="text"><div class="time"><em>21</em>2024.03</div><p>石岱调研漳州开发区和招商蛇口厦门海上世界项目</p><span class="app_time app">2024-01-25</span></div><div class="pic app"><img src="images/gl20240912_3.png" alt=""></div><span class="more"><img src="images/gl20240912_1.png" alt=""></span></a></li>
+                <li><a href=""><div class="text"><div class="time"><em>21</em>2024.03</div><p>石岱调研漳州开发区和招商蛇口厦门海上世界项目</p><span class="app_time app">2024-01-25</span></div><div class="pic app"><img src="images/gl20240912_3.png" alt=""></div><span class="more"><img src="images/gl20240912_1.png" alt=""></span></a></li>
+            </ul>
+            <div class="page">
+                <span class="page_cont first un"><a href="">首页</a></span>
+                <span class="page_cont prev un"><a href="">上一页</a></span>
+                <span class="page_cont num cur"><a href="">1</a></span>
+                <span class="page_cont num"><a href="">2</a></span>
+                <span class="page_cont num"><a href="">3</a></span>
+                <span class="page_cont num"><a href="">4</a></span>
+                <span class="page_cont num"><a href="">5</a></span>
+                <span class="page_cont next"><a href="">下一页</a></span>
+                <span class="page_cont last"><a href="">尾页</a></span>
+            </div>
+            <div class="app_more app">下拉加载更多</div>
+        </div>
+    </div>
+</div>
+<div class="footer">
+    <div class="conter">
+        <p>招商局集团有限公司</p>
+        <p>Cmhk © Copyright. All rights reserved</p>
+    </div>
+</div>
+<script src="images/swiper.min.js"></script>
+</body>
+</html>
