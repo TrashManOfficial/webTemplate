@@ -1,276 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="apple-touch-fullscreen" content="yes">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Title</title>
-    <link rel="stylesheet" type="text/css" href="images/global20240904.css"/>
+    <link rel="stylesheet" type="text/css" href="images/global20240904.css" />
+    <link rel="stylesheet" type="text/css" href="images/element.css" />
     <script src="images/jquery.js"></script>
     <script>
-        $(function () {
-            setChange($(".dw_select"));
-            setChange1($(".main_search .selected li"));
-            setChange1($(".search .search_cont .px li"));
-            setChange1($(".app.search_box .selected li"));
-            $(".close_btn").on("click",function () {
-                $(".mask").removeClass("show").removeClass("top");
-                $(this).parents(".tc").removeClass("show");
-            });
-            $(".head .search_btn").on('click',function () {
-                $(".mask").addClass("show");
-                $(".search_tc").css("height",$(".head").height()).addClass("show");
-            })
-            $(".app_head .menu_btn").on('click',function () {
-                if($(this).hasClass("show")){
-                    $(this).removeClass("show");
-                    $(".app_menu").removeClass("show");
-                    $(".mask").removeClass("show");
-                }else{
-                    $(this).addClass("show");
-                    $(".app_menu").addClass("show");
-                    $(".mask").addClass("show");
-                }
-            });
-            $(".search_box .px_btn").on("click",function () {
-                $(".mask").addClass("top");
-                $(".app_px").addClass("show");
-            });
-            $(".page_select").on('click',function () {
-                $(".mask").addClass("top");
-                $(".page_select_tc").addClass("show");
-            });
-            $(".mask").on('click',function () {
-                $(this).removeClass("show").removeClass("top");
-                $("*").removeClass("show");
-            });
-            $(".app_head .logo .search_btn").on('click',function () {
-                $(".app_search_box").addClass("show");
-            });
-            $(".app_menu .menu_cont ul ul").parent().addClass("hasSub");
-            $(".app_menu .menu_cont a").on('click',function (event) {
-                event.preventDefault();
-                if($(this).parent().hasClass("expand")){
-                    $(this).parent().removeClass("expand");
-                }else{
-                    $(this).parent().addClass("expand");
-                }
-                $(this).parent().children("ul").slideToggle(800);
-            });
-        })
-        //点击时展示，再次点击或移开鼠标隐藏
-        function setChange(option) {
-            option.on('click',function () {
-                if($(this).hasClass("show")){
-                    $(this).removeClass("show");
-                    $(this).children("ul").hide();
-                }else{
-                    $(this).addClass("show");
-                    $(this).children("ul").show();
-                }
-            }).on('mouseleave',function () {
-                $(this).removeClass("show");
-                $(this).children("ul").hide();
-            })
-        }
-        function setChange1(option) {
-            option.on('click',function () {
-                $(this).addClass("hover").siblings().removeClass("hover");
-            })
-        }
+      $(function () {
+        setChange($(".language"));
+        setChange($(".dw_select"));
+        setChange1($(".main_search .selected li"));
+        setChange1($(".search .search_cont .px li"));
+        setChange1($(".app.search_box .selected li"));
+        $(".close_btn").on("click", function () {
+          $(".mask").removeClass("show").removeClass("top");
+          $(this).parents(".tc").removeClass("show");
+        });
+        $(".head .search_btn").on("click", function () {
+          $(".mask").addClass("show");
+          $(".search_tc").css("height", $(".head").height()).addClass("show");
+        });
+        $(".app_head .menu_btn").on("click", function () {
+          if ($(this).hasClass("show")) {
+            $(this).removeClass("show");
+            $(".app_menu").removeClass("show");
+            $(".mask").removeClass("show");
+          } else {
+            $(this).addClass("show");
+            $(".app_menu").addClass("show");
+            $(".mask").addClass("show");
+          }
+        });
+        $(".search_box .px_btn").on("click", function () {
+          $(".mask").addClass("top");
+          $(".app_px").addClass("show");
+        });
+        $(".page_select").on("click", function () {
+          $(".mask").addClass("top");
+          $(".page_select_tc").addClass("show");
+        });
+        $(".mask").on("click", function () {
+          $(this).removeClass("show").removeClass("top");
+          $("*").removeClass("show");
+        });
+        $(".app_head .logo .search_btn").on("click", function () {
+          $(".app_search_box").addClass("show");
+        });
+        $(".app_menu .menu_cont ul ul").parent().addClass("hasSub");
+        $(".app_menu .menu_cont a").on("click", function (event) {
+          event.preventDefault();
+          if ($(this).parent().hasClass("expand")) {
+            $(this).parent().removeClass("expand");
+          } else {
+            $(this).parent().addClass("expand");
+          }
+          $(this).parent().children("ul").slideToggle(800);
+        });
+      });
+      //点击时展示，再次点击或移开鼠标隐藏
+      function setChange(option) {
+        option
+          .on("click", function () {
+            if ($(this).hasClass("show")) {
+              $(this).removeClass("show");
+              $(this).children("ul").hide();
+            } else {
+              $(this).addClass("show");
+              $(this).children("ul").show();
+            }
+          })
+          .on("mouseleave", function () {
+            $(this).removeClass("show");
+            $(this).children("ul").hide();
+          });
+      }
+      function setChange1(option) {
+        option.on("click", function () {
+          $(this).addClass("hover").siblings().removeClass("hover");
+        });
+      }
     </script>
-</head>
-<body class="search">
-<div class="mask"></div>
-<div class="tc search_tc">
-    <div class="conter">
-        <div class="main_search">
+  </head>
+  <body>
+    <div class="search" id="app">
+      <div class="mask"></div>
+      <div class="tc search_tc">
+        <div class="conter">
+          <div class="main_search">
             <label>
-                <input type="text" autocomplete="off" placeholder="">
-                <button type="button"><img src="images/search20240904_9.png" alt=""><span>搜索</span></button>
+              <input
+                type="text"
+                autocomplete="off"
+                placeholder=""
+                v-model="searchForm.keywords"
+              />
+              <button type="button" @click="getData">
+                <img src="images/search20240904_9.png" alt="" /><span
+                  >搜索</span
+                >
+              </button>
             </label>
             <div class="selected">
-                <ul>
-                    <li class="hover"><a href="javascript:void(0);">全部</a></li>
-                    <li><a href="javascript:void(0);">关键词</a></li>
-                    <li><a href="javascript:void(0);">标题</a></li>
-                    <li><a href="javascript:void(0);">正文</a></li>
-                    <li><a href="javascript:void(0);">创建人</a></li>
-                    <li><a href="javascript:void(0);">发布时间</a></li>
-                    <li><a href="javascript:void(0);">分类搜索</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="close_btn"><img src="images/search20240904_7.png" alt=""></div>
-    </div>
-</div>
-<div class="app_search_box app tc">
-    <label>
-        <input type="text" autocomplete="off" placeholder="请输入关键词">
-        <button>搜索</button>
-    </label>
-    <div class="close_btn"><img src="images/search20240904_7.png" alt=""></div>
-</div>
-<div class="app_menu app">
-    <div class="yhdl">
-        <div class="yhxx"><img src="images/search20240904_12.png" alt=""><em>XXX</em> 您好！</div>
-        <div class="dl">
-            <div class="login"><a href="javascript:void(0);">切换用户</a></div>
-            <div class="logout"><a href="javascript:void(0);">注销</a></div>
-        </div>
-    </div>
-    <div class="dw_select">
-        <span>招商局海通贸易有限公司</span>
-        <ul style="display: none;">
-            <li><a href="">测试</a></li>
-            <li><a href="">测试</a></li>
-            <li><a href="">测试</a></li>
-            <li><a href="">测试</a></li>
-            <li><a href="">测试</a></li>
-        </ul>
-    </div>
-    <div class="menu_cont">
-        <ul>
-            <li><a href="">首  页</a></li>
-            <li>
-                <a href="">集团总部新闻</a>
-                <ul style="display: none;">
-                    <li><a href="">集团要闻</a></li>
-                    <li><a href="">集团简讯</a></li>
-                    <li><a href="">公司动态</a></li>
-                    <li><a href="">上市公司股价</a></li>
-                    <li><a href="">媒体报道</a></li>
-                    <li><a href="">研究报告</a></li>
-                    <li><a href="">行业信息</a></li>
-                    <li><a href="">国资要闻</a></li>
-                </ul>
-            </li>
-            <li><a href="">公司新闻</a></li>
-            <li><a href="">通知与公告</a></li>
-        </ul>
-    </div>
-    <div class="link">
-        <div class="language">
-            <span>简体中文</span>
-            <ul style="display: none;">
-                <li><a href="javascript:void(0);">简体中文</a></li>
-                <li><a href="javascript:void(0);">繁體中文</a></li>
-            </ul>
-        </div>
-        <div class="wb">
-            <a href="">外部网</a>
-        </div>
-    </div>
-</div>
-<div class="app_px app">
-    <div class="px">
-        <div class="tit">排序</div>
-        <label>
-            <span><input type="radio" name="px" value="时间" checked>时间</span>
-        </label>
-        <label>
-            <span><input type="radio" name="px" value="阅读数">阅读数</span>
-        </label>
-        <label>
-            <span><input type="radio" name="px" value="评论">评论</span>
-        </label>
-        <label>
-            <span><input type="radio" name="px" value="点赞">点赞</span>
-        </label>
-    </div>
-</div>
-<div class="page_select_tc app tc">
-    <ul>
-        <li><a href="">1</a></li>
-        <li><a href="">2</a></li>
-        <li><a href="">3</a></li>
-        <li><a href="">4</a></li>
-        <li><a href="">5</a></li>
-    </ul>
-</div>
-<div class="head pc">
-    <div class="conter">
-        <div class="top">
-            <div class="left_cont">
-                <div class="logo"><img src="images/search20240904_8.png" alt=""></div>
-                <div class="menu">
-                    <ul>
-                        <li class="hover"><a href="">首  页</a></li>
-                        <li><a href="">工作台</a></li>
-                        <li><a href="">集团导航</a></li>
-                        <li><a href="">自助服务</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="right_cont">
-                <div class="yhdl">
-                    <div class="yhxx"><img src="images/search20240904_12.png" alt=""><em>XXX</em> 您好！</div>
-                    <div class="login"><a href="javascript:void(0);">切换用户</a></div>
-                    <div class="logout"><a href="javascript:void(0);">注销</a></div>
-                </div>
-                <div class="cont">
-                    <div class="search_btn" style="display: none;">
-                        <img src="images/search20240904_6.png" alt="">
-                    </div>
-                    <div class="dw_select">
-                        <span>招商局海通贸易有限公司</span>
-                        <ul style="display: none;">
-                            <li><a href="">测试</a></li>
-                            <li><a href="">测试</a></li>
-                            <li><a href="">测试</a></li>
-                            <li><a href="">测试</a></li>
-                            <li><a href="">测试</a></li>
-                        </ul>
-                    </div>
-                    <div class="language">
-                        <span>简体中文</span>
-                        <ul style="display: none;">
-                            <li><a href="javascript:void(0);">简体中文</a></li>
-                            <li><a href="javascript:void(0);">English</a></li>
-                        </ul>
-                    </div>
-                    <div class="wb">
-                        <a href="">外部网</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="main_search">
-            <label>
-                <input type="text" autocomplete="off" placeholder="">
-                <button type="button"><img src="images/search20240904_9.png" alt=""><span>搜索</span></button>
-            </label>
-            <div class="selected">
-                <ul>
-                    <li class="hover"><a href="javascript:void(0);">全部</a></li>
-                    <li><a href="javascript:void(0);">关键词</a></li>
-                    <li><a href="javascript:void(0);">标题</a></li>
-                    <li><a href="javascript:void(0);">正文</a></li>
-                    <li><a href="javascript:void(0);">创建人</a></li>
-                    <li><a href="javascript:void(0);">发布时间</a></li>
-                    <li><a href="javascript:void(0);">分类搜索</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="app_head app">
-    <div class="logo"><img src="images/search20240904_2.png" alt=""><div class="search_btn"><img src="images/search20240904_4.png" alt=""></div></div>
-    <div class="menu_btn"><img src="images/search20240904_5.png" alt=""><img src="images/search20240904_7.png" alt="" class="hover"></div>
-</div>
-<div class="main">
-    <div class="app search_box">
-        <div class="app_search">
-            <label>
-                <input type="text" autocomplete="off" placeholder=""><span class="px_btn"><img src="" alt=""></span>
-                <button type="button"><img src="images/search20240904_23.png" alt=""></button>
-            </label>
-            <span class="px_btn"><img src="images/search20240904_24.png" alt=""></span>
-        </div>
-        <div class="selected">
-            <ul>
+              <ul>
                 <li class="hover"><a href="javascript:void(0);">全部</a></li>
                 <li><a href="javascript:void(0);">关键词</a></li>
                 <li><a href="javascript:void(0);">标题</a></li>
@@ -278,209 +114,516 @@
                 <li><a href="javascript:void(0);">创建人</a></li>
                 <li><a href="javascript:void(0);">发布时间</a></li>
                 <li><a href="javascript:void(0);">分类搜索</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="close_btn">
+            <img src="images/search20240904_7.png" alt="" />
+          </div>
+        </div>
+      </div>
+      <div class="app_search_box app tc">
+        <label>
+          <input
+            type="text"
+            autocomplete="off"
+            placeholder="请输入关键词"
+            v-model="searchForm.keywords"
+          />
+          <button @click="getData">搜索</button>
+        </label>
+        <div class="close_btn">
+          <img src="images/search20240904_7.png" alt="" />
+        </div>
+      </div>
+      <div class="app_menu app">
+        <div class="yhdl">
+          <div class="yhxx">
+            <img src="images/search20240904_12.png" alt="" /><em
+              >{{useInfo.name}}</em
+            >
+            您好！
+          </div>
+          <div class="dl">
+            <!-- <div class="login"><a href="javascript:void(0);">切换用户</a></div> -->
+            <div class="logout"><a href="javascript:void(0);">注销</a></div>
+          </div>
+        </div>
+        <div class="dw_select">
+          <span>招商局海通贸易有限公司</span>
+          <ul style="display: none">
+            <li><a href="">测试</a></li>
+            <li><a href="">测试</a></li>
+            <li><a href="">测试</a></li>
+            <li><a href="">测试</a></li>
+            <li><a href="">测试</a></li>
+          </ul>
+        </div>
+        <div class="menu_cont">
+          <ul>
+            <li><a href="">首 页</a></li>
+            <li>
+              <a href="">集团总部新闻</a>
+              <ul style="display: none">
+                <li><a href="">集团要闻</a></li>
+                <li><a href="">集团简讯</a></li>
+                <li><a href="">公司动态</a></li>
+                <li><a href="">上市公司股价</a></li>
+                <li><a href="">媒体报道</a></li>
+                <li><a href="">研究报告</a></li>
+                <li><a href="">行业信息</a></li>
+                <li><a href="">国资要闻</a></li>
+              </ul>
+            </li>
+            <li><a href="">公司新闻</a></li>
+            <li><a href="">通知与公告</a></li>
+          </ul>
+        </div>
+        <div class="link">
+          <div class="language">
+            <span>简体中文</span>
+            <ul style="display: none">
+              <li><a href="javascript:void(0);">简体中文</a></li>
+              <li><a href="javascript:void(0);">繁體中文</a></li>
             </ul>
+          </div>
+          <div class="wb">
+            <a href="">外部网</a>
+          </div>
         </div>
-    </div>
-    <div class="conter">
-        <div class="count">相关结果约<em>1024</em>条</div>
-        <div class="search_cont">
-            <div class="pc px">
-                <p>排序：</p>
+      </div>
+      <div class="app_px app">
+        <div class="px">
+          <div class="tit">排序</div>
+          <label v-for="item in orderList" :key="item.name">
+            <span
+              ><input
+                type="radio"
+                name="px"
+                :value="item.name"
+                @click="setCurrentType(item.value)"
+              />{{item.name}}</span
+            >
+          </label>
+        </div>
+      </div>
+      <div class="page_select_tc app tc">
+        <ul>
+          <li
+            v-for="item in pageListMobile"
+            :key="item"
+            @click="changePage(item + 1,true)"
+          >
+            {{item + 1}}
+          </li>
+        </ul>
+      </div>
+      <div class="head pc">
+        <div class="conter">
+          <div class="top">
+            <div class="left_cont">
+              <div class="logo">
+                <img src="images/search20240904_8.png" alt="" />
+              </div>
+              <div class="menu">
                 <ul>
-                    <li class="hover"><a href="javascript:void(0);">时间</a></li>
-                    <li><a href="javascript:void(0);">阅读数</a></li>
-                    <li><a href="javascript:void(0);">评论</a></li>
-                    <li><a href="javascript:void(0);">点赞</a></li>
+                  <li class="hover"><a href="">首 页</a></li>
+                  <li><a href="">工作台</a></li>
+                  <li><a href="">集团导航</a></li>
+                  <li><a href="">自助服务</a></li>
                 </ul>
+              </div>
             </div>
-            <div class="list_cont">
-                <ul class="list">
-                    <li>
-                        <div class="tit">
-                            <div class="left_cont"><span class="fl">集团要闻</span><a href="">缪建民会见海南省委常委、三亚市委书记周红波</a></div>
-                            <div class="time">2024-02-29 00:24:00</div>
-                        </div>
-                        <div class="text">
-                            <div class="zw">
-                                <p>海南省三亚市有关负责人；集团首席战略官、集团战略发展部/科技创新部部长邓伟栋，招商港口首席执行官徐颂、招商海通总经理李关鹏、招商蛇口总经理朱文凯，集团产业发展部/业务协同部，招商金控</p>
-                            </div>
-                            <div class="info">
-                                <div class="gk"><img src="images/search20240904_15.png" alt=""><span>104</span></div>
-                                <div class="pl"><img src="images/search20240904_13.png" alt=""><span>89</span></div>
-                                <div class="dz"><img src="images/search20240904_14.png" alt=""><span>34</span></div>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="tit">
-                            <div class="left_cont"><span class="fl">集团要闻</span><a href="">缪建民在港出席香港中国企业协会2024年新春酒会</a></div>
-                            <div class="time">2024-02-29 00:24:00</div>
-                        </div>
-                        <div class="text">
-                            <div class="zw">
-                                <p>中央政府驻港联络办副主任尹宗华，香港中企协会会长、招商局集团董事长缪建民，香港特区政府财政司副司长黄伟伦，驻港国安公署副署长孙青野，外交部驻港公署副特派员方建明，香港特别行政区立法会主席梁君彦，行政会议非官守议员召集人叶刘淑仪等应邀出席并担任主礼嘉宾，特区政府各级官员、行政会议成员、立法会议员，香港各大社团政团代表、工商界知名人士，外国驻港领事、驻</p>
-                            </div>
-                            <div class="info">
-                                <div class="gk"><img src="images/search20240904_15.png" alt=""><span>143</span></div>
-                                <div class="pl"><img src="images/search20240904_13.png" alt=""><span>24</span></div>
-                                <div class="dz"><img src="images/search20240904_14.png" alt=""><span>12</span></div>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="tit">
-                            <div class="left_cont"><span class="fl">集团要闻</span><a href="">缪建民会见海南省委常委、三亚市委书记周红波</a></div>
-                            <div class="time">2024-02-29 00:24:00</div>
-                        </div>
-                        <div class="text">
-                            <div class="zw">
-                                <p>海南省三亚市有关负责人；集团首席战略官、集团战略发展部/科技创新部部长邓伟栋，招商港口首席执行官徐颂、招商海通总经理李关鹏、招商蛇口总经理朱文凯，集团产业发展部/业务协同部，招商金控</p>
-                            </div>
-                            <div class="info">
-                                <div class="gk"><img src="images/search20240904_15.png" alt=""><span>104</span></div>
-                                <div class="pl"><img src="images/search20240904_13.png" alt=""><span>89</span></div>
-                                <div class="dz"><img src="images/search20240904_14.png" alt=""><span>34</span></div>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="tit">
-                            <div class="left_cont"><span class="fl">集团要闻</span><a href="">缪建民在港出席香港中国企业协会2024年新春酒会</a></div>
-                            <div class="time">2024-02-29 00:24:00</div>
-                        </div>
-                        <div class="text">
-                            <div class="zw">
-                                <p>中央政府驻港联络办副主任尹宗华，香港中企协会会长、招商局集团董事长缪建民，香港特区政府财政司副司长黄伟伦，驻港国安公署副署长孙青野，外交部驻港公署副特派员方建明，香港特别行政区立法会主席梁君彦，行政会议非官守议员召集人叶刘淑仪等应邀出席并担任主礼嘉宾，特区政府各级官员、行政会议成员、立法会议员，香港各大社团政团代表、工商界知名人士，外国驻港领事、驻</p>
-                            </div>
-                            <div class="info">
-                                <div class="gk"><img src="images/search20240904_15.png" alt=""><span>143</span></div>
-                                <div class="pl"><img src="images/search20240904_13.png" alt=""><span>24</span></div>
-                                <div class="dz"><img src="images/search20240904_14.png" alt=""><span>12</span></div>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="tit">
-                            <div class="left_cont"><span class="fl">集团要闻</span><a href="">缪建民会见海南省委常委、三亚市委书记周红波</a></div>
-                            <div class="time">2024-02-29 00:24:00</div>
-                        </div>
-                        <div class="text">
-                            <div class="zw">
-                                <p>海南省三亚市有关负责人；集团首席战略官、集团战略发展部/科技创新部部长邓伟栋，招商港口首席执行官徐颂、招商海通总经理李关鹏、招商蛇口总经理朱文凯，集团产业发展部/业务协同部，招商金控</p>
-                            </div>
-                            <div class="info">
-                                <div class="gk"><img src="images/search20240904_15.png" alt=""><span>104</span></div>
-                                <div class="pl"><img src="images/search20240904_13.png" alt=""><span>89</span></div>
-                                <div class="dz"><img src="images/search20240904_14.png" alt=""><span>34</span></div>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="tit">
-                            <div class="left_cont"><span class="fl">集团要闻</span><a href="">缪建民在港出席香港中国企业协会2024年新春酒会</a></div>
-                            <div class="time">2024-02-29 00:24:00</div>
-                        </div>
-                        <div class="text">
-                            <div class="zw">
-                                <p>中央政府驻港联络办副主任尹宗华，香港中企协会会长、招商局集团董事长缪建民，香港特区政府财政司副司长黄伟伦，驻港国安公署副署长孙青野，外交部驻港公署副特派员方建明，香港特别行政区立法会主席梁君彦，行政会议非官守议员召集人叶刘淑仪等应邀出席并担任主礼嘉宾，特区政府各级官员、行政会议成员、立法会议员，香港各大社团政团代表、工商界知名人士，外国驻港领事、驻</p>
-                            </div>
-                            <div class="info">
-                                <div class="gk"><img src="images/search20240904_15.png" alt=""><span>143</span></div>
-                                <div class="pl"><img src="images/search20240904_13.png" alt=""><span>24</span></div>
-                                <div class="dz"><img src="images/search20240904_14.png" alt=""><span>12</span></div>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="tit">
-                            <div class="left_cont"><span class="fl">集团要闻</span><a href="">缪建民会见海南省委常委、三亚市委书记周红波</a></div>
-                            <div class="time">2024-02-29 00:24:00</div>
-                        </div>
-                        <div class="text">
-                            <div class="zw">
-                                <p>海南省三亚市有关负责人；集团首席战略官、集团战略发展部/科技创新部部长邓伟栋，招商港口首席执行官徐颂、招商海通总经理李关鹏、招商蛇口总经理朱文凯，集团产业发展部/业务协同部，招商金控</p>
-                            </div>
-                            <div class="info">
-                                <div class="gk"><img src="images/search20240904_15.png" alt=""><span>104</span></div>
-                                <div class="pl"><img src="images/search20240904_13.png" alt=""><span>89</span></div>
-                                <div class="dz"><img src="images/search20240904_14.png" alt=""><span>34</span></div>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="tit">
-                            <div class="left_cont"><span class="fl">集团要闻</span><a href="">缪建民在港出席香港中国企业协会2024年新春酒会</a></div>
-                            <div class="time">2024-02-29 00:24:00</div>
-                        </div>
-                        <div class="text">
-                            <div class="zw">
-                                <p>中央政府驻港联络办副主任尹宗华，香港中企协会会长、招商局集团董事长缪建民，香港特区政府财政司副司长黄伟伦，驻港国安公署副署长孙青野，外交部驻港公署副特派员方建明，香港特别行政区立法会主席梁君彦，行政会议非官守议员召集人叶刘淑仪等应邀出席并担任主礼嘉宾，特区政府各级官员、行政会议成员、立法会议员，香港各大社团政团代表、工商界知名人士，外国驻港领事、驻</p>
-                            </div>
-                            <div class="info">
-                                <div class="gk"><img src="images/search20240904_15.png" alt=""><span>143</span></div>
-                                <div class="pl"><img src="images/search20240904_13.png" alt=""><span>24</span></div>
-                                <div class="dz"><img src="images/search20240904_14.png" alt=""><span>12</span></div>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="tit">
-                            <div class="left_cont"><span class="fl">集团要闻</span><a href="">缪建民会见海南省委常委、三亚市委书记周红波</a></div>
-                            <div class="time">2024-02-29 00:24:00</div>
-                        </div>
-                        <div class="text">
-                            <div class="zw">
-                                <p>海南省三亚市有关负责人；集团首席战略官、集团战略发展部/科技创新部部长邓伟栋，招商港口首席执行官徐颂、招商海通总经理李关鹏、招商蛇口总经理朱文凯，集团产业发展部/业务协同部，招商金控</p>
-                            </div>
-                            <div class="info">
-                                <div class="gk"><img src="images/search20240904_15.png" alt=""><span>104</span></div>
-                                <div class="pl"><img src="images/search20240904_13.png" alt=""><span>89</span></div>
-                                <div class="dz"><img src="images/search20240904_14.png" alt=""><span>34</span></div>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="tit">
-                            <div class="left_cont"><span class="fl">集团要闻</span><a href="">缪建民在港出席香港中国企业协会2024年新春酒会</a></div>
-                            <div class="time">2024-02-29 00:24:00</div>
-                        </div>
-                        <div class="text">
-                            <div class="zw">
-                                <p>中央政府驻港联络办副主任尹宗华，香港中企协会会长、招商局集团董事长缪建民，香港特区政府财政司副司长黄伟伦，驻港国安公署副署长孙青野，外交部驻港公署副特派员方建明，香港特别行政区立法会主席梁君彦，行政会议非官守议员召集人叶刘淑仪等应邀出席并担任主礼嘉宾，特区政府各级官员、行政会议成员、立法会议员，香港各大社团政团代表、工商界知名人士，外国驻港领事、驻</p>
-                            </div>
-                            <div class="info">
-                                <div class="gk"><img src="images/search20240904_15.png" alt=""><span>143</span></div>
-                                <div class="pl"><img src="images/search20240904_13.png" alt=""><span>24</span></div>
-                                <div class="dz"><img src="images/search20240904_14.png" alt=""><span>12</span></div>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-                <div class="page">
-                    <div class="cont prev"><img src="images/search20240904_11.png" alt=""></div>
-                    <div class="cont page_num cur"><a href="">1</a></div>
-                    <div class="cont page_num"><a href="">2</a></div>
-                    <div class="cont page_num"><a href="">3</a></div>
-                    <div class="cont page_num"><a href="">4</a></div>
-                    <div class="cont page_num"><a href="">5</a></div>
-                    <div class="cont next"><img src="images/search20240904_19.png" alt=""></div>
+            <div class="right_cont">
+              <div class="yhdl">
+                <div class="yhxx">
+                  <img src="images/search20240904_12.png" alt="" /><em
+                    >{{useInfo.name}}</em
+                  >
+                  您好！
                 </div>
-                <div class="app app_page">
-                    <div class="prev"><a href="javascript:void(0);">上一页</a></div>
-                    <div class="page_select">
-                        <span>第<em>1</em>页</span>
-                    </div>
-                    <div class="next"><a href="javascript:void(0);">下一页</a></div>
+                <!-- <div class="login">
+                  <a href="javascript:void(0);">切换用户</a>
+                </div> -->
+                <div class="logout"><a href="javascript:void(0);">注销</a></div>
+              </div>
+              <div class="cont">
+                <div class="search_btn" style="display: none">
+                  <img src="images/search20240904_6.png" alt="" />
                 </div>
+                <div class="dw_select">
+                  <span>招商局海通贸易有限公司</span>
+                  <ul style="display: none">
+                    <li><a href="">测试</a></li>
+                    <li><a href="">测试</a></li>
+                    <li><a href="">测试</a></li>
+                    <li><a href="">测试</a></li>
+                    <li><a href="">测试</a></li>
+                  </ul>
+                </div>
+                <div class="language">
+                  <span>简体中文</span>
+                  <ul style="display: none">
+                    <li><a href="javascript:void(0);">简体中文</a></li>
+                    <li><a href="javascript:void(0);">繁體中文</a></li>
+                  </ul>
+                </div>
+                <div class="wb">
+                  <a href="">外部网</a>
+                </div>
+              </div>
             </div>
+          </div>
+          <div class="main_search">
+            <label>
+              <input
+                type="text"
+                autocomplete="off"
+                placeholder=""
+                v-model="searchForm.keywords"
+              />
+              <button type="button" @click="getData">
+                <img src="images/search20240904_9.png" alt="" /><span
+                  >搜索</span
+                >
+              </button>
+            </label>
+            <div class="selected">
+              <ul>
+                <li class="hover"><a href="javascript:void(0);">全部</a></li>
+                <li><a href="javascript:void(0);">关键词</a></li>
+                <li><a href="javascript:void(0);">标题</a></li>
+                <li><a href="javascript:void(0);">正文</a></li>
+                <li><a href="javascript:void(0);">创建人</a></li>
+                <li><a href="javascript:void(0);">发布时间</a></li>
+                <li><a href="javascript:void(0);">分类搜索</a></li>
+              </ul>
+            </div>
+          </div>
         </div>
+      </div>
+      <div class="app_head app">
+        <div class="logo">
+          <img src="images/search20240904_2.png" alt="" />
+          <div class="search_btn">
+            <img src="images/search20240904_4.png" alt="" />
+          </div>
+        </div>
+        <div class="menu_btn">
+          <img src="images/search20240904_5.png" alt="" /><img
+            src="images/search20240904_7.png"
+            alt=""
+            class="hover"
+          />
+        </div>
+      </div>
+      <div class="main">
+        <div class="app search_box">
+          <div class="app_search">
+            <label>
+              <input
+                type="text"
+                autocomplete="off"
+                placeholder=""
+                v-model="searchForm.keywords"
+              /><span class="px_btn"><img src="" alt="" /></span>
+              <button type="button" @click="getData">
+                <img src="images/search20240904_23.png" alt="" />
+              </button>
+            </label>
+            <span class="px_btn"
+              ><img src="images/search20240904_24.png" alt=""
+            /></span>
+          </div>
+          <div class="selected">
+            <ul>
+              <li class="hover"><a href="javascript:void(0);">全部</a></li>
+              <li><a href="javascript:void(0);">关键词</a></li>
+              <li><a href="javascript:void(0);">标题</a></li>
+              <li><a href="javascript:void(0);">正文</a></li>
+              <li><a href="javascript:void(0);">创建人</a></li>
+              <li><a href="javascript:void(0);">发布时间</a></li>
+              <li><a href="javascript:void(0);">分类搜索</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="conter">
+          <div class="count">相关结果约<em>{{page.total}}</em>条</div>
+          <div class="search_cont">
+            <div class="pc px">
+              <p>排序：</p>
+              <ul>
+                <li
+                  v-for="item in orderList"
+                  :key="item.name"
+                  :class="searchForm.sortType === item.value ? 'hover' : ''"
+                  style="cursor: pointer"
+                >
+                  <div @click="setCurrentType(item.value)">{{item.name}}</div>
+                </li>
+              </ul>
+            </div>
+            <div class="list_cont" v-loading="loading">
+              <div
+                v-if="!data.length && !loading"
+                style="text-align: center; font-size: larger"
+              >
+                暂无数据
+              </div>
+              <ul class="list">
+                <li v-for="item in data" :key="item.METADATAID">
+                  <div class="tit">
+                    <div class="left_cont">
+                      <span class="fl">{{item.CHANNEL}}</span
+                      ><a href="">{{item.TITLE}}</a>
+                    </div>
+                    <div class="time">{{ item.UPDATETIME}}</div>
+                  </div>
+                  <div class="text">
+                    <div class="zw">
+                      <p>{{ item.PARAGRAPH}}</p>
+                    </div>
+                    <div class="info">
+                      <div class="gk">
+                        <img src="images/search20240904_15.svg" alt="" /><span
+                          >{{ item.READCOUNT }}</span
+                        >
+                      </div>
+                      <div class="pl">
+                        <img src="images/search20240904_13.svg" alt="" /><span
+                          >{{ item.REPLYCOUNT }}</span
+                        >
+                      </div>
+                      <div class="dz">
+                        <img src="images/search20240904_14.svg" alt="" /><span
+                          >{{ item.LIKECOUNT }}</span
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+              <div class="page">
+                <div class="cont prev" @click="changePage(-1)">
+                  <img src="images/search20240904_11.png" alt="" />
+                </div>
+                <div
+                  v-for="item in pageList"
+                  :key="item"
+                  class="cont page_num"
+                  :class="page.pageNum === item + 1 ? 'cur':''"
+                  @click="changePage(item + 1,true)"
+                >
+                  <div>{{item + 1}}</div>
+                </div>
+                <div class="cont next" @click="changePage(1)">
+                  <img src="images/search20240904_19.png" alt="" />
+                </div>
+              </div>
+              <div class="app app_page">
+                <div class="prev">
+                  <div @click="changePage(-1)">上一页</div>
+                </div>
+                <div class="page_select">
+                  <span>第<em>{{ page.pageNum }}</em>页</span>
+                </div>
+                <div class="next"><div @click="changePage(1)">下一页</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer">
+        <div class="conter">
+          <p>招商局集团有限公司</p>
+          <p>Cmhk © Copyright. All rights reserved</p>
+        </div>
+      </div>
     </div>
-</div>
-<div class="footer">
-    <div class="conter">
-        <p>招商局集团有限公司</p>
-        <p>Cmhk © Copyright. All rights reserved</p>
-    </div>
-</div>
-</body>
+    <script src="images/vue.min.js"></script>
+    <script src="images/element.js"></script>
+    <script
+      type="text/javascript"
+      charset="utf-8"
+      src="images/base64.js"
+    ></script>
+    <script
+      type="text/javascript"
+      charset="utf-8"
+      src="images/js.cookie.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      charset="utf-8"
+      src="images/axios.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      charset="utf-8"
+      src="images/axiosConfig.js"
+    ></script>
+    <script
+      type="text/javascript"
+      charset="utf-8"
+      src="images/utils.js"
+    ></script>
+    <script type="module">
+      var vm = new Vue({
+        el: "#app",
+        data() {
+          return {
+            useInfo: {
+              name: "",
+            },
+            searchForm: {
+              methodname: "queryWebSiteDocForIntranet",
+              serviceid: "mlf_hybasesearch",
+              mediaType: 2,
+              isPublish: true,
+              keywords: "",
+              keywordsType: "",
+              sortType: "",
+              startDate: "",
+              endDate: "",
+              time: null,
+              PAGEINDEX: 1,
+              PAGESIZE: 10,
+              searchType: "全部",
+            },
+            typeList: [
+              {
+                name: "全部",
+                value: "全部",
+              },
+              {
+                name: "全部",
+                value: "全部",
+              },
+              {
+                name: "关键词",
+                value: "关键词",
+              },
+              {
+                name: "标题",
+                value: "标题",
+              },
+              {
+                name: "正文",
+                value: "正文",
+              },
+              {
+                name: "创建人",
+                value: "创建人",
+              },
+              {
+                name: "发布时间",
+                value: "发布时间",
+              },
+              {
+                name: "分类搜索",
+                value: "分类搜索",
+              },
+            ],
+            orderList: [
+              {
+                name: "时间",
+                value: "",
+              },
+              {
+                name: "阅读",
+                value: "READCOUNT",
+              },
+              {
+                name: "点赞",
+                value: "LIKECOUNT",
+              },
+              {
+                name: "评论",
+                value: "REPLYCOUNT",
+              },
+            ],
+            data: [],
+            loading: false,
+            page: {
+              pageNum: 1,
+              pageSize: 10,
+              total: 0,
+            },
+          };
+        },
+        created() {
+          this.getUserData();
+          this.getData();
+        },
+        computed: {
+          pageList() {
+            return this.getPageNum();
+          },
+          pageListMobile() {
+            return this.getPageNum();
+          },
+        },
+        methods: {
+          setCurrentType(value) {
+            this.searchForm.sortType = value;
+            $(".app_px").removeClass("show");
+            $(".mask").removeClass("show").removeClass("top");
+            this.getData();
+          },
+          getPageNum() {
+            var length = Math.ceil(this.page.total / this.page.pageSize);
+            if (length < 5) {
+              return Array(length).keys();
+            }
+            if (length - this.page.pageNum < 5) {
+              var arr = [];
+              for (let index = 0; index < 5; index++) {
+                arr.push(length - index);
+              }
+              return arr.reverse();
+            }
+            return Array(5)
+              .keys()
+              .map((item) => item + this.page.pageNum);
+          },
+          changePage(value, direct) {
+            this.searchForm.PAGEINDEX = direct
+              ? value
+              : this.searchForm.PAGEINDEX + value;
+            $(".mask").removeClass("top");
+            $(".page_select_tc").removeClass("show");
+            this.getData();
+          },
+          getData() {
+            $(".close_btn").click();
+            this.loading = true;
+            trsAxios
+              .get("/wcm/mlfcenter.do", {
+                params: this.searchForm,
+              })
+              .then((data) => {
+                this.loading = false;
+                if (data) {
+                  this.data = data.DATAS;
+                  this.page = data.SUMMARYINFO;
+                }
+
+                // console.log(data, "444");
+              });
+          },
+          getUserData() {
+            trsAxios
+              .get(
+                "/wcm/mlfcenter.do?methodname=getCurrUserInfo&serviceid=mlf_extuser"
+              )
+              .then((res) => {
+                if (res) {
+                  this.useInfo.name = res.TRUENAME;
+                }
+              });
+          },
+        },
+      });
+    </script>
+  </body>
 </html>
