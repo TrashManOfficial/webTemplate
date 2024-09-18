@@ -166,7 +166,7 @@
 </div>
 <div class="app_menu app">
     <div class="yhdl">
-        <div class="yhxx"><img src="images/search20240904_12.png" alt=""><em>XXX</em> 您好！</div>
+        <div class="yhxx"><img src="images/search20240904_12.png" alt=""><em id="userNameMobile">XXX</em> 您好！</div>
         <div class="dl">
             <div class="login"><a href="javascript:void(0);">切换用户</a></div>
             <div class="logout"><a href="javascript:void(0);">注销</a></div>
@@ -271,7 +271,7 @@
             </div>
             <div class="right_cont">
                 <div class="yhdl">
-                    <div class="yhxx"><img src="images/search20240904_12.png" alt=""><em>XXX</em> 您好！</div>
+                    <div class="yhxx"><img src="images/search20240904_12.png" alt=""><em id="userName">XXX</em> 您好！</div>
                     <div class="login"><a href="javascript:void(0);">切换用户</a></div>
                     <div class="logout"><a href="javascript:void(0);">注销</a></div>
                 </div>
@@ -732,6 +732,44 @@
         <p>Cmhk © Copyright. All rights reserved</p>
     </div>
 </div>
+<script
+type="text/javascript"
+charset="utf-8"
+src="images/base64.js"
+></script>
+<script
+type="text/javascript"
+charset="utf-8"
+src="images/js.cookie.min.js"
+></script>
+<script
+type="text/javascript"
+charset="utf-8"
+src="images/axios.min.js"
+></script>
+<script
+type="text/javascript"
+charset="utf-8"
+src="images/axiosConfig.js"
+></script>
+<script
+type="text/javascript"
+charset="utf-8"
+src="images/utils.js"
+></script>
+<script>
+    function getUserData() {
+        trsAxios.get("/wcm/mlfcenter.do?methodname=getCurrUserInfo&serviceid=mlf_extuser").then((res) => {
+            if (res) {
+                // this.useInfo.name = res.TRUENAME;
+                $('#userName').text(res.TRUENAME)
+                $('#userNameMobile').text(res.TRUENAME)
+                // console.log($('userName'));
+            }
+        });
+    }
+    getUserData()
+</script>
 <script src="images/swiper.min.js"></script>
 <script>
     var fsize = parseInt($("html").css("font-size"));

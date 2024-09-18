@@ -47,7 +47,7 @@ function getToken() {
 }
 
 /**
- * [goToLoginPage description] 进入登录页
+ * [goToZsjLogin description] 进入登录页
  *
  * @param   {[String]}  addr  [addr description] ids登录页地址
  * @param   {[String]}  surl  [surl description]  wcm校验登录jsp地址
@@ -55,7 +55,7 @@ function getToken() {
  *
  * @return  {[type]}        [return description]
  */
-function goToZsjLogin() {
+function goToZsjLogin(_env) {
 
     // 招商随行生产环境
     var ph = window.location.protocol + '//' + window.location.hostname;
@@ -66,7 +66,7 @@ function goToZsjLogin() {
 
     var domain = '', client_id = '';
 
-    switch (ENV) {
+    switch (_env) {
         case "sit":
             domain = "https://nuc-hk-di1.sit.cmft.com:8085";
             client_id = "89c9cdc7d628262a447076b9b57a8410c2c3c9d3";
@@ -88,9 +88,6 @@ function goToZsjLogin() {
     // var url = `${domain}/oauth/coco/loginTwoAuth4pc.html?authUrl=${encodeURIComponent(authUrl)}`;
 
     var url = `${domain}/oauth/authorize?client_id=${client_id}&redirect_uri=${redirectUrl}&response_type=code`;
-
-
-    // alert(url);
 
     console.log('招商随行未登录跳转', url);
     window.location.href = url;
@@ -135,16 +132,16 @@ _axios.interceptors.response.use(
         if (response.headers.trsnotlogin) {
             var addr = response.headers.idsloginurl;
             var surl = response.headers.surl.replace(/(\w+):\/\/([^/:]+)(:\d*)?/, window.location.origin);
-            // console.log(ENV, ENV.includes('mfs-st1.uat.cm-worklink.com'), ENV.indexOf('mfs-st1.uat.cm-worklink.com'))
+
+            console.log("trsnotlogin", ENV, new Date().toLocaleString()) 
 
             // 根据域名判断所属环境
             if (ENV.includes('mfs-st1.uat.cm-worklink.com')) {
-                ENV = 'uat'
-                goToZsjLogin()
+                goToZsjLogin('uat')
             } else if (ENV.includes('mfs-hk.cm-worklink.com')) {
-                ENV = 'prod'
-                goToZsjLogin()
+                goToZsjLogin('prod')
             } else {
+                console.log("goToLoginPage") 
                 goToLoginPage(addr, surl);
             }
         } else if (response.config.noError) {

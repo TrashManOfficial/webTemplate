@@ -10,9 +10,10 @@
     <link rel="stylesheet" type="text/css" href="images/global20240904.css" />
     <link rel="stylesheet" type="text/css" href="images/element.css" />
     <script src="images/jquery.js"></script>
+    <script src="images/zsjfjqh.js"></script>
     <script>
       $(function () {
-        setChange($(".language"));
+        // setChange($(".language"));
         setChange($(".dw_select"));
         setChange1($(".main_search .selected li"));
         setChange1($(".search .search_cont .px li"));
@@ -181,11 +182,14 @@
         </div>
         <div class="link">
           <div class="language">
-            <span>简体中文</span>
-            <ul style="display: none">
-              <li><a href="javascript:void(0);">简体中文</a></li>
-              <li><a href="javascript:void(0);">繁體中文</a></li>
-            </ul>
+            <a
+              name="StranLinkMobile"
+              id="StranLinkMobile"
+              title="以繁體中文查看內容"
+              class="lag"
+              href="#"
+              >繁體</a
+            >
           </div>
           <div class="wb">
             <a href="">外部网</a>
@@ -262,11 +266,14 @@
                   </ul>
                 </div>
                 <div class="language">
-                  <span>简体中文</span>
-                  <ul style="display: none">
-                    <li><a href="javascript:void(0);">简体中文</a></li>
-                    <li><a href="javascript:void(0);">繁體中文</a></li>
-                  </ul>
+                  <a
+                    name="StranLinkPC"
+                    id="StranLinkPC"
+                    title="以繁體中文查看內容"
+                    class="lag"
+                    href="#"
+                    >繁體</a
+                  >
                 </div>
                 <div class="wb">
                   <a href="">外部网</a>
@@ -385,17 +392,17 @@
                     </div>
                     <div class="info">
                       <div class="gk">
-                        <img src="images/search20240904_15.svg" alt="" /><span
+                        <img src="images/search20240904_15.png" alt="" /><span
                           >{{ item.READCOUNT }}</span
                         >
                       </div>
                       <div class="pl">
-                        <img src="images/search20240904_13.svg" alt="" /><span
+                        <img src="images/search20240904_13.png" alt="" /><span
                           >{{ item.REPLYCOUNT }}</span
                         >
                       </div>
                       <div class="dz">
-                        <img src="images/search20240904_14.svg" alt="" /><span
+                        <img src="images/search20240904_14.png" alt="" /><span
                           >{{ item.LIKECOUNT }}</span
                         >
                       </div>
@@ -555,6 +562,10 @@
           this.getUserData();
           this.getData();
         },
+        mounted() {
+          Translate.BindObj("StranLinkPC", "繁體", "以繁體中文查看内容");
+          Translate.BindObj("StranLinkMobile", "繁體", "以繁體中文查看内容");
+        },
         computed: {
           pageList() {
             return this.getPageNum();
@@ -584,7 +595,9 @@
             }
             return Array(5)
               .keys()
-              .map((item) => item + this.page.pageNum);
+              .map(function (item) {
+                return item + this.page.pageNum;
+              });
           },
           changePage(value, direct) {
             this.searchForm.PAGEINDEX = direct
