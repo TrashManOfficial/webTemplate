@@ -147,7 +147,7 @@
           </div>
           <div class="dl">
             <!-- <div class="login"><a href="javascript:void(0);">切换用户</a></div> -->
-            <div class="logout"><a href="javascript:void(0);">注销</a></div>
+            <!-- <div class="logout"><a href="javascript:void(0);">注销</a></div> -->
           </div>
         </div>
         <div class="dw_select">
@@ -181,7 +181,7 @@
           </ul>
         </div>
         <div class="link">
-          <div class="language">
+          <!-- <div class="language">
             <a
               name="StranLinkMobile"
               id="StranLinkMobile"
@@ -190,7 +190,7 @@
               href="#"
               >繁體</a
             >
-          </div>
+          </div> -->
           <div class="wb">
             <a href="">外部网</a>
           </div>
@@ -249,7 +249,7 @@
                 <!-- <div class="login">
                   <a href="javascript:void(0);">切换用户</a>
                 </div> -->
-                <div class="logout"><a href="javascript:void(0);">注销</a></div>
+                <!-- <div class="logout"><a href="javascript:void(0);">注销</a></div> -->
               </div>
               <div class="cont">
                 <div class="search_btn" style="display: none">
@@ -267,8 +267,8 @@
                 </div>
                 <div class="language">
                   <a
-                    name="StranLinkPC"
-                    id="StranLinkPC"
+                    name="StranLink"
+                    id="StranLink"
                     title="以繁體中文查看內容"
                     class="lag"
                     href="#"
@@ -563,8 +563,8 @@
           this.getData();
         },
         mounted() {
-          Translate.BindObj("StranLinkPC", "繁體", "以繁體中文查看内容");
-          Translate.BindObj("StranLinkMobile", "繁體", "以繁體中文查看内容");
+          Translate.BindObj("StranLink", "繁體", "以繁體中文查看内容");
+          // Translate.BindObj("StranLinkMobile", "繁體", "以繁體中文查看内容");
         },
         computed: {
           pageList() {
