@@ -593,10 +593,11 @@
               }
               return arr.reverse();
             }
+            var _this = this
             return Array(5)
               .keys()
               .map(function (item) {
-                return item + this.page.pageNum;
+                return item + _this.page.pageNum;
               });
           },
           changePage(value, direct) {

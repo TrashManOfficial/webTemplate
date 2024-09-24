@@ -6,11 +6,12 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <!-- <TRS_CONDITION CONDITION="@doctype" REFERENCE="4" OPERATOR="="><meta http-equiv="refresh" content="0;url=<trs_viewdata field='srcUrl'/>"></TRS_CONDITION> -->
+    <TRS_CONDITION CONDITION="@doctype" REFERENCE="4" OPERATOR="="><meta http-equiv="refresh" content="0;url=<trs_viewdata field='srcUrl'/>"></TRS_CONDITION>
     <title><TRS_Document FIELD='doctitle' AUTOLINK='false' /></title>
-    <link rel="stylesheet" type="text/css" href="../site66/global20240904.css" />
-    <link rel="stylesheet" type="text/css" href="../site66/swiper.min.css" />
-    <script src="../site66/jquery.js"></script>
+    <link rel="shortcut icon" type="image/ico" href="favicon.png" OLDSRC="favicon.png" OLDID="425" RELATED="1" />
+    <link rel="stylesheet" type="text/css" href="global20240904.css" OLDSRC="global20240904.css" OLDID="351" RELATED="1" />
+    <link rel="stylesheet" type="text/css" href="swiper.min.css" OLDSRC="swiper.min.css" OLDID="252" RELATED="1" />
+    <script src="jquery.js" OLDSRC="jquery.js" OLDID="239" RELATED="1"></script>
     <script>
       $(function () {
         setChange($(".dw_select"));
@@ -42,8 +43,8 @@
         $(".app_head .logo .search_btn").on("click", function () {
           $(".app_search_box").addClass("show");
         });
-        $(".app_menu .menu_cont ul ul").parent().addClass("hasSub");
-        $(".app_menu .menu_cont a").on("click", function (event) {
+        $(".app_menu .menu_cont ul ul>*").parent().parent().addClass("hasSub");
+        $(".app_menu .menu_cont .hasSub>a").on("click", function (event) {
           event.preventDefault();
           if ($(this).parent().hasClass("expand")) {
             $(this).parent().removeClass("expand");
@@ -205,7 +206,7 @@
             <label>
               <input type="text" autocomplete="off" placeholder="" />
               <button type="button">
-                <img src="../site66/search20240904_9.png" alt="" /><span
+                <img src="search20240904_9.png" alt="" OLDSRC="search20240904_9.png" OLDID="323" RELATED="1" /><span
                   >搜索</span
                 >
               </button>
@@ -223,7 +224,7 @@
             </div>
           </div>
           <div class="close_btn">
-            <img src="../site66/search20240904_7.png" alt="" />
+            <img src="search20240904_7.png" alt="" OLDSRC="search20240904_7.png" OLDID="321" RELATED="1" />
           </div>
         </div>
       </div>
@@ -233,13 +234,13 @@
           <button>搜索</button>
         </label>
         <div class="close_btn">
-          <img src="../site66/search20240904_7.png" alt="" />
+          <img src="search20240904_7.png" alt="" OLDSRC="search20240904_7.png" OLDID="321" RELATED="1" />
         </div>
       </div>
       <div class="app_menu app">
         <div class="yhdl">
           <div class="yhxx">
-            <img src="../site66/search20240904_12.png" alt="" /><em>{{curUser.TRUENAME}}</em> 您好！
+            <img src="search20240904_12.png" alt="" OLDSRC="search20240904_12.png" OLDID="302" RELATED="1" /><em>{{curUser.TRUENAME}}</em> 您好！
           </div>
           <div class="dl">
             <!-- <div class="login"><a href="javascript:void(0);">切换用户</a></div> -->
@@ -278,22 +279,18 @@
         </div>
         <div class="menu_cont">
           <ul>
-            <li><a href="">首 页</a></li>
-            <li>
-              <a href="">集团总部新闻</a>
-              <ul style="display: none">
-                <li><a href="">集团要闻</a></li>
-                <li><a href="">集团简讯</a></li>
-                <li><a href="">公司动态</a></li>
-                <li><a href="">上市公司股价</a></li>
-                <li><a href="">媒体报道</a></li>
-                <li><a href="">研究报告</a></li>
-                <li><a href="">行业信息</a></li>
-                <li><a href="">国资要闻</a></li>
-              </ul>
-            </li>
-            <li><a href="">公司新闻</a></li>
-            <li><a href="">通知与公告</a></li>
+            <li><a href="<trs_website field='_recurl' UrlIsAbs='true'/>">首  页</a></li>
+            
+            <TRS_Channels id="site">
+              <TRS_Condition Reference="搜索~新闻共享" Condition="@Chnlname" Operator="contain" not="true"> 
+              <li>
+                <a href="<TRS_Channel field='_recurl' AUTOLINK='false'/>"><TRS_Channel field='CHNLDESC' autolink='false'/></a>
+                <ul style="display: none;">
+                  <TRS_Channels id="owner">
+                    <li><a href="<TRS_Channel field='_recurl' AUTOLINK='false'/>"><TRS_Channel field='CHNLDESC' autolink='false'/></a></li></TRS_Channels>
+                    
+                </ul>
+            </li></TRS_Condition></TRS_Channels>
           </ul>
         </div>
         <div class="link">
@@ -325,21 +322,21 @@
           <div class="top">
             <div class="left_cont">
               <div class="logo">
-                <img src="../site66/search20240904_8.png" alt="" />
+                <img src="search20240904_8.png" alt="" OLDSRC="search20240904_8.png" OLDID="322" RELATED="1" />
               </div>
               <div class="menu">
                 <ul>
-                  <li class="hover"><a href="">首 页</a></li>
+                  <!--li class="hover"><a href="">首 页</a></li>
                   <li><a href="">工作台</a></li>
                   <li><a href="">集团导航</a></li>
-                  <li><a href="">自助服务</a></li>
+                  <li><a href="">自助服务</a></li-->
                 </ul>
               </div>
             </div>
             <div class="right_cont">
               <div class="yhdl">
                 <div class="yhxx">
-                  <img src="../site66/search20240904_12.png" alt="" /><em>{{curUser.TRUENAME}}</em>
+                  <img src="search20240904_12.png" alt="" OLDSRC="search20240904_12.png" OLDID="302" RELATED="1" /><em>{{curUser.TRUENAME}}</em>
                   您好！
                 </div>
                 <!-- <div class="login"><a href="javascript:void(0);">切换用户</a></div> -->
@@ -347,7 +344,7 @@
               </div>
               <div class="cont">
                 <div class="search_btn">
-                  <img src="../site66/search20240904_6.png" alt="" />
+                  <img src="search20240904_6.png" alt="" OLDSRC="search20240904_6.png" OLDID="320" RELATED="1" />
                 </div>
                 <div class="dw_select">
                   <span>招商局集团有限公司</span>
@@ -381,7 +378,7 @@
                 </div>
                 <div class="language">
               <a name="StranLink" id="StranLink" title="以繁體中文查看內容" class="lag" href="#">繁體</a>
-                  <script src="../site66/zsjfjqh.js"></script>
+                  <script src="zsjfjqh.js" OLDSRC="zsjfjqh.js" OLDID="361" RELATED="1"></script>
                 </div>
                 <div class="wb">
                   <a href="https://www.cmhk.com/">外部网</a>
@@ -397,13 +394,13 @@
       </div>
       <div class="app_head app">
         <div class="logo">
-          <img src="../site66/search20240904_2.png" alt="" />
+          <img src="search20240904_8.png" alt="" OLDSRC="search20240904_8.png" OLDID="322" RELATED="1" />
           <div class="search_btn">
-            <img src="../site66/search20240904_4.png" alt="" />
+            <img src="search20240904_4.png" alt="" OLDSRC="search20240904_4.png" OLDID="318" RELATED="1" />
           </div>
         </div>
         <div class="menu_btn">
-          <img src="../site66/search20240904_5.png" alt="" /><img src="../site66/search20240904_7.png" alt="" class="hover" />
+          <img src="search20240904_5.png" alt="" OLDSRC="search20240904_5.png" OLDID="319" RELATED="1" /><img src="search20240904_7.png" alt="" class="hover" OLDSRC="search20240904_7.png" OLDID="321" RELATED="1" />
         </div>
       </div>
       <div class="main">
@@ -448,7 +445,7 @@ NOT="false">
             <div class="tj">
               <div class="count">图集<em></em></div>
               <div class="pic">
-                <img src="../site66/xl20240911_17.png" alt="" />
+                <img src="xl20240911_17.png" alt="" OLDSRC="xl20240911_17.png" OLDID="367" RELATED="1" />
               </div>
               <div class="tc xl_tj">
                 <div class="bg"></div>
@@ -464,10 +461,10 @@ NOT="false">
                   </div>
                   <div class="swiper-button">
                     <div class="swiper-prev">
-                      <img src="../site66/xl20240911_16.png" alt="" />
+                      <img src="xl20240911_16.png" alt="" OLDSRC="xl20240911_16.png" OLDID="368" RELATED="1" />
                     </div>
                     <div class="swiper-next">
-                      <img src="../site66/xl20240911_15.png" alt="" />
+                      <img src="xl20240911_15.png" alt="" OLDSRC="xl20240911_15.png" OLDID="369" RELATED="1" />
                     </div>
                   </div>
                   <div class="swiper-pagination"></div>
@@ -496,15 +493,15 @@ NOT="false">
             </div>
             <div class="hd">
               <p>
-                <img src="../site66/xl20240911_5.png" alt="" /><span>阅读：</span
+                <img src="xl20240911_5.png" alt="" OLDSRC="xl20240911_5.png" OLDID="372" RELATED="1" /><span>阅读：</span
                 ><em>{{ readCount }}</em>
               </p>
               <p>
-                <img src="../site66/xl20240911_6.png" alt="" /><span>收藏：</span
+                <img src="xl20240911_6.png" alt="" OLDSRC="xl20240911_6.png" OLDID="373" RELATED="1" /><span>收藏：</span
                 ><em>{{ favoritecount }}</em>
               </p>
               <p>
-                <img src="../site66/xl20240911_10.png" alt="" /><span>点赞：</span
+                <img src="xl20240911_10.png" alt="" OLDSRC="xl20240911_10.png" OLDID="374" RELATED="1" /><span>点赞：</span
                 ><em>{{ likecount }}</em>
               </p>
             </div>
@@ -528,7 +525,7 @@ NOT="false">
                 <div class="pl_cont">
                   <div class="yh">
                     <a href="javascript:void(0);"
-                      ><img src="../site66/xl20240911_25.png" alt="" /></a>
+                      ><img src="xl20240911_25.png" alt="" OLDSRC="xl20240911_25.png" OLDID="375" RELATED="1" /></a>
                   </div>
                   <div class="cont">
                     <div class="info">
@@ -549,7 +546,7 @@ NOT="false">
                 <div class="pl_cont">
                   <div class="yh">
                     <a href="javascript:void(0);"
-                      ><img src="../site66/xl20240911_20.png" alt="" /></a>
+                      ><img src="xl20240911_20.png" alt="" OLDSRC="xl20240911_20.png" OLDID="376" RELATED="1" /></a>
                   </div>
                   <div class="cont">
                     <div class="info">
@@ -569,7 +566,7 @@ NOT="false">
                 <div class="pl_cont">
                   <div class="yh">
                     <a href="javascript:void(0);"
-                      ><img src="../site66/xl20240911_24.png" alt="" /></a>
+                      ><img src="xl20240911_24.png" alt="" OLDSRC="xl20240911_24.png" OLDID="377" RELATED="1" /></a>
                   </div>
                   <div class="cont">
                     <div class="info">
@@ -589,7 +586,7 @@ NOT="false">
                 <div class="pl_cont">
                   <div class="yh">
                     <a href="javascript:void(0);"
-                      ><img src="../site66/xl20240911_22.png" alt="" /></a>
+                      ><img src="xl20240911_22.png" alt="" OLDSRC="xl20240911_22.png" OLDID="378" RELATED="1" /></a>
                   </div>
                   <div class="cont">
                     <div class="info">
@@ -608,7 +605,7 @@ NOT="false">
                       <div class="pl_cont">
                         <div class="yh">
                           <a href="javascript:void(0);"
-                            ><img src="../site66/xl20240911_23.png" alt="" /></a>
+                            ><img src="xl20240911_23.png" alt="" OLDSRC="xl20240911_23.png" OLDID="379" RELATED="1" /></a>
                         </div>
                         <div class="cont">
                           <div class="info">
@@ -628,7 +625,7 @@ NOT="false">
                             <div class="pl_cont">
                               <div class="yh">
                                 <a href="javascript:void(0);"
-                                  ><img src="../site66/xl20240911_23.png" alt="" /></a>
+                                  ><img src="xl20240911_23.png" alt="" OLDSRC="xl20240911_23.png" OLDID="379" RELATED="1" /></a>
                               </div>
                               <div class="cont">
                                 <div class="info">
@@ -659,7 +656,7 @@ NOT="false">
                 <div class="pl_cont">
                   <div class="yh">
                     <a href="javascript:void(0);"
-                      ><img src="../site66/xl20240911_24.png" alt="" /></a>
+                      ><img src="xl20240911_24.png" alt="" OLDSRC="xl20240911_24.png" OLDID="377" RELATED="1" /></a>
                   </div>
                   <div class="cont">
                     <div class="info">
@@ -683,16 +680,16 @@ NOT="false">
             </div>
             <div class="xpl app">
               <label>
-                <!-- <input type="text" placeholder="写评论" autocomplete="off" disabled /> -->
+                <input type="text" placeholder="写评论" autocomplete="off" disabled />
               </label>
               <div class="cz">
                 <span class="sc" @click="collectionChange(!isCollection)"
                   ><a href="javascript:void(0);"
-                    ><img src="../site66/xl20240911_11.png" alt="" /><img src="../site66/xl20240911_12.png" alt="" class="hover" /></a
+                    ><img src="xl20240911_11.png" alt="" OLDSRC="xl20240911_11.png" OLDID="380" RELATED="1" /><img src="xl20240911_12.png" alt="" class="hover" OLDSRC="xl20240911_12.png" OLDID="381" RELATED="1" /></a
                 ></span>
                 <span class="dz" @click="changeLike(!isLikeBoolean)"
                   ><a href="javascript:void(0);"
-                    ><img src="../site66/xl20240911_13.png" alt="" /><img src="../site66/xl20240911_14.png" alt="" class="hover" /></a
+                    ><img src="xl20240911_13.png" alt="" OLDSRC="xl20240911_13.png" OLDID="382" RELATED="1" /><img src="xl20240911_14.png" alt="" class="hover" OLDSRC="xl20240911_14.png" OLDID="383" RELATED="1" /></a
                 ></span>
               </div>
             </div>
@@ -706,14 +703,14 @@ NOT="false">
         </div>
       </div>
     </div>
-    <script src="../site66/swiper.min.js"></script>
-    <script src="../site66/vue.min.js"></script>
-    <script src="../site66/element.js"></script>
-    <script type="text/javascript" charset="utf-8" src="../site66/base64.js"></script>
-<script type="text/javascript" charset="utf-8" src="../site66/js.cookie.min.js"></script>
-<script type="text/javascript" charset="utf-8" src="../site66/axios.min.js"></script>
-<script type="text/javascript" charset="utf-8" src="../site66/axiosConfig.js"></script>
-<script type="text/javascript" charset="utf-8" src="../site66/utils.js"></script>
+    <script src="swiper.min.js" OLDSRC="swiper.min.js" OLDID="253" RELATED="1"></script>
+    <script src="vue.min.js" OLDSRC="vue.min.js" OLDID="357" RELATED="1"></script>
+    <script src="element.js" OLDSRC="element.js" OLDID="355" RELATED="1"></script>
+    <script type="text/javascript" charset="utf-8" src="base64.js" OLDSRC="base64.js" OLDID="255" RELATED="1"></script>
+<script type="text/javascript" charset="utf-8" src="js.cookie.min.js" OLDSRC="js.cookie.min.js" OLDID="256" RELATED="1"></script>
+<script type="text/javascript" charset="utf-8" src="axios.min.js" OLDSRC="axios.min.js" OLDID="254" RELATED="1"></script>
+<script type="text/javascript" charset="utf-8" src="axiosConfig.js" OLDSRC="axiosConfig.js" OLDID="354" RELATED="1"></script>
+<script type="text/javascript" charset="utf-8" src="utils.js" OLDSRC="utils.js" OLDID="356" RELATED="1"></script>
     <script type="module">
       var vm = new Vue({
         el: "#app",
@@ -1006,5 +1003,21 @@ NOT="false">
 })();
 
         </script>
+      <!-- Matomo埋点 -->
+<script>
+  var _paq = window._paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//mfs-buss-hk.cm-worklink.com/matomo/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '2']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Matomo Code -->
+
   </body>
 </html>
