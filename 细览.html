@@ -202,8 +202,14 @@
         <div class="conter">
           <div class="main_search">
             <label>
-              <input type="text" autocomplete="off" placeholder="" />
-              <button type="button">
+              <input
+                type="text"
+                autocomplete="off"
+                placeholder=""
+                v-model="searchText"
+                @keyup.enter="toSearch"
+              />
+              <button type="button" @click="toSearch">
                 <img src="images/search20240904_9.png" alt="" /><span
                   >搜索</span
                 >
@@ -228,8 +234,13 @@
       </div>
       <div class="app_search_box app tc">
         <label>
-          <input type="text" autocomplete="off" placeholder="请输入关键词" />
-          <button>搜索</button>
+          <input
+            type="text"
+            autocomplete="off"
+            placeholder="请输入关键词"
+            v-model="searchText"
+          />
+          <button @click="toSearch">搜索</button>
         </label>
         <div class="close_btn">
           <img src="images/search20240904_7.png" alt="" />
@@ -808,6 +819,16 @@
             replayName: "",
             currentReplay: {},
             currentTopItem: {},
+            searchText: "",
+            keywordsType: "",
+            typeMap: {
+              全部: "",
+              标题: "title",
+              正文: "content",
+              创建人: "author",
+              发布时间: "pubtime",
+              分类搜索: "category",
+            },
           };
         },
         created() {
@@ -818,9 +839,22 @@
         },
         mounted() {
           Translate.BindObj("StranLink", "繁體", "以繁體中文查看内容");
+          var _this = this
+          $(".selected li a").on("click", function () {
+            _this.keywordsType = _this.typeMap[$(this).text()];
+          });
         },
         computed: {},
         methods: {
+          toSearch() {
+            window.open(
+              "https://mfs-hk.cm-worklink.com/pub/zsjjtyxgs/search/?keywords=" +
+                this.searchText +
+                "&keywordsType=" +
+                this.keywordsType,
+              "_blank"
+            );
+          },
           //   setCurrentType(value) {
           //     this.searchForm.sortType = value;
           //     $(".app_px").removeClass("show");

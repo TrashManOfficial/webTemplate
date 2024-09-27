@@ -139,13 +139,12 @@
     <div class="conter">
         <div class="main_search">
             <label>
-                <input type="text" autocomplete="off" placeholder="">
-                <button type="button"><img src="images/search20240904_9.png" alt=""><span>搜索</span></button>
+                <input type="text" autocomplete="off" placeholder="" id="search-pc" onkeypress="enterSearch()">
+                <button type="button" onclick="toSearch('search-pc')"><img src="images/search20240904_9.png" alt=""><span>搜索</span></button>
             </label>
             <div class="selected">
                 <ul>
                     <li class="hover"><a href="javascript:void(0);">全部</a></li>
-                    <li><a href="javascript:void(0);">关键词</a></li>
                     <li><a href="javascript:void(0);">标题</a></li>
                     <li><a href="javascript:void(0);">正文</a></li>
                     <li><a href="javascript:void(0);">创建人</a></li>
@@ -159,8 +158,8 @@
 </div>
 <div class="app_search_box app tc">
     <label>
-        <input type="text" autocomplete="off" placeholder="请输入关键词">
-        <button>搜索</button>
+        <input type="text" autocomplete="off" placeholder="请输入关键词" id="search-mobile">
+        <button onclick="toSearch('search-mobile')">搜索</button>
     </label>
     <div class="close_btn"><img src="images/search20240904_7.png" alt=""></div>
 </div>
@@ -758,6 +757,26 @@ charset="utf-8"
 src="images/utils.js"
 ></script>
 <script>
+    function getSiteData() {
+        trsAxios.get("/wcm/mlfcenter.do?methodname=queryPortal&serviceid=mlf_mediasite").then((res) => {
+            console.log(res);
+        });
+    }
+    getSiteData()
+</script>
+<script>
+    var keywordsType = ''
+    var typeMap = {
+        "全部": "",
+        "标题": "title",
+        "正文": "content",
+        "创建人":"author",
+        "发布时间":"pubtime",
+        "分类搜索":"category",
+    }
+    $('.selected li a').on('click', function() {
+        keywordsType = typeMap[$(this).text()]
+    })
     function getUserData() {
         trsAxios.get("/wcm/mlfcenter.do?methodname=getCurrUserInfo&serviceid=mlf_extuser").then((res) => {
             if (res) {
@@ -769,6 +788,14 @@ src="images/utils.js"
         });
     }
     getUserData()
+    function enterSearch() {
+        if(event.keyCode==13) {
+            toSearch('search-pc')
+        }
+    }
+    function toSearch(value) {
+        window.open("https://mfs-hk.cm-worklink.com/pub/zsjjtyxgs/search/?keywords=" + $("#".concat(value)).val() +'&keywordsType=' + keywordsType, '_blank');
+    }
 </script>
 <script src="images/swiper.min.js"></script>
 <script>

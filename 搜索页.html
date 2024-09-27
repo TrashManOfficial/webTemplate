@@ -108,13 +108,14 @@
             </label>
             <div class="selected">
               <ul>
-                <li class="hover"><a href="javascript:void(0);">全部</a></li>
-                <li><a href="javascript:void(0);">关键词</a></li>
-                <li><a href="javascript:void(0);">标题</a></li>
-                <li><a href="javascript:void(0);">正文</a></li>
-                <li><a href="javascript:void(0);">创建人</a></li>
-                <li><a href="javascript:void(0);">发布时间</a></li>
-                <li><a href="javascript:void(0);">分类搜索</a></li>
+                <li
+                  v-for="item in typeList"
+                  :key="item.name"
+                  @click="setSearchType(item.value)"
+                  :class="searchForm.keywordsType === item.value ? 'hover': ''"
+                >
+                  {{item.name}}
+                </li>
               </ul>
             </div>
           </div>
@@ -288,6 +289,7 @@
                 autocomplete="off"
                 placeholder=""
                 v-model="searchForm.keywords"
+                @keyup.enter="getData"
               />
               <button type="button" @click="getData">
                 <img src="images/search20240904_9.png" alt="" /><span
@@ -297,13 +299,14 @@
             </label>
             <div class="selected">
               <ul>
-                <li class="hover"><a href="javascript:void(0);">全部</a></li>
-                <li><a href="javascript:void(0);">关键词</a></li>
-                <li><a href="javascript:void(0);">标题</a></li>
-                <li><a href="javascript:void(0);">正文</a></li>
-                <li><a href="javascript:void(0);">创建人</a></li>
-                <li><a href="javascript:void(0);">发布时间</a></li>
-                <li><a href="javascript:void(0);">分类搜索</a></li>
+                <li
+                  v-for="item in typeList"
+                  :key="item.name"
+                  @click="setSearchType(item.value)"
+                  :class="searchForm.keywordsType === item.value ? 'hover': ''"
+                >
+                  {{item.name}}
+                </li>
               </ul>
             </div>
           </div>
@@ -344,13 +347,14 @@
           </div>
           <div class="selected">
             <ul>
-              <li class="hover"><a href="javascript:void(0);">全部</a></li>
-              <li><a href="javascript:void(0);">关键词</a></li>
-              <li><a href="javascript:void(0);">标题</a></li>
-              <li><a href="javascript:void(0);">正文</a></li>
-              <li><a href="javascript:void(0);">创建人</a></li>
-              <li><a href="javascript:void(0);">发布时间</a></li>
-              <li><a href="javascript:void(0);">分类搜索</a></li>
+              <li
+                v-for="item in typeList"
+                :key="item.name"
+                @click="setSearchType(item.value)"
+                :class="searchForm.keywordsType === item.value ? 'hover': ''"
+              >
+                {{item.name}}
+              </li>
             </ul>
           </div>
         </div>
@@ -382,13 +386,15 @@
                   <div class="tit">
                     <div class="left_cont">
                       <span class="fl">{{item.CHANNEL}}</span
-                      ><a href="">{{item.TITLE}}</a>
+                      ><a :href="item.PUBURL"
+                        ><div v-html="item.TITLE"></div
+                      ></a>
                     </div>
-                    <div class="time">{{ item.UPDATETIME}}</div>
+                    <div class="time" v-html="item.UPDATETIME"></div>
                   </div>
                   <div class="text">
                     <div class="zw">
-                      <p>{{ item.PARAGRAPH}}</p>
+                      <p v-html="item.PARAGRAPH"></p>
                     </div>
                     <div class="info">
                       <div class="gk">
@@ -398,7 +404,7 @@
                       </div>
                       <div class="pl">
                         <img src="images/search20240904_13.png" alt="" /><span
-                          >{{ item.REPLYCOUNT }}</span
+                          >{{ item.FAVORITECOUNT }}</span
                         >
                       </div>
                       <div class="dz">
@@ -500,35 +506,27 @@
             typeList: [
               {
                 name: "全部",
-                value: "全部",
-              },
-              {
-                name: "全部",
-                value: "全部",
-              },
-              {
-                name: "关键词",
-                value: "关键词",
+                value: "",
               },
               {
                 name: "标题",
-                value: "标题",
+                value: "title",
               },
               {
                 name: "正文",
-                value: "正文",
+                value: "content",
               },
               {
                 name: "创建人",
-                value: "创建人",
+                value: "author",
               },
               {
                 name: "发布时间",
-                value: "发布时间",
+                value: "pubtime",
               },
               {
                 name: "分类搜索",
-                value: "分类搜索",
+                value: "category",
               },
             ],
             orderList: [
@@ -546,7 +544,7 @@
               },
               {
                 name: "评论",
-                value: "REPLYCOUNT",
+                value: "FAVORITECOUNT",
               },
             ],
             data: [],
@@ -559,6 +557,9 @@
           };
         },
         created() {
+          var params = new URL(location.href);
+          this.searchForm.keywords = params.searchParams.get("keywords");
+          this.searchForm.keywordsType = params.searchParams.get("keywordsType");
           this.getUserData();
           this.getData();
         },
@@ -575,6 +576,11 @@
           },
         },
         methods: {
+          setSearchType(value) {
+            this.searchForm.keywordsType = value;
+            this.getData();
+          },
+          toDetail(url) {},
           setCurrentType(value) {
             this.searchForm.sortType = value;
             $(".app_px").removeClass("show");
@@ -593,12 +599,10 @@
               }
               return arr.reverse();
             }
-            var _this = this
-            return Array(5)
-              .keys()
-              .map(function (item) {
-                return item + _this.page.pageNum;
-              });
+            var _this = this;
+            return Array.from(Array(5).keys()).map(function (item) {
+              return item + _this.page.pageNum - 1;
+            });
           },
           changePage(value, direct) {
             this.searchForm.PAGEINDEX = direct
