@@ -87,7 +87,7 @@
       }
     </script>
   </head>
-  <body>
+  <body style="visibility: hidden;">
     <div class="search" id="app">
       <div class="mask"></div>
       <div class="tc search_tc">
@@ -558,6 +558,7 @@
         },
         created() {
           var params = new URL(location.href);
+          document.body.style.visibility = 'visible';
           this.searchForm.keywords = params.searchParams.get("keywords");
           this.searchForm.keywordsType = params.searchParams.get("keywordsType");
           this.getUserData();

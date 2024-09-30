@@ -203,7 +203,8 @@ _axios.interceptors.response.use(
                     error.message = `连接错误${error.response.status}`;
             }
         } else {
-            return alert('网络异常，请做好备份，待网络恢复后重新编辑');
+            // return alert('网络异常，请做好备份，待网络恢复后重新编辑');
+            return alert('网络异常');
         }
         // Do something with response error
         return Promise.reject(error);
