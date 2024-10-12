@@ -291,7 +291,7 @@ body {font-family: "微软雅黑", "sans-serif", "Arial";}
 .xl .wz_tit .info .bs .bg4{background: #9BCCFA;}
 .xl .wz_tit .info .bs .bg5{background: #fff;border: #ccc 1px solid;box-sizing: border-box;}
 .xl .content{padding: 3.75rem 8.625rem 2.5rem;}
-.xl .content .text p,.xl .content .text font,.xl .content .text div,.xl .content .text span{font-size: 1rem;line-height: 1.9375;margin: 1.9375em 0;}
+.xl .content .text p,.xl .content .text font,.xl .content .text div,.xl .content .text span{font-size: 1.2rem;line-height: 1.9375;margin: 1.9375em 0;}
 .xl .content .text img{width: 900px;margin: 2rem auto;display: block;max-width: 100% !important;}
 .xl .content .pic{margin: 2rem auto;width: 41.9079%;}
 .xl .content .pic img{width: 100%;display: block;}
