@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>跳转页</title>
+  </head>
+  <body>
+    <div style="text-align: center; font-size: 16px; margin-top: 10px">
+      跳转中，请稍后...
+    </div>
+  </body>
+</html>
+<script type="text/javascript" charset="utf-8" src="images/base64.js"></script>
+<script
+  type="text/javascript"
+  charset="utf-8"
+  src="images/js.cookie.min.js"
+></script>
+<script
+  type="text/javascript"
+  charset="utf-8"
+  src="images/axios.min.js"
+></script>
+<script
+  type="text/javascript"
+  charset="utf-8"
+  src="images/axiosConfig.js"
+></script>
+<script>
+  function getSiteData() {
+    trsAxios
+      .get("/wcm/mlfcenter.do?methodname=queryPortal&serviceid=mlf_mediasite")
+      .then((res) => {
+        if (res.length > 0) {
+          location.href = res[0].ROOTDOMAIN;
+        }
+      });
+  }
+  getSiteData();
+</script>

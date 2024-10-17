@@ -6,10 +6,13 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="siteid" content="66" />
+    <meta name="channelid" content="2341" />
     <title>Title</title>
     <link rel="stylesheet" type="text/css" href="images/global20240904.css" />
     <link rel="stylesheet" type="text/css" href="images/swiper.min.css" />
     <script src="images/jquery.js"></script>
+    <script src="images/auth.js"></script>
     <script>
       $(function () {
         setChange($(".dw_select"));
@@ -226,7 +229,7 @@
         </div>
       </div>
       <div class="dw_select">
-        <span>招商局海通贸易有限公司</span>
+        <span>暂无信息</span>
         <ul style="display: none">
           <li><a href="">测试</a></li>
           <li><a href="">测试</a></li>
@@ -351,7 +354,7 @@
                 <img src="images/search20240904_6.png" alt="" />
               </div>
               <div class="dw_select">
-                <span>招商局海通贸易有限公司</span>
+                <span>暂无信息</span>
                 <ul style="display: none">
                   <!-- <li><a href="">测试</a></li>
                             <li><a href="">测试</a></li>
@@ -1652,41 +1655,6 @@
       src="images/utils.js"
     ></script>
     <script>
-      function setDropDownList() {
-        var list = [
-          {
-            text: "1111111",
-            value: "1111111",
-          },
-          {
-            text: "2222222",
-            value: "222222",
-          },
-        ];
-        $.each(list, function (index, item) {
-          $(".dw_select ul").append(
-            $("<li>", { value: item.value, text: item.text }).on(
-              "click",
-              function () {
-                console.log($(this).val());
-              }
-            )
-          );
-        });
-      }
-      setDropDownList()
-      function getSiteData() {
-        trsAxios
-          .get(
-            "/wcm/mlfcenter.do?methodname=queryPortal&serviceid=mlf_mediasite"
-          )
-          .then((res) => {
-            console.log(res);
-          });
-      }
-      getSiteData();
-    </script>
-    <script>
       var keywordsType = "";
       var typeMap = {
         全部: "",
@@ -1709,6 +1677,9 @@
               // this.useInfo.name = res.TRUENAME;
               $("#userName").text(res.TRUENAME);
               $("#userNameMobile").text(res.TRUENAME);
+              if (res.USERHEAD) {
+                $(".yhxx img").attr('src',res.USERHEAD)
+              }
               // console.log($('userName'));
             }
           });

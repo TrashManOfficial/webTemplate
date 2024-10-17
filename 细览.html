@@ -541,7 +541,7 @@
                 class="hover"
               />
             </div>
-            <div class="hd">
+            <div class="hd" id="interactive" style="visibility: hidden;">
               <p>
                 <img src="images/xl20240911_5.png" alt="" /><span>阅读：</span
                 ><em>{{ readCount }}</em>
@@ -833,6 +833,7 @@
           };
         },
         created() {
+          document.getElementById('interactive').style.visibility = 'visible'
           this.getUserData();
           //   this.getLikeFavoriteCount();
           //   console.log(location.href.split('_')[1].split('.')[0]);
