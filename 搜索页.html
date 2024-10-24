@@ -6,6 +6,10 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
     <title>Title</title>
     <link rel="stylesheet" type="text/css" href="images/global20240904.css" />
     <link rel="stylesheet" type="text/css" href="images/element.css" />
@@ -87,7 +91,7 @@
       }
     </script>
   </head>
-  <body>
+  <body style="visibility: hidden">
     <div class="search" id="app">
       <div class="mask"></div>
       <div class="tc search_tc">
@@ -486,6 +490,7 @@
         data() {
           return {
             useInfo: {
+              head: undefined,
               name: "",
             },
             searchForm: {
@@ -558,8 +563,10 @@
         },
         created() {
           var params = new URL(location.href);
+          document.body.style.visibility = "visible";
           this.searchForm.keywords = params.searchParams.get("keywords");
-          this.searchForm.keywordsType = params.searchParams.get("keywordsType");
+          this.searchForm.keywordsType =
+            params.searchParams.get("keywordsType");
           this.getUserData();
           this.getData();
         },
@@ -637,6 +644,10 @@
               .then((res) => {
                 if (res) {
                   this.useInfo.name = res.TRUENAME;
+                  // this.useInfo.head = res.USERHEAD;
+                  if (res.USERHEAD) {
+                    $(".yhxx img").attr("src", res.USERHEAD);
+                  }
                 }
               });
           },

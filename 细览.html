@@ -6,6 +6,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="docId" content="11685">
     <title>Title</title>
     <link rel="stylesheet" type="text/css" href="images/global20240904.css" />
     <link rel="stylesheet" type="text/css" href="images/swiper.min.css" />
@@ -540,7 +541,7 @@
                 class="hover"
               />
             </div>
-            <div class="hd">
+            <div class="hd" id="interactive" style="visibility: hidden;">
               <p>
                 <img src="images/xl20240911_5.png" alt="" /><span>阅读：</span
                 ><em>{{ readCount }}</em>
@@ -809,7 +810,7 @@
             curUser: {},
             isLikeBoolean: false,
             isCollection: false,
-            docId: location.href.split("_")[1].split(".")[0],
+            docId: document.head.getElementsByTagName('meta')['docId'].getAttribute('content'),
             likecount: 0,
             favoritecount: 0,
             readCount: 0,
@@ -832,6 +833,7 @@
           };
         },
         created() {
+          document.getElementById('interactive').style.visibility = 'visible'
           this.getUserData();
           //   this.getLikeFavoriteCount();
           //   console.log(location.href.split('_')[1].split('.')[0]);
