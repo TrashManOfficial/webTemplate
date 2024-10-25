@@ -880,6 +880,7 @@
                 //   loadingInstance.close();
 
                 console.log(res, "点赞评论数");
+                document.getElementById('interactive').style.visibility = 'visible'
                 // if (res.status == 200) {
                 if (res && res.FAVORITECOUNT) {
                   this.favoritecount = res.FAVORITECOUNT;

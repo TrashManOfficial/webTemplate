@@ -7,11 +7,56 @@
     <title>跳转页</title>
   </head>
   <body>
-    <div style="text-align: center; font-size: 16px; margin-top: 10px">
-      跳转中，请稍后...
+    <div
+      style="
+        text-align: center;
+        font-size: 16px;
+        margin-top: 10px;
+        height: 95vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      "
+    >
+      <div
+        id="loadBox"
+        style="
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+        "
+      >
+        <div class="loading"></div>
+        <div>跳转中，请稍后...</div>
+      </div>
+      <div id="noAuth" style="display: none">暂无查看权限</div>
     </div>
   </body>
 </html>
+<style>
+  .loading {
+    position: relative;
+    width: 30px;
+    height: 30px;
+    border: 2px solid #409eff;
+    border-top-color: rgba(0, 0, 0, 0.2);
+    border-right-color: rgba(0, 0, 0, 0.2);
+    border-bottom-color: rgba(0, 0, 0, 0.2);
+    border-radius: 100%;
+
+    animation: circle infinite 0.75s linear;
+  }
+
+  @keyframes circle {
+    0% {
+      transform: rotate(0);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+</style>
 <script type="text/javascript" charset="utf-8" src="images/base64.js"></script>
 <script
   type="text/javascript"
@@ -35,6 +80,10 @@
       .then((res) => {
         if (res.length > 0) {
           location.href = res[0].ROOTDOMAIN;
+          document.getElementById("loadBox").style.display = "none";
+        } else {
+          document.getElementById("loadBox").style.display = "none";
+          document.getElementById("noAuth").style.display = "block";
         }
       });
   }
