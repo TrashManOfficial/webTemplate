@@ -167,7 +167,7 @@
       }
     </script>
   </head>
-  <body class="index">
+  <body class="index" style="visibility: hidden;">
     <div class="mask"></div>
     <div class="tc search_tc">
       <div class="conter">
@@ -1655,18 +1655,22 @@
       src="images/utils.js"
     ></script>
     <script>
-      var keywordsType = "";
-      var typeMap = {
-        全部: "",
-        标题: "title",
-        正文: "content",
-        创建人: "author",
-        发布时间: "pubtime",
-        分类搜索: "category",
-      };
-      $(".selected li a").on("click", function () {
-        keywordsType = typeMap[$(this).text()];
-      });
+  
+      $(function () {
+        
+        var keywordsType = ''
+        var typeMap = {
+            "全部": "",
+            "标题": "title",
+            "正文": "content",
+            "创建人": "author",
+            "发布时间": "pubtime",
+            "分类搜索": "category",
+        }
+        $('.selected li a').on('click', function () {
+            keywordsType = typeMap[$(this).text()]
+        })
+    
       function getUserData() {
         trsAxios
           .get(
@@ -1690,7 +1694,7 @@
           toSearch("search-pc");
         }
       }
-      function toSearch(value) {
+        function toSearch(value) {
         window.open(
           "https://mfs-hk.cm-worklink.com/pub/zsjjtyxgs/search/?keywords=" +
             $("#".concat(value)).val() +
@@ -1698,7 +1702,18 @@
             keywordsType,
           "_blank"
         );
-      }
+        }
+    
+    
+        // 24.10.23 add
+        setTimeout(function () {
+    
+            document.body.style.visibility = 'visible';
+            
+        }, 200);
+    
+    })
+      
     </script>
     <script src="images/swiper.min.js"></script>
     <script>

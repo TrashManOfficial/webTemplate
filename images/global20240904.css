@@ -295,6 +295,7 @@ body {font-family: "微软雅黑", "sans-serif", "Arial";}
 .xl .content .text img{width: 900px;margin: 2rem auto;display: block;max-width: 100% !important;}
 .xl .content .pic{margin: 2rem auto;width: 41.9079%;}
 .xl .content .pic img{width: 100%;display: block;}
+.xl .content p img{width: 900px;margin: 2rem auto;display: block;max-width: 100%!important;}
 .xl .content .tj{position: relative;margin: 1.625rem auto;width: 41.9079%;}
 .xl .content .tj .count{position: absolute;top: 0;right: 0;z-index: 4;background: #F4A34D;padding: 0.25rem 0.5625rem;font-size: 1.125rem;line-height: 1.32;color: #fff;}
 .xl .content .tj .pic{width: 100%;position: relative;z-index: 3;margin: 0;cursor: pointer;}
