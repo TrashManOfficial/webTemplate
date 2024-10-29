@@ -120,7 +120,7 @@
             }, 500);
           }
         });
-        $(".cp .tis span").on("click", function () {
+        $(".cp .tis span").hover(function () {
           setChange2($(this));
         });
         $(".zp .tis span")
@@ -443,6 +443,8 @@
                                     </div>
                                 </div>
                                 <div class="swiper-pagination app"></div>
+                                <div class="swiper-button-prev swiper-button"><img src="images/index20241028_1.png" alt="" style="transform: rotateZ(180deg);"></div>
+                                <div class="swiper-button-next swiper-button"><img src="images/index20241028_1.png" alt=""></div>
                             </div>
                         </div>
                     </div>
@@ -1127,6 +1129,10 @@
                       centeredSlides: true,
                       watchSlidesProgress: true,
                       loopedSlides: 5,
+                      navigation: {
+                          nextEl: ".swiper-button-next",
+                          prevEl: ".swiper-button-prev",
+                      },
                   }
               },
               on: {
