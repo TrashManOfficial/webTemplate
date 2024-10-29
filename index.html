@@ -1655,9 +1655,8 @@
       src="images/utils.js"
     ></script>
     <script>
-  
-      $(function () {
-        
+
+
         var keywordsType = ''
         var typeMap = {
             "全部": "",
@@ -1670,7 +1669,7 @@
         $('.selected li a').on('click', function () {
             keywordsType = typeMap[$(this).text()]
         })
-    
+
       function getUserData() {
         trsAxios
           .get(
@@ -1703,17 +1702,16 @@
           "_blank"
         );
         }
-    
-    
+
+
         // 24.10.23 add
         setTimeout(function () {
-    
+
             document.body.style.visibility = 'visible';
-            
+
         }, 200);
-    
-    })
-      
+
+
     </script>
     <script src="images/swiper.min.js"></script>
     <script>
