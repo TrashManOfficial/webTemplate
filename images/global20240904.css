@@ -183,10 +183,10 @@ body {font-family: "微软雅黑", "sans-serif", "Arial";}
 .index .cp .lis li p{font-size: 1.375rem;line-height: 2.25rem;color: #474747;font-weight: bold;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;}
 .index .cp .lis li p:hover{color: #0E89CD;}
 .index .cp .lis li span em{color: #0E89CD;}
-.index .cp .lis li span{font-size: 1.25rem;line-height: 1.6;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;}
+.index .cp .lis li span{font-size: 1.25rem;line-height: 1.6;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;color: #828282;}
 .index .cp .lis li span:hover{color: #0E89CD;}
 .index .cp .lis .time{font-size: 1rem;line-height: 1.625rem;white-space: nowrap;text-align: center;color: #808080;padding-right: 1.125rem;margin-right: 1.3125rem;position: relative;}
-.index .cp .lis .time em{font-size: 2.125rem;line-height: 2.25rem;font-weight: 700;display: block;text-align: center;margin-bottom: -0.25rem;}
+.index .cp .lis .time em{font-size: 2.125rem;line-height: 2.25rem;font-weight: 700;display: block;text-align: center;margin-bottom: 0.75rem;}
 .index .cp .lis .time:after{content: '';position: absolute;width: 1px;height: 3.375rem;right: -1px;top: calc((100% - 3.375rem)/2);background: #E0E0E0;}
 .index .cp .lis a{width: calc(100% - 6.25rem);display: flex;align-items: center;}
 
@@ -470,9 +470,9 @@ body {font-family: "微软雅黑", "sans-serif", "Arial";}
 .ngrzx .list .page span,.gl .list .page a:hover{background: #F4A34D;color: #fff;}
 
 .footer{background: #0E89CD;height: 6.3125rem;position: relative;z-index: 2;}
-.footer .conter{display: flex;align-items: center;justify-content: center;flex-direction: column;height: 100%;}
+.footer .conter{display: flex;align-items: center;justify-content: center;height: 100%;}
 .footer .conter p{font-size: 1.125rem;line-height: 1.32;color: #fff;}
-.footer .conter p:not(:last-of-type){margin-bottom: 0.5625rem;}
+.footer .conter p:not(:last-of-type){margin: 0 0.5625rem 0 0;}
 
 @media (min-width: 1920px) {
     html{font-size: 0.8333vw;}
@@ -534,14 +534,20 @@ body {font-family: "微软雅黑", "sans-serif", "Arial";}
 
     .footer{height: 5.3125rem;}
 }
+@media (max-width: 1280px) and (min-width: 1080px){
+    .index .zp .left_cont .ztzl{     margin: 1.875rem 7rem 0;}
+    .index .zp .left_cont .tpxw .tpxw_tp .tpxw_banner .swiper-slide{  width: 40vw;height: 23.2369vw;}
+    .index .zp .left_cont .swiper-button-prev{left: 7.3614vw;}
+    .index .zp .left_cont .swiper-button-next{right: 7.3614vw;}
+}
 @media (max-width: 1280px) {
     html{font-size: 12px;}
     .head .top .left_cont .menu li{font-size: 1.25rem;}
     .head .top .right_cont{width: 38%;}
 
-    .index .zp .left_cont{width: 52.7860vw;}
-    .index .zp .left_cont .tpxw .tpxw_tp .tpxw_banner{width: 39.5895vw}
-    .index .zp .left_cont .tpxw .tpxw_tp .tpxw_banner .swiper-slide{width: 36.0157vw;height: 20.1980vw;}
+  
+    .index .zp .left_cont .tpxw .tpxw_tp .tpxw_banner{width: 100%;}
+    
 }
 @media (max-width: 1080px) {
     .head .top .left_cont .logo{width: 30%;}
@@ -556,6 +562,7 @@ body {font-family: "微软雅黑", "sans-serif", "Arial";}
     .index .zp .right_cont .list .tis span.hover:before{background: #F4A34D;border-color: #F4A34D;}
 
     .index .cp .tis span{font-size: 1.25rem;}
+    .index .zp .left_cont .tpxw .tpxw_tp .tpxw_banner .swiper-slide{width: 36.0157vw;height: 20.1980vw;}
 }
 @media (min-width: 900px) {
     .index .zp .left_cont .ztzl img:hover{transform: scale(1.1);}
@@ -563,7 +570,8 @@ body {font-family: "微软雅黑", "sans-serif", "Arial";}
     .index .main .list li a:hover{color: #0E89CD;}
 
     .index .cp .lis li a:hover p{color: #0E89CD;}
-    .index .cp .lis li a:hover span{color: #0E89CD;}
+    .index .cp .lis li:hover a p{color: #0E89CD;}
+    .index .cp .lis li:hover .time{color: #0E89CD;}
 }
 @media (max-width: 900px) {
     html{font-size: 4.1025vw;}
@@ -968,6 +976,7 @@ body {font-family: "微软雅黑", "sans-serif", "Arial";}
     .ngrzx .load_more img{width: 1.75rem;height: 1.75rem;display: block;box-shadow: 0 0 0.25rem rgba(0, 0, 0, 0.28);border-radius: 50%;}
     
     .footer{height: auto;padding: 0.5rem 0;}
+    .footer .conter{flex-direction: column;}
     .footer .conter p{font-size: 0.875rem;line-height: 1.4;}
     .footer .conter p:not(:last-of-type){margin: 0;}
 }
