@@ -61,7 +61,7 @@ function goToZsjLogin(_env) {
     var ph = window.location.protocol + '//' + window.location.hostname;
     var curHref = window.location.href;
     curHref = curHref.substring(window.location.origin.length + 1);
-    var redirectUrl = `${ph}/wcm/callback.do?href=${encodeURIComponent(curHref)}`;
+    var redirectUrl = `${ph}/wcm/callback.do?href=${encodeURIComponent(curHref)}&web=true`;
     redirectUrl = encodeURIComponent(redirectUrl);
 
     var domain = '', client_id = '';
