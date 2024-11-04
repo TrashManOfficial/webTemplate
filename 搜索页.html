@@ -363,7 +363,24 @@
           </div>
         </div>
         <div class="conter">
-          <div class="count">相关结果约<em>{{page.total}}</em>条</div>
+          <div
+            style="
+              display: flex;
+              justify-content: space-between;
+              align-items: flex-end;
+            "
+          >
+            <div class="count">相关结果约<em>{{page.total}}</em>条</div>
+            <div>
+              <el-button
+                size="small"
+                type="primary"
+                @click="exportPage"
+                :loading="loading"
+                >导出当前页数据</el-button
+              >
+            </div>
+          </div>
           <div class="search_cont">
             <div class="pc px">
               <p>排序：</p>
@@ -503,7 +520,7 @@
               sortType: "",
               startDate: "",
               endDate: "",
-              time: null,
+              // time: null,
               PAGEINDEX: 1,
               PAGESIZE: 10,
               searchType: "全部",
@@ -618,6 +635,43 @@
             $(".mask").removeClass("top");
             $(".page_select_tc").removeClass("show");
             this.getData();
+          },
+          downloadByBlob(result, filename) {
+            // console.log(result, 'result')
+            if (result) {
+              const blob = new Blob([result], {
+                type: "application/vnd.ms-excel",
+              });
+              const linkNode = document.createElement("a");
+              linkNode.style.display = "none";
+              linkNode.href = URL.createObjectURL(blob); //生成一个Blob URL
+
+              if (filename) {
+                linkNode.download = filename; // 修改文件名
+              }
+
+              document.body.appendChild(linkNode);
+              linkNode.click(); //模拟在按钮上的一次鼠标单击
+              URL.revokeObjectURL(linkNode.href); // 释放URL 对象
+              document.body.removeChild(linkNode);
+            }
+          },
+          exportPage() {
+            const params = {
+              ...this.searchForm,
+              methodname: "exportWebSiteDocForIntranet",
+            };
+            this.loading = true
+            trsAxios
+              .get("/wcm/mlfcenter.do", {
+                params,
+              })
+              .then((data) => {
+                this.loading = false
+                this.downloadByBlob(data,'搜索导出数据')
+              }).catch(res => {
+                this.loading = false
+              });
           },
           getData() {
             $(".close_btn").click();
