@@ -364,6 +364,7 @@
         </div>
         <div class="conter">
           <div
+          class="bar"
             style="
               display: flex;
               justify-content: space-between;
@@ -371,7 +372,7 @@
             "
           >
             <div class="count">相关结果约<em>{{page.total}}</em>条</div>
-            <div>
+            <div class="exportPage">
               <el-button
                 size="small"
                 type="primary"
@@ -661,17 +662,9 @@
               ...this.searchForm,
               methodname: "exportWebSiteDocForIntranet",
             };
-            this.loading = true
-            trsAxios
-              .get("/wcm/mlfcenter.do", {
-                params,
-              })
-              .then((data) => {
-                this.loading = false
-                this.downloadByBlob(data,'搜索导出数据')
-              }).catch(res => {
-                this.loading = false
-              });
+            const str = 'https://mfs-hk.cm-worklink.com/wcm/mlfcenter.do?' + new URLSearchParams(params).toString()
+            console.log(str);
+            window.open(str,'_blank')
           },
           getData() {
             $(".close_btn").click();
