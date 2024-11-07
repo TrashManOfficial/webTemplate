@@ -294,12 +294,12 @@
           <ul>
             <li v-for="item in data">
               <div class="tit">
-                <span class="fl">{{item.DOCTYPENAME}}</span
-                ><a href="">{{item.DOCTITLE}}</a>
+                <span class="fl">{{item.CHNLDESC}}</span
+                ><a :href="item.DOCPUBURL">{{item.TITLE}}</a>
               </div>
               <div class="text">
                 <div class="zw">
-                  <p>{{item.DOCCONTENT}}</p>
+                  <p>{{item.CONTENT}}</p>
                 </div>
               </div>
               <div class="info">
@@ -327,7 +327,7 @@
                   <span class="pc btn"
                     ><a
                       href="javascript:void(0);"
-                      @click="cancelFavorite(item.DOCID)"
+                      @click="cancelFavorite(item.METADATAID)"
                       >取消收藏</a
                     ></span
                   >
@@ -337,7 +337,7 @@
                       <a
                         href="javascript:void(0);"
                         style="color: white; font-size: smaller"
-                        @click="cancelFavorite(item.DOCID)"
+                        @click="cancelFavorite(item.METADATAID)"
                         >取消收藏</a
                       >
                     </div>
@@ -421,8 +421,8 @@
         data() {
           return {
             searchForm: {
-              methodname: "getFavoriteKnowledges",
-              serviceid: "mlf_knowledgeFavorite",
+              methodname: "getUserFavorites",
+              serviceid: "mlf_favorite",
               PAGEINDEX: 1,
               PAGESIZE: 10,
             },
@@ -474,9 +474,9 @@
                 if (res.DATA) {
                   this.data = res.DATA;
                   this.page = {
-                    pageNum: res.PAGER.CURRPAGE,
-                    pageSize: res.PAGER.PAGESIZE,
-                    total: res.PAGER.ITEMCOUNT,
+                    pageNum: res.PAGER.CURRPAGE*1,
+                    pageSize: res.PAGER.PAGESIZE*1,
+                    total: res.PAGER.ITEMCOUNT*1,
                   };
                 }
 
