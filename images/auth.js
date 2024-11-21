@@ -16,6 +16,8 @@ function getAuth() {
             return
       }
       $(".dw_select span").text(res.SITENAME)
+      // $('body').css('visibility','visible')
+      $('#app').css('visibility','visible')
       getSiteData()
       // console.log(res);
     });
