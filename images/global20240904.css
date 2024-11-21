@@ -111,8 +111,8 @@ body {font-family: "微软雅黑", "sans-serif", "Arial";}
 .index .zp .left_cont .tpxw .tpxw_box{width: 100%;height: 100%;z-index: 3;position: relative;}
 .index .zp .left_cont .tpxw .tpxw_tp .tpxw_banner{width: 100%;height: 100%;overflow: hidden;}
 .index .zp .left_cont .tpxw .tpxw_tp .tpxw_banner .swiper-slide{overflow: hidden;width: 90%;height: auto;border-radius: 0.75rem;}
-.index .zp .left_cont .tpxw .tpxw_tp .tpxw_banner img{height: auto;width: 100%;}
-.index .zp .left_cont .tpxw .tpxw_tp .tpxw_banner a{width: 100%;height: 100%;display: flex;align-items: center;justify-content: center;}
+.index .zp .left_cont .tpxw .tpxw_tp .tpxw_banner img{position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;}
+.index .zp .left_cont .tpxw .tpxw_tp .tpxw_banner a{width: 100%;padding-top: 58%; display: flex;align-items: center;justify-content: center;position: relative;overflow: hidden;}
 .index .zp .left_cont .swiper-button-next,
 .index .zp .left_cont .swiper-button-prev{opacity: 0;transition: opacity 0.3s;width: 2.25rem;height: 2.25rem;}
 .index .zp .left_cont .swiper-button-next{right: 2.90625rem;}
@@ -127,7 +127,7 @@ body {font-family: "微软雅黑", "sans-serif", "Arial";}
 .index .zp .right_cont{width: 39.8%;max-height: 100%;display: flex;align-items: center;justify-content: space-between;height: 90%;}
 .index .zp .right_cont .list{width: 100%;height: 100%;}
 .index .zp .right_cont .list .tis{display: flex;align-items: center;justify-content: space-between;}
-.index .zp .right_cont .list .tis span{width: 22%;height: 2.7025rem;font-weight: 700;display: flex;align-items: center;justify-content: center;font-size: 1.5rem;line-height: 1.98rem;letter-spacing: 0.045rem;color: #0E89CD;position: relative;cursor: pointer;}
+.index .zp .right_cont .list .tis span{width: 22%;height: 2.7025rem;font-weight: 700;display: flex;align-items: center;justify-content: center;font-size: 1.3rem;line-height: 1.98rem;letter-spacing: 0.045rem;color: #0E89CD;position: relative;cursor: pointer;}
 .index .zp .right_cont .list .tis span a{width: 100%;display: block;text-align: center;}
 .index .zp .right_cont .list .tis span.hover{color: #fff;}
 .index .zp .right_cont .list .tis span:before{content: '';position: absolute;width: 100%;height: 100%;top: 0;left: 0;border: 1px solid #0E89CD;transform: skewX(-20deg);z-index: -1;}
@@ -497,6 +497,9 @@ body {font-family: "微软雅黑", "sans-serif", "Arial";}
 
     .index .mp .ztbd li .pic{height: 16.5rem;}
 }
+@media (min-width: 1700px) and (max-height: 1000px){
+	.index .zp .left_cont{width: 47%;}
+}
 @media (max-width: 1280px){
     .conter{width: 83%;}
     
@@ -515,7 +518,8 @@ body {font-family: "微软雅黑", "sans-serif", "Arial";}
     .index .cp .lis li:hover a p{color: #0E89CD;}
     .index .cp .lis li:hover .time{color: #0E89CD;}
 
-
+	.xl .main{min-height: calc(100vh - 33.2rem);}
+	.gl .main{min-height: calc(100vh - 26.8rem);}
 }
 @media (max-width: 900px) {
     html{font-size: 4.1025vw;}
@@ -593,7 +597,8 @@ body {font-family: "微软雅黑", "sans-serif", "Arial";}
 
     .index{overflow: auto;}
     .index .main{background: none;}
-
+    .index .zp .left_cont .tpxw .tpxw_tp .tpxw_banner img{height: auto;width: 100%;position: unset;}
+    .index .zp .left_cont .tpxw .tpxw_tp .tpxw_banner a{padding-top: 0; width: 100%;height: 100%;position: unset;}
     .index .zp{flex-direction: column;padding: 0;}
     .index .zp .left_cont{width: 100%;padding: 0;display: block;}
     .index .zp .left_cont .tpxw .tpxw_tp .tpxw_banner{width: auto;}
