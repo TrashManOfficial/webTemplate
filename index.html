@@ -90,8 +90,8 @@
         $(".app_head .logo .search_btn").on("click", function () {
           $(".app_search_box").addClass("show");
         });
-        $(".app_menu .menu_cont ul ul").parent().addClass("hasSub");
-        $(".app_menu .menu_cont a").on("click", function (event) {
+        $(".app_menu .menu_cont ul ul>*").parent().parent().addClass("hasSub");
+        $(".app_menu .menu_cont .hasSub>a").on("click", function (event) {
           event.preventDefault();
           if ($(this).parent().hasClass("expand")) {
             $(this).parent().removeClass("expand");
