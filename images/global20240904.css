@@ -127,7 +127,7 @@ body {font-family: "微软雅黑", "sans-serif", "Arial";}
 .index .zp .right_cont{width: 39.8%;max-height: 100%;display: flex;align-items: center;justify-content: space-between;height: 90%;}
 .index .zp .right_cont .list{width: 100%;height: 100%;}
 .index .zp .right_cont .list .tis{display: flex;align-items: center;justify-content: space-between;}
-.index .zp .right_cont .list .tis span{width: 22%;height: 2.7025rem;font-weight: 700;display: flex;align-items: center;justify-content: center;font-size: 1.3rem;line-height: 1.98rem;letter-spacing: 0.045rem;color: #0E89CD;position: relative;cursor: pointer;}
+.index .zp .right_cont .list .tis span{width: 22%;height: 2.7025rem;font-weight: 700;display: flex;align-items: center;justify-content: center;font-size: 1.4rem;line-height: 1.98rem;letter-spacing: 0.045rem;color: #0E89CD;position: relative;cursor: pointer;}
 .index .zp .right_cont .list .tis span a{width: 100%;display: block;text-align: center;}
 .index .zp .right_cont .list .tis span.hover{color: #fff;}
 .index .zp .right_cont .list .tis span:before{content: '';position: absolute;width: 100%;height: 100%;top: 0;left: 0;border: 1px solid #0E89CD;transform: skewX(-20deg);z-index: -1;}
@@ -243,6 +243,9 @@ body {font-family: "微软雅黑", "sans-serif", "Arial";}
 .search .search_cont .list li .tit .time{white-space: nowrap;font-size: 1.25rem;}
 .search .search_cont .list li .zw{font-size: 1.125rem;line-height: 2rem;color: #757575;}
 .search .search_cont .list li .zw em{color: #FF0000;}
+.search .search_cont .list li .sitebox{display: flex; align-items: center; margin: 0.63rem 0 -1.81rem 0; font-size: 1.125rem}
+.search .search_cont .list li .sitebox .title{font-weight: 500; margin-right: 4px;}
+.search .search_cont .list li .sitebox .sitename{background: #ebf8ff; color: #0e89cd; padding: 0.13rem 0.63rem; border-radius: 0.63rem; font-weight: 600;}
 .search .search_cont .list li .info{display: flex;justify-content: flex-end;align-items: center;font-size: 1.125rem;line-height: 2rem;color: #757575;}
 .search .search_cont .list li .info>div{display: flex;align-items: center;cursor: pointer;}
 .search .search_cont .list li .info>div img{display: block;margin-right: 0.1875rem;}
@@ -721,6 +724,9 @@ body {font-family: "微软雅黑", "sans-serif", "Arial";}
     .search .search_cont .list li .tit a{font-size: 1.125rem;line-height: 1.75rem;font-weight: 500;}
     .search .search_cont .list li .tit .time{position: absolute;font-size: 0.875rem;line-height: 0.875rem;font-weight: 500;right: 1.25rem;bottom: 0.9375rem;}
     .search .search_cont .list li .zw{font-size: 1rem;line-height: 1.4375rem;font-weight: 500;margin-bottom: 0.75rem;}
+    .search .search_cont .list li .sitebox{display: flex; align-items: center; margin: 0.63rem 0;}
+    .search .search_cont .list li .sitebox .title{font-weight: 500; margin-right: 4px;}
+    .search .search_cont .list li .sitebox .sitename{background: #ebf8ff; color: #0e89cd; padding: 0.13rem 0.63rem; border-radius: 0.63rem; font-weight: 600;}
     .search .search_cont .list li .info{font-size: 0.875rem;line-height: 0.875rem;font-weight: 500;justify-content: flex-start;}
     .search .search_cont .list li .text .info>div img{width: 0.75rem;margin-right: 0.125rem;}
     .search .search_cont .list li:not(:last-of-type){margin-bottom: 0.875rem;}

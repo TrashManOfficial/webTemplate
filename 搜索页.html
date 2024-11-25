@@ -13,6 +13,24 @@
     <title>Title</title>
     <link rel="stylesheet" type="text/css" href="images/global20240904.css" />
     <link rel="stylesheet" type="text/css" href="images/element.css" />
+    <style>
+      .main_search .selected ul li {
+        cursor: pointer;
+      }
+      p.zwp {
+        overflow: hidden;
+        /*  超出的文本隐藏 */
+
+        display: -webkit-box;
+        /* 将对象作为弹性伸缩盒子模型显示。 */
+
+        -webkit-line-clamp: 2;
+        /* 这个属性不是css的规范属性，需要组合上面两个属性，表示显示的行数。 */
+
+        -webkit-box-orient: vertical;
+        /* 从上到下垂直排列子元素（设置伸缩盒子的子元素排列方式） */
+      }
+    </style>
     <script src="images/jquery.js"></script>
     <script src="images/zsjfjqh.js"></script>
     <script>
@@ -364,7 +382,7 @@
         </div>
         <div class="conter">
           <div
-          class="bar"
+            class="bar"
             style="
               display: flex;
               justify-content: space-between;
@@ -416,7 +434,11 @@
                   </div>
                   <div class="text">
                     <div class="zw">
-                      <p v-html="item.PARAGRAPH"></p>
+                      <p class="zwp" v-html="item.PARAGRAPH"></p>
+                    </div>
+                    <div class="sitebox" >
+                      <span class="title">来源站点:</span>
+                      <div class="sitename">{{item.SITENAME}}</div>
                     </div>
                     <div class="info">
                       <div class="gk">
@@ -662,9 +684,11 @@
               ...this.searchForm,
               methodname: "exportWebSiteDocForIntranet",
             };
-            const str = 'https://mfs-hk.cm-worklink.com/wcm/mlfcenter.do?' + new URLSearchParams(params).toString()
+            const str =
+              "https://mfs-hk.cm-worklink.com/wcm/mlfcenter.do?" +
+              new URLSearchParams(params).toString();
             console.log(str);
-            window.open(str,'_blank')
+            window.open(str, "_blank");
           },
           getData() {
             $(".close_btn").click();
