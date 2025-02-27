@@ -138,7 +138,7 @@ _axios.interceptors.response.use(
             // 根据域名判断所属环境
             if (ENV.includes('mfs-st1.uat.cm-worklink.com')) {
                 goToZsjLogin('uat')
-            } else if (ENV.includes('mfs-hk.cm-worklink.com')) {
+            } else if (ENV.includes('mfs.cmhk.com')) {
                 goToZsjLogin('prod')
             } else {
                 console.log("goToLoginPage") 
